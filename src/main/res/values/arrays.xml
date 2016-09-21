@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="industry_array">
+        <item>Accounting</item>
+        <item>Airlines/Aviation</item>
+        <item>Alternative Dispute Resolution</item>
+        <item>Alternative Medicine</item>
+        <item>Animation</item>
+        <item>Apparel/Fashion</item>
+        <item>Architecture and Planning</item>
+        <item>Arts and Crafts</item>
+        <item>Automotive</item>
+        <item>Aviation and Aerospace</item>
+        <item>Banking</item>
+        <item>Biotechnology</item>
+        <item>Broadcast Media</item>
+        <item>Building Materials</item>
+        <item>Business Supplies and Equipment</item>
+        <item>Capital Markets</item>
+        <item>Chemicals</item>
+        <item>Civic and Social Organization</item>
+        <item>Civil Engineering</item>
+        <item>Commercial Real Estate</item>
+        <item>Computer and Network Security</item>
+        <item>Computer Games</item>
+        <item>Computer Hardware</item>
+        <item>Computer Networking</item>
+        <item>Computer Software</item>
+        <item>Construction</item>
+        <item>Consumer Electronics</item>
+        <item>Consumer Goods</item>
+        <item>Consumer Services</item>
+        <item>Cosmetics</item>
+        <item>Dairy</item>
+        <item>Defense and Space</item>
+        <item>Design</item>
+        <item>Education Management</item>
+        <item>E-Learning</item>
+        <item>Electrical and Electronic Manufacturing </item>
+        <item>Entertainment</item>
+        <item>Environmental Services</item>
+        <item>Events Services</item>
+        <item>Executive Office</item>
+        <item>Facilities Services</item>
+        <item>Farming</item>
+        <item>Financial Services</item>
+        <item>Fine Art</item>
+        <item>Fishery</item>
+        <item>Food and Beverages</item>
+        <item>Food Production</item>
+        <item>Fund-Raising</item>
+        <item>Furniture</item>
+        <item>Gambling and Casinos</item>
+        <item>Glass, Ceramics and Concrete</item>
+        <item>Government Administration</item>
+        <item>Government Relations</item>
+        <item>Graphic Design</item>
+        <item>Health, Wellness and Fitness</item>
+        <item>Higher Education</item>
+        <item>Hospital and Health Care</item>
+        <item>Hospitality</item>
+        <item>Human Resources</item>
+        <item>Import and Export</item>
+        <item>Individual and Family Services</item>
+        <item>Industrial Automation</item>
+        <item>Information Services</item>
+        <item>Information Technology and Services</item>
+        <item>Insurance</item>
+        <item>International Affairs</item>
+        <item>International Trade and Development</item>
+        <item>Internet</item>
+        <item>Investment Banking</item>
+        <item>Investment Management</item>
+        <item>Judiciary</item>
+        <item>Law Enforcement</item>
+        <item>Law Practice</item>
+        <item>Legal Services</item>
+        <item>Legislative Office</item>
+        <item>Leisure, Travel and Tourism</item>
+        <item>Libraries</item>
+        <item>Logistics and Supply Chain</item>
+        <item>Luxury Goods and Jewelry</item>
+        <item> Machinery</item>
+        <item>Management Consulting</item>
+        <item>Maritime</item>
+        <item>Market Research</item>
+        <item>Marketing and Advertising</item>
+        <item>Mechanical or Industrial Engineering</item>
+        <item>Media Production</item>
+        <item>Medical Devices</item>
+        <item>Medical Practice</item>
+        <item>Mental Health Care</item>
+        <item>Military</item>
+        <item>Mining and Metals</item>
+        <item>Motion Pictures and Film</item>
+        <item>Museums and Institutions</item>
+        <item>Music</item>
+        <item>Nanotechnology</item>
+        <item>Newspapers</item>
+        <item>Non-Profit Organization Management</item>
+        <item>Oil and Energy</item>
+        <item> Online Media</item>
+        <item>Outsourcing/Offshoring</item>
+        <item>Package/Freight Delivery</item>
+        <item> Packaging and Containers</item>
+        <item>Paper and Forest Products</item>
+        <item>Performing Arts</item>
+        <item>Pharmaceuticals</item>
+        <item>Philanthropy</item>
+        <item>Photography</item>
+        <item>Plastics</item>
+        <item>Political Organization</item>
+        <item>Primary/Secondary Education</item>
+        <item>Printing</item>
+        <item> Professional Training and Coaching</item>
+        <item>Program Development</item>
+        <item>Public Policy</item>
+        <item> Public Relations and Communications</item>
+        <item>Public Safety</item>
+        <item>Publishing</item>
+        <item>Railroad Manufacture</item>
+        <item>Ranching</item>
+        <item>Real Estate</item>
+        <item>Recreational Facilities and Services</item>
+        <item>Religious Institutions</item>
+        <item>Renewables and Environment</item>
+        <item>Research</item>
+        <item>Restaurants</item>
+        <item>Retail</item>
+        <item>Security and Investigations</item>
+        <item>Semiconductors</item>
+        <item> Shipbuilding</item>
+        <item>Sporting Goods</item>
+        <item>Sports</item>
+        <item>Staffing and Recruiting</item>
+        <item>Supermarkets</item>
+        <item>Telecommunications</item>
+        <item>Textiles</item>
+        <item> Think Tanks</item>
+        <item>Tobacco</item>
+        <item>Translation and Localization</item>
+        <item>Transportation/Trucking/Railroad</item>
+        <item>Utilities</item>
+        <item>Venture Capital and Private Equity</item>
+        <item>Veterinary</item>
+        <item>Warehousing</item>
+        <item>Wholesale</item>
+        <item>Wine and Spirits</item>
+        <item>Wireless</item>
+        <item>Writing and Editing</item>
+    </string-array>
+    <string-array name="certificate_array">
+        <item>Educational</item>
+        <item>Vocational</item>
+        <item>Course</item>
+        <item>Award</item>
+        <item>Identity</item>
+        <item>Service</item>
+        <item>Ranking</item>
+        <item>Participation</item>
+        <item>Professional</item>
+        <item>Internship</item>
+        <item>Provisional</item>
+        <item>Permit</item>
+        <item>Supplementary</item>
+        <item>License</item>
+    </string-array>
+    <string-array name="city_array">
+        <item>Capital</item>
+        <item>Metropolis</item>
+        <item>Megacity</item>
+        <item>City</item>
+        <item>Suburb</item>
+        <item>Town</item>
+        <item>Village</item>
+    </string-array>
+    <string-array name="contact_array">
+        <item>Permanent</item>
+        <item>Primary</item>
+        <item>Temporary</item>
+        <item>Alternate</item>
+    </string-array>
+    <string-array name="contact_category_array">
+        <item>Phone</item>
+        <item>Email</item>
+        <item>Address</item>
+        <item>Twitter</item>
+        <item>Skype</item>
+        <item>MSN</item>
+        <item>ICQ</item>
+        <item>Gtalk</item>
+        <item>AIM</item>
+    </string-array>
+    <string-array name="country_type_array">
+        <item>Republic</item>
+        <item>Monarchy</item>
+    </string-array>
+    <string-array name="course_type_array">
+        <item>Arts and Design</item>
+        <item>Business and Management</item>
+        <item>Education</item>
+        <item>Humanities</item>
+        <item>Sciences and Technology</item>
+        <item>Sports and Leisure</item>
+    </string-array>
+    <string-array name="education_title_array">
+        <item>Certificate</item>
+        <item>Diploma</item>
+        <item>Graduate</item>
+        <item>Doctorate</item>
+        <item>Post Graduate</item>
+        <item> Integrated</item>
+        <item>Professional</item>
+        <item>Vocational</item>
+        <item>Master</item>
+        <item>Bachelor</item>
+        <item>Online</item>
+        <item>Short</item>
+        <item>Honours</item>
+        <item>Foundation</item>
+        <item>Session</item>
+        <item>Workshop</item>
+        <item>Exam</item>
+        <item>Test</item>
+        <item>Test Series</item>
+        <item>Exam Prep</item>
+        <item>Practice</item>
+        <item>Training</item>
+    </string-array>
+    <string-array name="education_type_array">
+        <item>Full Time</item>
+        <item>Distance</item>
+        <item> Online</item>
+        <item>Exchange</item>
+        <item>In-House</item>
+        <item> Flexible</item>
+    </string-array>
+    <string-array name="cgpitype_array">
+        <item>Percent</item>
+        <item>CPI</item>
+        <item>CGPA</item>
+    </string-array>
+    <string-array name="experience_type_array">
+        <item>Full Time</item>
+        <item>Part Time</item>
+        <item>Internship</item>
+        <item>Irregular</item>
+        <item>Contract</item>
+        <item>Commission</item>
+    </string-array>
+    <string-array name="job_type_array">
+        <item>Full Time</item>
+        <item>Part Time</item>
+        <item>Internship</item>
+        <item>Irregular</item>
+        <item>Contract</item>
+        <item>Commission</item>
+    </string-array>
+    <string-array name="location_type">
+        <item>Country</item>
+        <item>State</item>
+        <item>Geography</item>
+    </string-array>
+    <string-array name="profile_array">
+        <item>Current</item>
+        <item>Planned</item>
+        <item>Projected</item>
+    </string-array>
+    <string-array name="project_role_array">
+        <item>Sponsor</item>
+        <item>Manager</item>
+        <item>Resource</item>
+        <item>upport</item>
+    </string-array>
+    <string-array name="school_type">
+        <item>University</item>
+        <item>College</item>
+        <item>Institute</item>
+        <item>High School</item>
+        <item>Secondary School</item>
+        <item>Primmary School</item>
+        <item>Pre Primary School</item>
+        <item>Acadamy</item>
+        <item>Gymnasium</item>
+        <item>Polytechnic</item>
+    </string-array>
+    <string-array name="skill_array">
+        <item>Declared</item>
+        <item>Inferred</item>
+        <item>Aspired</item>
+        <item>Needed</item>
+        <item>Job Skills</item>
+        <item>Life Skills</item>
+        <item>Soft Skills</item>
+        <item>Social Skills</item>
+        <item>People Skills</item>
+    </string-array>
+    <string-array name="objective_array">
+        <item>To succeed in an environment of growth and excellence and earn a job which provides me job satisfaction and self development and help me achieve personal as well as organizational goals.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To pursue a highly rewarding career, seeking for a job in challenging and healthy work environment where I can utilize my skills and knowledge efficiently for organizational growth.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To be an astute learner and the best performer in your organization. So that I can build an innovative career in your esteemed organization by using my skills and other significant talents.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To enhance my working capabilities, professional skills, business efficiencies and to ser my organization in best possible way which sheer determination and combination.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To strive for excellence, to work in such an environment that will enhance my knowledge and career, where I can perform my management skills according to my strong caliber and efficiency.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>As I am the fresher in this field, I will know about the nature of my work. Moreover, I will attempt to know about the various processes which form my job. By doing so, I will able to do my job more proficiently. On the other hand, I shall implement my knowledge into the practical world.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To work in a progressive organization which can expand all my knowledge and provided me exciting opportunities to utilize my skill and qualification to produce result fidelity.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To enter an impeccable relationship with an organization of repute which can utilize the inherent talent of the incumbent to the maximum and to work on a challenging and dynamic project with good amount of freedom and corresponding work responsibility.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To make contribution tto the organization the best of my ability and to develop new skills and share my knowledge while interacting with others and achieve new height.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To seek challenging assignment and reponsibility, with an opportunity for growth and career advancement as successful achievements.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To work in a challenging environment that provides generous opportunities for learning.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To make a sound position in corporate world and work enthusiastically in team to achieve goal of the organization with devotion and hard work.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To work hard with full dedication for the achievement of organization objective under satisfying job contact, hence enhancing my skill and knowledge and really to learn new things.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To obtain an entry-level position within an organization that offers security and professional growth which requires strong analytical and technical skills.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To create value and recognition on workplace by producing the best result for organization through synchronize and hard work.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To work in tandem with a team in challenging and competitive environment where I could improve my knowledge, capabilities and put them to use for the development of organization.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To obtain professional and financial heights, both for organization and self, through skill and knowledge and learn from presents as well as establishment also.</item>
+        <item>-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;-&#x20;</item>
+        <item>To serve the organization as a hard worker in this competitive environment discharging all my professional skills.</item>
+    </string-array>
+</resources>

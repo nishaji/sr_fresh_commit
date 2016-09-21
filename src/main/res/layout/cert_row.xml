@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/projcard"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="#fff"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="5dp"
+        android:padding="2dp"
+        card_view:cardCornerRadius="8dp"
+        card_view:contentPadding= "5dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#263238"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:id="@+id/header_when"
+            />
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/title"
+                android:text="Certificate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/title"
+                android:text="Certificate Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/school"
+                android:layout_gravity="center_vertical"
+                android:textColor="#616161"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/certname"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/school"
+                android:text="Any Car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="#757575"
+                android:textSize="15sp"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/certname"
+                android:text="Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/role"
+                android:layout_gravity="center_vertical"
+                android:textColor="#616161"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/certstatus"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/role"
+                android:text="Developer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="#757575"
+                android:textSize="15sp"
+                android:textStyle="normal"/>
+            <ImageButton
+                android:id="@+id/certdelete"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/certedit"
+                android:layout_below="@+id/responsibility"
+                android:background="@drawable/edt_border"
+                android:src="@drawable/deletee"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/certstatus"
+                android:text="Certificate Type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/responsibility"
+                android:layout_gravity="center_vertical"
+                android:textColor="#616161"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/certtype"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/responsibility"
+                android:text="Developer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="#757575"
+                android:textSize="15sp"
+                android:textStyle="normal"/>
+            <ImageButton
+                android:id="@+id/certedit"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/responsibility"
+                android:background="@drawable/edt_border"
+                android:src="@drawable/ed"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                />
+            <TextView
+                android:id="@+id/projid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:layout_marginTop="2dp"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>
+
+
+
+

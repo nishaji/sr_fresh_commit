@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbarStyle="outsideOverlay"
+    tools:context=".AddProject"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/addprojtool"
+        android:background="#263238"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/ToolBarStyle"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextAppearance="@style/ToolbarTitle"
+        android:minHeight="56dp"
+        android:elevation="2dp">
+
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:background="#fff"
+        android:layout_marginTop="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="26dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/projectname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Project Name"
+            app:met_floatingLabel="normal"
+            app:met_textColorHint="#9E9E9E"
+            app:met_textColor="#000"
+            app:met_floatingLabelTextColor="#2196F3"
+            android:singleLine="true"
+            android:inputType="textCapWords"/>
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Role"
+            app:met_floatingLabel="normal"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/responsibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Responsibility"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_floatingLabelTextColor="#000"
+            android:singleLine="true"
+            app:met_textColorHint="#9E9E9E"
+            android:inputType="textCapWords"/>
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/achievement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Achievement"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E"
+            app:met_floatingLabelTextColor="#000"
+            android:singleLine="true"
+            android:inputType="textCapWords"/>
+        <LinearLayout
+            android:gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:id="@+id/projectduration"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bigclock"/>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:id="@+id/projectdurationtext"
+                android:saveEnabled="false"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:hint="Duration"
+                android:textSize="17sp"/>
+        </LinearLayout>
+        <info.hoang8f.widget.FButton
+            android:layout_gravity="center"
+            android:id="@+id/addproject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text=" Add Project"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="#F4511E"
+            fbutton:shadowEnabled="true" />
+    </LinearLayout>
+
+</RelativeLayout>
