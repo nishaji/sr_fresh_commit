@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.sprydev5.skillsregister">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/skiiii"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:windowSoftInputMode="adjustResize"
+        tools:replace="android:icon">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:noHistory="true"
+            android:windowSoftInputMode="stateUnchanged">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LanucherActivity"
+            android:label="@string/title_activity_lanucher"
+            android:noHistory="true" />
+        <activity
+            android:name=".FirstLaunchingTutorial"
+            android:noHistory="true" />
+        <activity android:name=".PersonalData" />
+        <activity
+            android:name=".Education"
+            android:noHistory="true" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".SignIn"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Signup"
+            android:label="@string/title_activity_signup"
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize" />
+
+        <service
+            android:name=".SyncData"
+            android:noHistory="true" />
+
+        <activity
+            android:name=".DashBoard"
+            android:label="@string/title_activity_dash_board"
+            android:noHistory="true" />
+        <activity
+            android:name=".WorkExperience"
+            android:label="@string/title_activity_work_experience"
+            android:noHistory="true" />
+        <activity
+            android:name=".AddWorkExp"
+            android:label="@string/title_activity_add_work_exp"
+            android:noHistory="true" />
+        <activity
+            android:name=".Projects"
+            android:label="@string/title_activity_projects"
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AddProject"
+            android:label="@string/title_activity_add_project"
+            android:noHistory="true" />
+        <activity
+            android:name=".Skills"
+            android:label="@string/title_activity_skills"
+            android:noHistory="true" />
+        <activity
+            android:name=".Objective"
+            android:label="@string/title_activity_objective"
+            android:noHistory="true" />
+        <activity
+            android:name=".Launguages"
+            android:label="@string/title_activity_launguages"
+            android:noHistory="true" />
+        <activity
+            android:name=".ViewProfile"
+            android:label="@string/title_activity_view_profile"
+            android:noHistory="true" />
+        <activity
+            android:name=".ViewandAddeducation"
+            android:label="@string/title_activity_viewand_addeducation"
+            android:noHistory="true" />
+        <activity
+            android:name=".TopicActivity"
+            android:label="@string/title_activity_topic"
+            android:noHistory="true" />
+        <activity
+            android:name=".HelpFragment"
+            android:noHistory="true" />
+        <activity
+            android:name=".Certificates"
+            android:label="@string/title_activity_certificates"
+            android:noHistory="true" />
+        <activity
+            android:name=".Contacts"
+            android:label="@string/title_activity_contacts"
+            android:noHistory="true" />
+        <activity
+            android:name=".model.BaseActivity"
+            android:label="@string/title_activity_base"
+            android:noHistory="true" />
+        <activity
+            android:name=".ViewandAddContact"
+            android:label="@string/title_activity_viewand_add_contact" />
+        <activity
+            android:name=".ViewandEditCertificate"
+            android:label="@string/title_activity_viewand_edit_certificate" />
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".model.Updateservice"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".ViewAndAddVolunteers"
+            android:label="@string/title_activity_view_and_add_volunteers" />
+        <activity
+            android:name=".Volunteers"
+            android:label="@string/title_activity_volunteers" />
+        <activity
+            android:name=".ViewAndAddAwards"
+            android:label="@string/title_activity_view_and_add_awards" />
+        <activity
+            android:name=".Awards"
+            android:label="@string/title_activity_awards" />
+        <activity
+            android:name=".ViewAndAddPublication"
+            android:label="@string/title_activity_view_and_add_publication" />
+        <activity
+            android:name=".Publications"
+            android:label="@string/title_activity_publications"></activity>
+    </application>
+
+</manifest>

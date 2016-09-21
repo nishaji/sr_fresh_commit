@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/dialogTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Certificate"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/certificatename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Certificate Name"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E"
+            app:met_floatingLabelTextColor="#000"
+            android:singleLine="true"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/certificatetype"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="Certificate Type"
+                app:met_floatingLabel="normal"
+                />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/rank"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:hint="Rank"
+                app:met_floatingLabel="normal"
+                app:met_textColor="#000"
+                app:met_textColorHint="#9E9E9E"
+                app:met_floatingLabelTextColor="#000"
+                android:layout_marginLeft="10dp"
+                android:singleLine="true"/>
+
+        </LinearLayout>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/authority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Authority"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E"
+            app:met_floatingLabelTextColor="#000"
+            android:singleLine="true"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/certstatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Certificate Status"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E"
+            app:met_floatingLabelTextColor="#000"
+            android:singleLine="true"/>
+
+        <LinearLayout
+            android:gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+            <ImageView
+                android:id="@+id/btcertdate"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bigclock"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/certdate"
+                android:saveEnabled="false"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:hint="Certification Date"
+                android:textSize="17sp"/>
+        </LinearLayout>
+</LinearLayout>
+    </LinearLayout>

@@ -1,0 +1,173 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    tools:context=".Education"
+    android:scrollbarStyle="outsideOverlay"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/edu_tool"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#263238"
+            android:elevation="4dp">
+
+        </android.support.v7.widget.Toolbar>
+        <LinearLayout
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:layout_marginTop="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/schollname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="School Name"
+                app:met_floatingLabel="normal"
+                app:met_textColor="#000"
+                app:met_textColorHint="#9E9E9E"
+                app:met_floatingLabelTextColor="#000"
+                android:singleLine="true"
+                android:inputType="textCapWords"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/schooltype"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:hint="School Type"
+                    app:met_floatingLabel="normal"
+
+                    />
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/coursetype"
+                    android:layout_width="165dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Course Type"
+                    app:met_floatingLabel="normal"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/edutitle"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Education Title"
+                    app:met_floatingLabel="normal"
+                    />
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/edutype"
+                    android:layout_width="165dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Education Type"
+                    app:met_floatingLabel="normal"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/locationname"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Name"
+                    app:met_floatingLabel="normal"
+                    app:met_textColor="#000"
+                    app:met_textColorHint="#9E9E9E"
+                    app:met_floatingLabelTextColor="#000"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"/>
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/locationtype"
+                    android:layout_width="165dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Type"
+                    app:met_floatingLabel="normal"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/cgpi"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:hint="CGPI"
+                    app:met_floatingLabel="normal"
+                    app:met_textColor="#000"
+                    app:met_textColorHint="#9E9E9E"
+                    app:met_floatingLabelTextColor="#000"
+                    android:singleLine="true"
+                    android:inputType="numberDecimal"/>
+
+
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/cgpitype"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Cgpi Type"
+                    app:met_floatingLabel="normal"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginLeft="10dp">
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/eduduration"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/cllook"/>
+                <TextView
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:id="@+id/educationtdurationtext"
+                    android:saveEnabled="false"
+                    android:layout_width="220dp"
+                    android:layout_height="50dp"
+                    android:hint="Duration"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+            <info.hoang8f.widget.FButton
+                android:layout_gravity="center"
+                android:id="@+id/addeducation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="Add Education"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="#F4511E"
+                fbutton:shadowEnabled="true" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
