@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,14 +29,15 @@ import org.json.JSONObject;
 import java.util.Date;
 
 
-
+import sprytechies.skillregister.adapters.SchoolSugessionAdapetr;
 import sprytechies.skillregister.database.DatabaseHelper;
 import sprytechies.skillsregister.R;
 
 public class Education extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
-    EditText schoolname,cgpi,locationname;
+    EditText cgpi,locationname;
+    AutoCompleteTextView schoolname;
     MaterialBetterSpinner schooltype,coursetype,educationtype,cgpitype,locationtype,educationtitle;
     Toolbar toolbar;
     Button addedu;
@@ -62,7 +64,8 @@ public class Education extends AppCompatActivity {
             }
         });
         schooltype = (MaterialBetterSpinner) findViewById(R.id.schooltype);
-        schoolname = (EditText) findViewById(R.id.schollname);
+        schoolname = (AutoCompleteTextView) findViewById(R.id.autoschoolname);
+        schoolname.setAdapter(new SchoolSugessionAdapetr(this,schoolname.getText().toString()));
         coursetype = (MaterialBetterSpinner) findViewById(R.id.coursetype);
         educationtitle = (MaterialBetterSpinner) findViewById(R.id.edutitle);
         cgpi = (EditText) findViewById(R.id.cgpi);
@@ -164,7 +167,7 @@ public class Education extends AppCompatActivity {
                                     hashmap.put("cgpitype",cgtype);
                                     hashmap.put("location",jsonObject);
                                     hashmap1.put("edu_bit",hashmap);
-                                    long id=dbHelper.getlastid();
+                                    long id=dbHelper.geteducationlastid();
                                     System.out.println(id+"lastid");
                                     dbHelper.insert_personbit(id,"mongo","edu_bit",hashmap,"not_done","not_done","pending");
                                     //String edubit="edubit";

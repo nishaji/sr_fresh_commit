@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,14 +24,17 @@ import java.util.Date;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 
-
+import sprytechies.skillregister.adapters.BusinessSugessionAdapter;
+import sprytechies.skillregister.adapters.JobSuggessionAdapter;
+import sprytechies.skillregister.adapters.SchoolSugessionAdapetr;
 import sprytechies.skillregister.database.DatabaseHelper;
 import sprytechies.skillsregister.R;
 
 public class AddWorkExp extends AppCompatActivity {
     private DatabaseHelper dbHelper;
 
-    private EditText companyname,jobtitle,status,locationn;
+    private EditText status,locationn;
+    AutoCompleteTextView companyname,jobtitle;
     TextView expduration;
     Toolbar toolbar;
     Button addexp;
@@ -42,9 +46,11 @@ public class AddWorkExp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_work_exp);
         dbHelper = new DatabaseHelper(AddWorkExp.this);
-        companyname = (EditText) findViewById(R.id.companyname);
+        companyname = (AutoCompleteTextView) findViewById(R.id.autocompanyname);
+        companyname.setAdapter(new BusinessSugessionAdapter(this,companyname.getText().toString()));
         companytitle = (MaterialBetterSpinner) findViewById(R.id.companytitle);
-        jobtitle = (EditText) findViewById(R.id.jobtitle);
+        jobtitle = (AutoCompleteTextView) findViewById(R.id.autojobtitle);
+        jobtitle.setAdapter(new JobSuggessionAdapter(this,jobtitle.getText().toString()));
         jobtype = (MaterialBetterSpinner) findViewById(R.id.jobtype);
         status=(EditText)findViewById(R.id.status);
         expduration=(TextView) findViewById(R.id.expdurationtext);
@@ -85,7 +91,7 @@ public class AddWorkExp extends AppCompatActivity {
                                     hashMap.put("company",companyname.getText().toString());
                                     hashMap.put("job",jobtitle.getText().toString());
                                     hashMap.put("loctation",locationn.getText().toString());
-                                    long id=dbHelper.getlastid();
+                                    long id=dbHelper.getexplastid();
                                     System.out.println(id+"lastid");
                                     dbHelper.insert_personbit(id,"mongo","exp_bit",hashMap,"not_done","not_done","pending");
 
