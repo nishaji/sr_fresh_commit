@@ -606,14 +606,101 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         db.insert(EDUCATION,null,contentValues);
         return true;
     }
-    public long getlastid(){
+    public long getvolunteerlastid(){
         long lastId=1;
-        String query = "SELECT last_insert_rowid()";
+        String query="SELECT * FROM volunteer ORDER BY _id DESC LIMIT 1";
         Cursor c = mDB.rawQuery (query,null);
         if (c != null && c.moveToFirst())
         {
             lastId = c.getLong(0);
-//The 0 is the column index, we only have 1 column, so the index is 0
+        }
+        c.close();
+        return lastId;
+    }
+    public long geteducationlastid(){
+        long lastId=1;
+        String query="SELECT * FROM education ORDER BY _id DESC LIMIT 1";
+        Cursor c = mDB.rawQuery (query,null);
+        if (c != null && c.moveToFirst())
+        {
+            lastId = c.getLong(0);
+        }
+        c.close();
+        return lastId;
+    }
+    public long getexplastid(){
+        long lastId=1;
+        String query="SELECT * FROM workexp ORDER BY _id DESC LIMIT 1";
+        Cursor c = mDB.rawQuery (query,null);
+        if (c != null && c.moveToFirst())
+        {
+            lastId = c.getLong(0);
+        }
+        c.close();
+        return lastId;
+    }
+    public long getcertlastid(){
+        long lastId=1;
+        String query="SELECT * FROM tbcertificate ORDER BY _id DESC LIMIT 1";
+        Cursor c = mDB.rawQuery (query,null);
+        if (c != null && c.moveToFirst())
+        {
+            lastId = c.getLong(0);
+        }
+        c.close();
+        return lastId;
+    }
+    public long getawardlastid(){
+        long lastId=1;
+        String query="SELECT * FROM awards ORDER BY _id DESC LIMIT 1";
+        Cursor c = mDB.rawQuery (query,null);
+        if (c != null && c.moveToFirst())
+        {
+            lastId = c.getLong(0);
+        }
+        c.close();
+        return lastId;
+    }
+    public long getpublicationlastid(){
+        long lastId=1;
+        String query="SELECT * FROM publication ORDER BY _id DESC LIMIT 1";
+        Cursor c = mDB.rawQuery (query,null);
+        if (c != null && c.moveToFirst())
+        {
+            lastId = c.getLong(0);
+        }
+        c.close();
+        return lastId;
+    }
+    public long getprojectlastid(){
+        long lastId=1;
+        String query="SELECT * FROM projects ORDER BY _id DESC LIMIT 1";
+        Cursor c = mDB.rawQuery (query,null);
+        if (c != null && c.moveToFirst())
+        {
+            lastId = c.getLong(0);
+        }
+        c.close();
+        return lastId;
+    }
+    public long getcontactlastid(){
+        long lastId=1;
+        String query="SELECT * FROM tbcontact ORDER BY _id DESC LIMIT 1";
+        Cursor c = mDB.rawQuery (query,null);
+        if (c != null && c.moveToFirst())
+        {
+            lastId = c.getLong(0);
+        }
+        c.close();
+        return lastId;
+    }
+    public long getskilllastid(){
+        long lastId=1;
+        String query="SELECT * FROM skills ORDER BY _id DESC LIMIT 1";
+        Cursor c = mDB.rawQuery (query,null);
+        if (c != null && c.moveToFirst())
+        {
+            lastId = c.getLong(0);
         }
         c.close();
         return lastId;
@@ -756,6 +843,66 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         edulist.clear();
         // synclist = new ArrayList<String>();
         String selectQuery = "SELECT  * FROM personbit where status = '"+"pending"+"' AND bittype = '"+ contact_bit +"'";
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> track = new HashMap<String, String>();
+                track.put("id", cursor.getString(cursor.getColumnIndex("_id")));
+                track.put("data", cursor.getString(cursor.getColumnIndex("data")));
+                track.put("mongoid", cursor.getString(cursor.getColumnIndex("mongoid")));
+                edulist.add(track);
+            } while (cursor.moveToNext());
+        }
+        //  jSon = new Gson().toJson(trackList);
+        cursor.close();
+        return edulist;
+    }
+    public ArrayList<HashMap<String, String>> getNotSyncVolunteerData(String contact_bit){
+        ArrayList<HashMap<String, String>> edulist = new ArrayList<HashMap<String, String>>();
+        edulist.clear();
+        // synclist = new ArrayList<String>();
+        String selectQuery = "SELECT  * FROM volunteer where status = '"+"pending"+"' AND bittype = '"+ contact_bit +"'";
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> track = new HashMap<String, String>();
+                track.put("id", cursor.getString(cursor.getColumnIndex("_id")));
+                track.put("data", cursor.getString(cursor.getColumnIndex("data")));
+                track.put("mongoid", cursor.getString(cursor.getColumnIndex("mongoid")));
+                edulist.add(track);
+            } while (cursor.moveToNext());
+        }
+        //  jSon = new Gson().toJson(trackList);
+        cursor.close();
+        return edulist;
+    }
+    public ArrayList<HashMap<String, String>> getNotSyncAwardData(String contact_bit){
+        ArrayList<HashMap<String, String>> edulist = new ArrayList<HashMap<String, String>>();
+        edulist.clear();
+        // synclist = new ArrayList<String>();
+        String selectQuery = "SELECT  * FROM awards where status = '"+"pending"+"' AND bittype = '"+ contact_bit +"'";
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> track = new HashMap<String, String>();
+                track.put("id", cursor.getString(cursor.getColumnIndex("_id")));
+                track.put("data", cursor.getString(cursor.getColumnIndex("data")));
+                track.put("mongoid", cursor.getString(cursor.getColumnIndex("mongoid")));
+                edulist.add(track);
+            } while (cursor.moveToNext());
+        }
+        //  jSon = new Gson().toJson(trackList);
+        cursor.close();
+        return edulist;
+    }
+    public ArrayList<HashMap<String, String>> getNotSyncPublicationsData(String contact_bit){
+        ArrayList<HashMap<String, String>> edulist = new ArrayList<HashMap<String, String>>();
+        edulist.clear();
+        // synclist = new ArrayList<String>();
+        String selectQuery = "SELECT  * FROM publication where status = '"+"pending"+"' AND bittype = '"+ contact_bit +"'";
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
@@ -981,6 +1128,83 @@ public ArrayList<Volunteer>getallvolunteer(){
 
         Cursor cursor;
         cursor = mDB.rawQuery("SELECT * FROM " + TBCERTIFICATE + " WHERE _id = '" + id + "'", null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(0));
+                labels.add(cursor.getString(1));
+                labels.add(cursor.getString(2));
+                labels.add(cursor.getString(3));
+                labels.add(cursor.getString(4));
+                labels.add(cursor.getString(5));
+                labels.add(cursor.getString(6));
+
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        // db.close();
+
+        // returning lables
+        return labels;
+    }
+    public ArrayList<String> editaward(String id){
+        ArrayList<String> labels = new ArrayList<String>();
+
+        Cursor cursor;
+        cursor = mDB.rawQuery("SELECT * FROM " + AWARDS + " WHERE _id = '" + id + "'", null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(0));
+                labels.add(cursor.getString(1));
+                labels.add(cursor.getString(2));
+                labels.add(cursor.getString(3));
+                labels.add(cursor.getString(4));
+
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        // db.close();
+
+        // returning lables
+        return labels;
+    }
+    public ArrayList<String> editpub(String id){
+        ArrayList<String> labels = new ArrayList<String>();
+
+        Cursor cursor;
+        cursor = mDB.rawQuery("SELECT * FROM " + PUBLICATION + " WHERE _id = '" + id + "'", null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(0));
+                labels.add(cursor.getString(1));
+                labels.add(cursor.getString(2));
+                labels.add(cursor.getString(3));
+                labels.add(cursor.getString(4));
+
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        // db.close();
+
+        // returning lables
+        return labels;
+    }
+    public ArrayList<String> editvolunteer(String id){
+        ArrayList<String> labels = new ArrayList<String>();
+
+        Cursor cursor;
+        cursor = mDB.rawQuery("SELECT * FROM " + VOLUNTEER + " WHERE _id = '" + id + "'", null);
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
@@ -1257,6 +1481,24 @@ public ArrayList<Volunteer>getallvolunteer(){
         return mDB.update(PROJECTS, contentValues, "_id" + "=" +id, null) > 0;
 
     }
+    public boolean updateeaward(String id,String title,String org,String date,String description){
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(AWARD_TITLE,title);
+        contentValues.put(AWARD_ORGANISATION,org);
+        contentValues.put(AWARD_DATE,date);
+        contentValues.put(AWARD_DESCRIPTION,description);
+        return mDB.update(AWARDS, contentValues, "_id" + "=" +id, null) > 0;
+
+    }
+    public boolean updateepub(String id,String title,String org,String date,String description){
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(PUBLICATION_TITLE,title);
+        contentValues.put(PUBLICATION_ORGANISATION,org);
+        contentValues.put(PUBLICATION_DATE,date);
+        contentValues.put(PUBLICATION_DESCRIPTION,description);
+        return mDB.update(PUBLICATION, contentValues, "_id" + "=" +id, null) > 0;
+
+    }
     public byte[] retreiveImageFromDB() throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + PERSONAL_INFO;
@@ -1387,6 +1629,18 @@ public ArrayList<Volunteer>getallvolunteer(){
     {
         mDB = this.getWritableDatabase();
         return mDB.delete(SKILLS, SKILLS_COLUMN_ID + "=" + id, null) > 0;
+
+    }
+    public boolean deletaward(String id)
+    {
+        mDB = this.getWritableDatabase();
+        return mDB.delete(AWARDS, AWARD_COLUMN_ID + "=" + id, null) > 0;
+
+    }
+    public boolean deletpub(String id)
+    {
+        mDB = this.getWritableDatabase();
+        return mDB.delete(PUBLICATION, PUBLICATION_COLUMN_ID + "=" + id, null) > 0;
 
     }
     @Override

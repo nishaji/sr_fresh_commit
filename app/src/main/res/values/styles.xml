@@ -55,4 +55,9 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark</item>
     </style>
+    <style name="Autocomplete" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:background">#fff</item>
+        <item name="colorControlActivated">#F4511E</item>
+    </style>
+
 </resources>

@@ -25,13 +25,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import sprytechies.skillregister.adapters.SkillAdapter;
 import sprytechies.skillregister.database.DatabaseHelper;
 import sprytechies.skillregister.model.Skill;
 import sprytechies.skillsregister.R;
+import com.github.fabtransitionactivity.SheetLayout;
 
-
-public class Skills extends AppCompatActivity {
+public class Skills extends BaseActivity implements SheetLayout.OnFabAnimationEndListener{
     final Context context = this;
     private RecyclerView recyclerView;
     private SkillAdapter adapter;
@@ -39,19 +42,19 @@ public class Skills extends AppCompatActivity {
     private DatabaseHelper dbHandler;
     TextView emptyView;
     FloatingActionButton floatingActionButton;
+    @Bind(R.id.skill_bottom_sheet) SheetLayout mSheetLayout;
+    @Bind(R.id.addskillfab)
+    FloatingActionButton mFab;
+    private static final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skills);
         dbHandler = new DatabaseHelper(Skills.this);
+        ButterKnife.bind(this);
+        mSheetLayout.setFab(mFab);
+        mSheetLayout.setFabAnimationEndListener(this);
         toolbar = (Toolbar) findViewById(R.id.skilltool);
-        floatingActionButton=(FloatingActionButton)findViewById(R.id.addskillfab);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         toolbar.setTitle(" Your Skills");
         toolbar.setLogo(R.drawable.arrowlleft);
         toolbar.setTitleTextColor(0xffffffff);
@@ -83,6 +86,22 @@ public class Skills extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
+    @OnClick(R.id.addskillfab)
+    void onFabClick() {
+        mSheetLayout.expandFab();
+    }
+    @Override
+    public void onFabAnimationEnd() {
+        Intent intent = new Intent(this, Addskills.class);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE){
+            mSheetLayout.contractFab();
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -101,72 +120,6 @@ public class Skills extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void Createdialog() {
-        // get prompts.xml view
-        LayoutInflater li = LayoutInflater.from(context);
-        View promptsView = li.inflate(R.layout.skill_dialog, null);
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-        // set prompts.xml to alertdialog builder
-        alertDialogBuilder.setView(promptsView);
-
-        final EditText skill = (EditText) promptsView.findViewById(R.id.ski_title);
-        final EditText description = (EditText) promptsView.findViewById(R.id.ski_description);
-        // set dialog message
-        alertDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-
-Date date=new Date();
-                                if(skill.getEditableText().toString().length()==0||description.getEditableText().toString().length()==0){
-                                    TastyToast.makeText(getApplicationContext(), "Searching for required fields!", TastyToast.LENGTH_LONG,
-                                            TastyToast.INFO);
-                                } else {
-                                    try {
-                                        if (dbHandler.insert_skills(skill.getText().toString(), description.getText().toString())) {
-                                            adapter.notifyDataSetChanged();
-                                            TastyToast.makeText(getApplicationContext(), "Skill data saved successfully !", TastyToast.LENGTH_LONG,
-                                                    TastyToast.SUCCESS);
-                                            Intent intent = new Intent(Skills.this, Skills.class);
-                                            startActivity(intent);
-                                            finish();
-                                            String stskill = skill.getText().toString();
-                                            String stdes = description.getText().toString();
-                                            JSONObject hashmap = new JSONObject();
-                                            hashmap.put("type", stskill);
-                                            hashmap.put("level", stdes);
-                                            long idd=dbHandler.getlastid();
-                                            System.out.println(id+"lastid");
-                                            dbHandler.insert_personbit(idd,"mongo","skill_bit",hashmap,"not_done","not_done","pending");                                            String skillbit = "skillbit";
-
-                                        } else {
-                                            TastyToast.makeText(getApplicationContext(), "Could not save skills!", TastyToast.LENGTH_LONG,
-                                                    TastyToast.ERROR);
-                                        }
-                                    }catch (Exception e){
-                                        e.printStackTrace();
-                                    }
-                                }
-
-
-                            }
-                        })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
-        alertDialog.show();
-
-    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -175,4 +128,6 @@ Date date=new Date();
         overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         finish();
     }
+
+
 }

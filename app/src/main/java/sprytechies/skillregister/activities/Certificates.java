@@ -90,7 +90,7 @@ public class Certificates extends AppCompatActivity implements DatePickerDialog.
                                 jsonObject.put("certdate",date1);
                                 jsonObject.put("authority",authority.getText().toString());
                                 jsonObject.put("rank",rank.getText().toString());
-                                long idd=databaseHelper.getlastid();
+                                long idd=databaseHelper.getcertlastid();
                                 databaseHelper.insert_personbit(idd,"mongo","cert_bit",jsonObject,"not_done","not_done","pending");
                             }else {
                                 TastyToast.makeText(getApplicationContext(), "Could not save certificate!", TastyToast.LENGTH_LONG,

@@ -26,7 +26,6 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import sprytechies.skillregister.adapters.BusinessSugessionAdapter;
 import sprytechies.skillregister.adapters.JobSuggessionAdapter;
-import sprytechies.skillregister.adapters.SchoolSugessionAdapetr;
 import sprytechies.skillregister.database.DatabaseHelper;
 import sprytechies.skillsregister.R;
 

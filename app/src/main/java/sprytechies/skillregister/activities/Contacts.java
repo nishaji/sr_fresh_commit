@@ -81,7 +81,7 @@ String [] arr={"Primary","Alternate"};
                           Intent intent = new Intent(Contacts.this, ViewandAddContact.class);
                           startActivity(intent);
                           overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-                          long idd=databaseHelper.getlastid();
+                          long idd=databaseHelper.getcontactlastid();
                           JSONObject jsonObject=new JSONObject();
                           jsonObject.put("contact",contact.getText().toString());
                           jsonObject.put("category",category.getText().toString());

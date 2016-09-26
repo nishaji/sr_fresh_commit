@@ -167,6 +167,8 @@
         <activity
             android:name="sprytechies.skillregister.activities.Publications"
             android:label="@string/title_activity_publications"/>
+        <activity
+            android:name="sprytechies.skillregister.activities.Addskills"/>
     </application>
 
 </manifest>

@@ -84,7 +84,7 @@ public class AddProject extends AppCompatActivity {
                                 jsonObject.put("upto", dateto);
                                 jsonObject.put("role", role.getText().toString());
                                 jsonObject.put("meta", responsibility.getText().toString());
-                                long idd = dbHelper.getlastid();
+                                long idd = dbHelper.getprojectlastid();
                                 dbHelper.insert_personbit(idd, "mongo", "proj_bit", jsonObject, "not_done", "not_done", "pending");
                             } else {
                                 TastyToast.makeText(getApplicationContext(), "Could not save Project!", TastyToast.LENGTH_LONG,
