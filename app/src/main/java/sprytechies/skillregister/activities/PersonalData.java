@@ -1,27 +1,50 @@
 package sprytechies.skillregister.activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sdsmdg.tastytoast.TastyToast;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
+import sprytechies.skillregister.Utility;
+import sprytechies.skillregister.Utils;
 import sprytechies.skillregister.database.DatabaseHelper;
 import sprytechies.skillsregister.R;
 
@@ -30,11 +53,9 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
     private PersonalData mActivity;
     private static final String TAG = "MainActivity";
 
-    String[] location = {"India ", "Australia", "Japan", "China"};
-    String[] position = {"Manager ", "Executive", "HR", "CEO"};
-    EditText name, phone, email;
+
+    EditText name, phone, email,strenght,passion;
     TextView edtdob;
-    MaterialBetterSpinner positionn,locationn;
     private DatabaseHelper dbHelper;
     String loc, candidate, phonee, emaill, dobb;
     Toolbar toolbar;
@@ -51,24 +72,24 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personaldata);
-        toolbar = (Toolbar) findViewById(R.id.personaltool);
-        toolbar.setTitle("  Personal Details");
-        toolbar.setTitleTextColor(0xffffffff);
-        toolbar.setLogo(R.drawable.ic_menu_white_24dp);
-        setSupportActionBar(toolbar);
-        //dbHelper = new DatabaseHelper(PersonalData.this);
-       /* dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+       // toolbar = (Toolbar) findViewById(R.id.personaltool);
+       // //toolbar.setTitle("  Personal Details");
+      //  toolbar.setTitleTextColor(0xffffffff);
+       // toolbar.setLogo(R.drawable.ic_menu_white_24dp);
+       // setSupportActionBar(toolbar);
+        dbHelper = new DatabaseHelper(PersonalData.this);
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         phone = (EditText) findViewById(R.id.phone);
         email = (EditText) findViewById(R.id.email);
         name = (EditText) findViewById(R.id.name);
         viewimg = (ImageView) findViewById(R.id.viewimage);
         toolbar = (Toolbar) findViewById(R.id.personal_tool);
-        locationn = (MaterialBetterSpinner) findViewById(R.id.location);
-        positionn = (MaterialBetterSpinner) findViewById(R.id.position);
+        passion = (EditText) findViewById(R.id.passion);
+        strenght = (EditText) findViewById(R.id.strenght);
         edtdob = (TextView) findViewById(R.id.dobtxt);
         edtdob.setInputType(InputType.TYPE_NULL);
         try{
-            ArrayList<String>personalfulldetail=dbHelper.getAllpeople();
+            ArrayList<String> personalfulldetail=dbHelper.getAllpeople();
             System.out.println("fulldetail"+personalfulldetail);
             if(personalfulldetail.isEmpty()){
                 ArrayList<String>people=dbHelper.getuserdata();
@@ -79,24 +100,19 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
                 String usremail=people.get(2);
                 name.setText(fullname);
                 email.setText(usremail);
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-                        android.R.layout.simple_dropdown_item_1line, location);
-                ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,
-                        android.R.layout.simple_dropdown_item_1line, position);
-                locationn.setAdapter(arrayAdapter);
-                positionn.setAdapter(arrayAdapter1);
-            }else {
-                byteArray =dbHelper.retreiveImageFromDB();
-                System.out.println(byteArray+"image byte from db");
-                Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                String full_name=personalfulldetail.get(2);
-                String userphone=personalfulldetail.get(3);
-                String usremail=personalfulldetail.get(5);
-                String usrlocation=personalfulldetail.get(1);
-                String usrposition=personalfulldetail.get(4);
-                String dob=personalfulldetail.get(6);
 
-                System.out.println(personalfulldetail+"personal detail form personal table");
+            }else {
+                byteArray = dbHelper.retreiveImageFromDB();
+                System.out.println(byteArray + "image byte from db");
+                Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                String full_name = personalfulldetail.get(2);
+                String userphone = personalfulldetail.get(3);
+                String usremail = personalfulldetail.get(5);
+                String usrlocation = personalfulldetail.get(1);
+                String usrposition = personalfulldetail.get(4);
+                String dob = personalfulldetail.get(6);
+
+                System.out.println(personalfulldetail + "personal detail form personal table");
                 name.setText(full_name);
                 email.setText(usremail);
                 phone.setText(userphone);
@@ -105,40 +121,6 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
                 inputData = bytes.toByteArray();
-                ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, position);
-                arrayAdapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-                positionn.setAdapter(arrayAdapter1);
-                if (!usrposition.equals(null)) {
-                    int spinnerPosition = arrayAdapter1.getPosition(usrposition);
-                    try {
-                        if (usrposition.trim().length() > 0) {
-                            positionn.setText(arrayAdapter1.getItem(spinnerPosition).toString());
-                            //positionn.setSelection(spinnerPosition);
-                        } else {
-                            System.out.println("do nothing");
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, location);
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-                locationn.setAdapter(arrayAdapter);
-                if (!usrlocation.equals(null)) {
-                    int spinnerPosition = arrayAdapter.getPosition(usrlocation);
-                    try {
-                        if (usrlocation.trim().length() > 0) {
-                            locationn.setText(arrayAdapter.getItem(spinnerPosition).toString());
-                        } else {
-                            System.out.println("do nothing");
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
             }
 
 
@@ -181,7 +163,6 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-*/
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -196,10 +177,10 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
         // TODO Auto-generated method stub
         int id = item.getItemId();
 
-         /*   try{
+            try{
 
                 String _id = "1";
-                if (locationn.getText().toString().length() == 0 || name.getText().toString().length() == 0 || positionn.getText().toString().length() == 0 || email.getText().toString().length() == 0 || phone.getText().toString().length() == 0 || edtdob.getText().toString().length() == 0) {
+                if (strenght.getText().toString().length() == 0 || name.getText().toString().length() == 0 || passion.getText().toString().length() == 0 || email.getText().toString().length() == 0 || phone.getText().toString().length() == 0 || edtdob.getText().toString().length() == 0) {
                     TastyToast.makeText(getApplicationContext(), "Searching for required fields", TastyToast.LENGTH_LONG,
                             TastyToast.INFO);
                 } else {
@@ -216,7 +197,7 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
                     }
                     if (dbHelper.isExist(_id)) {
                         System.out.println("exist");
-                        if (dbHelper.updatepersonaldetail(_id,locationn.getText().toString(), name.getText().toString(),positionn.getText().toString(), email.getText().toString(), phone.getText().toString(),edtdob.getText().toString(),inputData)) {
+                        if (dbHelper.updatepersonaldetail(_id,strenght.getText().toString(), name.getText().toString(),passion.getText().toString(), email.getText().toString(), phone.getText().toString(),edtdob.getText().toString(),inputData)) {
                             //  new PersonalDetail().execute("HIGH");
                             TastyToast.makeText(getApplicationContext(), "Personal data Updated successfully !", TastyToast.LENGTH_LONG,
                                     TastyToast.SUCCESS);
@@ -229,14 +210,14 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
 
                     } else {
                         System.out.println("not exist");
-                        if (dbHelper.insert_personal_info(locationn.getText().toString(), name.getText().toString(), positionn.getText().toString(), email.getText().toString(), phone.getText().toString(), edtdob.getText().toString(), inputData)) {
+                        if (dbHelper.insert_personal_info(strenght.getText().toString(), name.getText().toString(), passion.getText().toString(), email.getText().toString(), phone.getText().toString(), edtdob.getText().toString(), inputData)) {
                             //  new PersonalDetail().execute("HIGH");
                             TastyToast.makeText(getApplicationContext(), "Personal data saved successfully !", TastyToast.LENGTH_LONG,
                                     TastyToast.SUCCESS);
                             Intent intent = new Intent(PersonalData.this, ViewProfile.class);
-                            intent.putExtra("location", locationn.getText().toString());
+                            intent.putExtra("location", strenght.getText().toString());
                             intent.putExtra("name", name.getText().toString());
-                            intent.putExtra("position", positionn.getText().toString());
+                            intent.putExtra("position", passion.getText().toString());
                             intent.putExtra("email", email.getText().toString());
                             intent.putExtra("phone", phone.getText().toString());
                             intent.putExtra("dob", edtdob.getText().toString());
@@ -251,7 +232,7 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
                 }
             }catch (Exception e){
                 e.printStackTrace();
-            }*/
+            }
 
 
         return super.onOptionsItemSelected(item);
@@ -263,7 +244,7 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
         edtdob.setText(date);
     }
 
-   /* private void selectImage() {
+    private void selectImage() {
         final CharSequence[] items = {"Take Photo", "Choose from Library",
                 "Cancel"};
 
@@ -272,14 +253,14 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                boolean result=Utility.checkPermission(PersonalData.this);
+                boolean result= Utility.checkPermission(PersonalData.this);
                 if (items[item].equals("Take Photo")) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     if(result)
                     startActivityForResult(intent, REQUEST_CAMERA);
                 } else if (items[item].equals("Choose from Library")) {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intent.setType("image*//*");
+                    intent.setType("image");
                     if(result)
                     startActivityForResult(Intent.createChooser(intent, "Select File"),
                             SELECT_FILE);
@@ -354,14 +335,13 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
         bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
         viewimg.setImageBitmap(bitmap);
     }
-*/
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        /*String et1,et2,et3,et4,et5,et6;
-        et1=locationn.getText().toString();
+        String et1,et2,et3,et4,et5,et6;
+        et1=strenght.getText().toString();
         et2=name.getText().toString();
-        et3=positionn.getText().toString();
+        et3=passion.getText().toString();
         et4= email.getText().toString();
         et5=phone.getText().toString();
         et6=edtdob.getText().toString();
@@ -397,7 +377,6 @@ public class PersonalData extends AppCompatActivity implements DatePickerDialog.
             finish();
             System.out.println("do nothing");
          }
-*/
     }
 }
 

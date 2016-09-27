@@ -1,4 +1,4 @@
-package skillregister;
+package sprytechies.skillregister;
 
 /**
  * Created by sprydev5 on 25/8/16.

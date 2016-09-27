@@ -30,7 +30,7 @@
         <RelativeLayout
             android:padding="10dp"
             android:layout_marginStart="5dp"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -87,15 +87,16 @@
                 android:textSize="15sp"
                 android:textStyle="normal"/>
             <ImageButton
-                android:id="@+id/deleteproj"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/editproj"
+                android:id="@+id/deletepublication"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/editpublication"
                 android:layout_below="@+id/responsibility"
                 android:background="@drawable/edt_border"
                 android:src="@drawable/deletee"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                />
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/editpublication" />
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/publicationorg"
@@ -119,14 +120,14 @@
                 android:textSize="15sp"
                 android:textStyle="normal"/>
             <ImageButton
-                android:id="@+id/editproj"
-                android:layout_alignParentRight="true"
+                android:id="@+id/editpublication"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/responsibility"
                 android:background="@drawable/edt_border"
                 android:src="@drawable/ed"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                />
+                android:layout_alignParentRight="true" />
             <TextView
                 android:id="@+id/projid"
                 android:layout_width="wrap_content"

@@ -11,42 +11,13 @@
         android:id="@+id/dialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Project"
+        android:text="Edit Awards"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/projectname"
+        android:id="@+id/awardtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Project Name"
-        app:met_floatingLabel="normal"
-        app:met_textColorHint="#9E9E9E"
-        app:met_textColor="#000"
-        app:met_floatingLabelTextColor="#000"
-        android:maxLines="1"
-        android:inputType="textCapWords"/>
-    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-        android:id="@+id/role"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Role"
-        app:met_floatingLabel="normal"
-        />
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/responsibility"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Responsibility"
-        app:met_floatingLabel="normal"
-        app:met_textColorHint="#9E9E9E"
-        app:met_textColor="#000"
-        app:met_floatingLabelTextColor="#000"
-        android:maxLines="1"
-        android:inputType="textCapWords"/>
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/achievement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Achievement"
+        android:hint="Award Title"
         app:met_floatingLabel="normal"
         app:met_textColorHint="#9E9E9E"
         app:met_textColor="#000"
@@ -54,27 +25,50 @@
         android:maxLines="1"
         android:inputType="textCapWords"/>
 
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/awardorganisation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Organisation"
+        app:met_floatingLabel="normal"
+        app:met_textColorHint="#9E9E9E"
+        app:met_textColor="#000"
+        app:met_floatingLabelTextColor="#000"
+        android:maxLines="1"
+        android:inputType="textCapWords"/>
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/awardescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        app:met_floatingLabel="normal"
+        app:met_textColor="#000"
+        app:met_floatingLabelTextColor="#000"
+        android:maxLines="1"
+        app:met_textColorHint="#9E9E9E"
+        android:inputType="textCapWords"/>
     <LinearLayout
+        android:gravity="left"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:weightSum="2"
-        >
+        android:layout_marginLeft="10dp">
         <ImageView
-            android:id="@+id/projectduration"
+            android:id="@+id/awardduration"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/clock"/>
+            android:src="@drawable/bigclock"/>
         <TextView
             android:layout_marginTop="1dp"
             android:gravity="center"
-            android:id="@+id/diprojectdurationtext"
+            android:id="@+id/awarddurationtext"
             android:saveEnabled="false"
             android:layout_width="220dp"
             android:layout_height="50dp"
-            android:hint="Duration"
+            android:hint="Date"
             android:textSize="17sp"/>
     </LinearLayout>
 </LinearLayout>

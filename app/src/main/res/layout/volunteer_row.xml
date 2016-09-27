@@ -87,15 +87,16 @@
                 android:textSize="15sp"
                 android:textStyle="normal"/>
             <ImageButton
-                android:id="@+id/deleteproj"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/editproj"
+                android:id="@+id/deletevolunteer"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/editvolunteer"
                 android:layout_below="@+id/responsibility"
                 android:background="@drawable/edt_border"
                 android:src="@drawable/deletee"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                />
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/editvolunteer" />
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/volunorg"
@@ -119,14 +120,14 @@
                 android:textSize="15sp"
                 android:textStyle="normal"/>
             <ImageButton
-                android:id="@+id/editproj"
-                android:layout_alignParentRight="true"
+                android:id="@+id/editvolunteer"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/responsibility"
                 android:background="@drawable/edt_border"
                 android:src="@drawable/ed"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                />
+                android:layout_alignParentRight="true" />
             <TextView
                 android:id="@+id/projid"
                 android:layout_width="wrap_content"

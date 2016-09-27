@@ -33,6 +33,7 @@
             android:textColorHint="#000"
             >
         <AutoCompleteTextView
+            android:textColorHint="#9E9E9E"
             android:hint="Skill Name"
             android:id="@+id/auto_ski_title"
             android:layout_width="match_parent"

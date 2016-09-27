@@ -19,6 +19,8 @@ import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 import com.sdsmdg.tastytoast.TastyToast;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import org.json.JSONObject;
+
 import sprytechies.skillregister.database.DatabaseHelper;
 import sprytechies.skillsregister.R;
 
@@ -100,6 +102,15 @@ public class Volunteers extends AppCompatActivity {
                             if (dbHelper.insert_volunteers(role.getText().toString(), roletype.getText().toString(),org.getText().toString(), from,to, desc.getText().toString())) {
                                 TastyToast.makeText(getApplicationContext(), "Project saved successfully !", TastyToast.LENGTH_LONG,
                                         TastyToast.SUCCESS);
+                                JSONObject jsonObject = new JSONObject();
+                                jsonObject.put("role",role.getText().toString());
+                                jsonObject.put("type",roletype.getText().toString());
+                                jsonObject.put("organization",org.getText().toString());
+                                jsonObject.put("from",from);
+                                jsonObject.put("upto",to);
+                                jsonObject.put("desc",desc.getText().toString());
+                                long idd = dbHelper.getvolunteerlastid();
+                                dbHelper.insert_personbit(idd, "mongo", "volunteer_bit", jsonObject, "not_done", "not_done", "pending");
                                 Intent intent = new Intent(Volunteers.this, ViewAndAddVolunteers.class);
                                 startActivity(intent);
 

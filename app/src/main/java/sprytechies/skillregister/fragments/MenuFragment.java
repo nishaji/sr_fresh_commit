@@ -148,6 +148,7 @@ public class MenuFragment extends Fragment {
         listCountry.add("Volunteers");
         listCountry.add("Awards");
         listCountry.add("Publication");
+        listCountry.add("Languages");
         listFlag = new ArrayList<Integer>();
         listFlag.add(R.drawable.ic_personal_details);
         listFlag.add(R.drawable.ic_education);
@@ -160,6 +161,7 @@ public class MenuFragment extends Fragment {
         listFlag.add(R.drawable.ic_declaration);
         listFlag.add(R.drawable.award);
         listFlag.add(R.drawable.pub);
+        listFlag.add(R.drawable.ic_languages);
     }
 
     private void setUpViews() {

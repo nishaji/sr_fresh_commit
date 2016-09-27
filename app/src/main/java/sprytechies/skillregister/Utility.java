@@ -1,4 +1,4 @@
-package skillregister;
+package sprytechies.skillregister;
 
 import android.Manifest;
 import android.annotation.TargetApi;

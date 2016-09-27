@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.sdsmdg.tastytoast.TastyToast;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -71,6 +73,13 @@ Toolbar toolbar;
                             if (dbHelper.insert_awards(title.getText().toString(), org.getText().toString(), time.getText().toString(), desc.getText().toString())) {
                                 TastyToast.makeText(getApplicationContext(), "Project saved successfully !", TastyToast.LENGTH_LONG,
                                         TastyToast.SUCCESS);
+                                JSONObject jsonObject = new JSONObject();
+                                jsonObject.put("title",title.getText().toString());
+                                jsonObject.put("organization",org.getText().toString());
+                                jsonObject.put("date",time.getText().toString());
+                                jsonObject.put("desc",desc.getText().toString());
+                                long idd = dbHelper.getawardlastid();
+                                dbHelper.insert_personbit(idd, "mongo", "award_bit", jsonObject, "not_done", "not_done", "pending");
                                 Intent intent = new Intent(Awards.this, ViewAndAddAwards.class);
                                 startActivity(intent);
 

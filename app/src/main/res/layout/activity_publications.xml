@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:scrollbarStyle="outsideOverlay"
-    tools:context=".Publications"
+    tools:context="sprytechies.skillregister.activities.Publications"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto">
     <android.support.v7.widget.Toolbar
         android:id="@+id/addpublicationtool"
@@ -37,8 +37,8 @@
             app:met_floatingLabel="normal"
             app:met_textColorHint="#9E9E9E"
             app:met_textColor="#000"
-            app:met_floatingLabelTextColor="#2196F3"
-            android:singleLine="true"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="1"
             android:inputType="textCapWords"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -49,8 +49,8 @@
             app:met_floatingLabel="normal"
             app:met_textColorHint="#9E9E9E"
             app:met_textColor="#000"
-            app:met_floatingLabelTextColor="#2196F3"
-            android:singleLine="true"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="1"
             android:inputType="textCapWords"/>
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/publicationdescription"
@@ -60,7 +60,7 @@
             app:met_floatingLabel="normal"
             app:met_textColor="#000"
             app:met_floatingLabelTextColor="#000"
-            android:singleLine="true"
+            android:maxLines="1"
             app:met_textColorHint="#9E9E9E"
             android:inputType="textCapWords"/>
         <LinearLayout

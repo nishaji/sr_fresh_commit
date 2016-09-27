@@ -606,6 +606,123 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         db.insert(EDUCATION,null,contentValues);
         return true;
     }
+
+    public boolean insert_skills(String title, String level){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SKILLTITLE,title);
+        contentValues.put(SKILLLEVEL,level);
+        db.insert(SKILLS,null,contentValues);
+        return true;
+
+    }
+    public boolean update_skill(String id,String title, String level){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SKILLTITLE,title);
+        contentValues.put(SKILLLEVEL,level);
+        return mDB.update(SKILLS, contentValues, "_ID" + "=" +id, null) > 0;
+    }
+    public boolean insert_objective(String objective){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(OBJECTIVELIST,objective);
+        db.insert(OBJECTIVE,null,contentValues);
+        return true;
+    }
+    public boolean insert_contact(String contact, String category, String status,String type){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(CONTACT,contact);
+        contentValues.put(CATEGORY,category);
+        contentValues.put(CONTACTSTATUS,status);
+        contentValues.put(CONTACTTYPE,type);
+        db.insert(TBCONTACT,null,contentValues);
+        return true;
+    }
+    public boolean update_contact(String id,String contact, String category, String status,String type){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(CONTACT,contact);
+        contentValues.put(CATEGORY,category);
+        contentValues.put(CONTACTSTATUS,status);
+        contentValues.put(CONTACTTYPE,type);
+        return mDB.update(TBCONTACT, contentValues, "_ID" + "=" +id, null) > 0;
+    }
+    public boolean updateParameters(int position,String sync,String updated){
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(PERSONAL_SYNC,sync);
+        initialValues.put(PERSONAL_UPDATED,updated);
+        return mDB.update(PERSONAL_INFO, initialValues, "_ID" + "=" +position, null) > 0;
+    }
+
+    public boolean updateexp(String id,String expfrom,String expupto ,String expstatus,String companytitle,String comanyname , String job , String jobtype , String location){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(EXPFROM,expfrom);
+        contentValues.put(EXPUPTO,expupto);
+        contentValues.put(EXPSTATUS,expstatus);
+        contentValues.put(COMPANYNAME,comanyname);
+        contentValues.put(COMPANYTITLE,companytitle);
+        contentValues.put(JOB,job);
+        contentValues.put(JOBTYPE,jobtype);
+        contentValues.put(JOBLOCATION,location);
+        return mDB.update(WORKEXP, contentValues, "_ID" + "=" +id, null) > 0;
+
+    }
+    public boolean updateeducation(String id,String schoolname,String schooltype,String coursetype,String educationtitle,String cgpi,String cgpitype,String locationname, String locationtype,String degreefrom,String degreeupto ){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SCHOOLNAME,schoolname);
+        contentValues.put(SCHOOLTYPE,schooltype);
+        contentValues.put(COURSETYPE,coursetype);
+        contentValues.put(EDUCATIONTITLE,educationtitle);
+        contentValues.put(CGPI,cgpi);
+        contentValues.put(CGPITYPE,cgpitype);
+        contentValues.put(LOCATIONNAME,locationname);
+        contentValues.put(LOCATIONTYPE,locationtype);
+        contentValues.put(DEGREEFROM,degreefrom);
+        contentValues.put(DEGREEUPTO,degreeupto);
+        return mDB.update(EDUCATION, contentValues, "_id" + "=" +id, null) > 0;
+
+    }
+    public boolean updateeproject(String id,String projectname, String role, String responsibility,String projfrom,String projupto){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PROJECTNAME,projectname);
+        contentValues.put(ROLE,role);
+        contentValues.put(RESPONSIBILITY,responsibility);
+        contentValues.put(PROJECTFROM,projfrom);
+        contentValues.put(PROJECTUPTO,projupto);
+        return mDB.update(PROJECTS, contentValues, "_id" + "=" +id, null) > 0;
+
+    }
+    public boolean updateeaward(String id,String title,String org,String date,String description){
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(AWARD_TITLE,title);
+        contentValues.put(AWARD_ORGANISATION,org);
+        contentValues.put(AWARD_DATE,date);
+        contentValues.put(AWARD_DESCRIPTION,description);
+        return mDB.update(AWARDS, contentValues, "_id" + "=" +id, null) > 0;
+
+    }
+    public boolean updatepub(String id,String title,String org,String date,String description){
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(PUBLICATION_TITLE,title);
+        contentValues.put(PUBLICATION_ORGANISATION,org);
+        contentValues.put(PUBLICATION_DATE,date);
+        contentValues.put(PUBLICATION_DESCRIPTION,description);
+        return mDB.update(PUBLICATION, contentValues, "_id" + "=" +id, null) > 0;
+
+    }
+    public boolean updatevolunteer(String id,String role,String type,String org,String from,String upto,String description){
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(VOLUNTEER_ROLE,role);
+        contentValues.put(VOLUNTEER_TYPE,type);
+        contentValues.put(VOLUNTEER_ORG,org);
+        contentValues.put(VOLUNTEER_FROM,from);
+        contentValues.put(VOLUNTEER_UPTO,upto);
+        contentValues.put(VOLUNTEER_DESCRIPTION,description);
+        return mDB.update(VOLUNTEER, contentValues, "_id" + "=" +id, null) > 0;
+
+    }
     public long getvolunteerlastid(){
         long lastId=1;
         String query="SELECT * FROM volunteer ORDER BY _id DESC LIMIT 1";
@@ -704,48 +821,6 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         }
         c.close();
         return lastId;
-    }
-    public boolean insert_skills(String title, String level){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(SKILLTITLE,title);
-        contentValues.put(SKILLLEVEL,level);
-        db.insert(SKILLS,null,contentValues);
-        return true;
-
-    }
-    public boolean update_skill(String id,String title, String level){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(SKILLTITLE,title);
-        contentValues.put(SKILLLEVEL,level);
-        return mDB.update(SKILLS, contentValues, "_ID" + "=" +id, null) > 0;
-    }
-    public boolean insert_objective(String objective){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(OBJECTIVELIST,objective);
-        db.insert(OBJECTIVE,null,contentValues);
-        return true;
-    }
-    public boolean insert_contact(String contact, String category, String status,String type){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(CONTACT,contact);
-        contentValues.put(CATEGORY,category);
-        contentValues.put(CONTACTSTATUS,status);
-        contentValues.put(CONTACTTYPE,type);
-        db.insert(TBCONTACT,null,contentValues);
-        return true;
-    }
-    public boolean update_contact(String id,String contact, String category, String status,String type){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(CONTACT,contact);
-        contentValues.put(CATEGORY,category);
-        contentValues.put(CONTACTSTATUS,status);
-        contentValues.put(CONTACTTYPE,type);
-        return mDB.update(TBCONTACT, contentValues, "_ID" + "=" +id, null) > 0;
     }
     public String getSinlgeEntry(String userName) {
         Cursor cursor = mDB.query("signup", null, " email=?",
@@ -1436,69 +1511,7 @@ public ArrayList<Volunteer>getallvolunteer(){
         // returning lables
         return labels;
     }
-    public boolean updateParameters(int position,String sync,String updated){
-        ContentValues initialValues = new ContentValues();
-        initialValues.put(PERSONAL_SYNC,sync);
-        initialValues.put(PERSONAL_UPDATED,updated);
-        return mDB.update(PERSONAL_INFO, initialValues, "_ID" + "=" +position, null) > 0;
-    }
 
-    public boolean updateexp(String id,String expfrom,String expupto ,String expstatus,String companytitle,String comanyname , String job , String jobtype , String location){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(EXPFROM,expfrom);
-        contentValues.put(EXPUPTO,expupto);
-        contentValues.put(EXPSTATUS,expstatus);
-        contentValues.put(COMPANYNAME,comanyname);
-        contentValues.put(COMPANYTITLE,companytitle);
-        contentValues.put(JOB,job);
-        contentValues.put(JOBTYPE,jobtype);
-        contentValues.put(JOBLOCATION,location);
-        return mDB.update(WORKEXP, contentValues, "_ID" + "=" +id, null) > 0;
-
-    }
-    public boolean updateeducation(String id,String schoolname,String schooltype,String coursetype,String educationtitle,String cgpi,String cgpitype,String locationname, String locationtype,String degreefrom,String degreeupto ){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(SCHOOLNAME,schoolname);
-        contentValues.put(SCHOOLTYPE,schooltype);
-        contentValues.put(COURSETYPE,coursetype);
-        contentValues.put(EDUCATIONTITLE,educationtitle);
-        contentValues.put(CGPI,cgpi);
-        contentValues.put(CGPITYPE,cgpitype);
-        contentValues.put(LOCATIONNAME,locationname);
-        contentValues.put(LOCATIONTYPE,locationtype);
-        contentValues.put(DEGREEFROM,degreefrom);
-        contentValues.put(DEGREEUPTO,degreeupto);
-        return mDB.update(EDUCATION, contentValues, "_id" + "=" +id, null) > 0;
-
-    }
-    public boolean updateeproject(String id,String projectname, String role, String responsibility,String projfrom,String projupto){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(PROJECTNAME,projectname);
-        contentValues.put(ROLE,role);
-        contentValues.put(RESPONSIBILITY,responsibility);
-        contentValues.put(PROJECTFROM,projfrom);
-        contentValues.put(PROJECTUPTO,projupto);
-        return mDB.update(PROJECTS, contentValues, "_id" + "=" +id, null) > 0;
-
-    }
-    public boolean updateeaward(String id,String title,String org,String date,String description){
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(AWARD_TITLE,title);
-        contentValues.put(AWARD_ORGANISATION,org);
-        contentValues.put(AWARD_DATE,date);
-        contentValues.put(AWARD_DESCRIPTION,description);
-        return mDB.update(AWARDS, contentValues, "_id" + "=" +id, null) > 0;
-
-    }
-    public boolean updateepub(String id,String title,String org,String date,String description){
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(PUBLICATION_TITLE,title);
-        contentValues.put(PUBLICATION_ORGANISATION,org);
-        contentValues.put(PUBLICATION_DATE,date);
-        contentValues.put(PUBLICATION_DESCRIPTION,description);
-        return mDB.update(PUBLICATION, contentValues, "_id" + "=" +id, null) > 0;
-
-    }
     public byte[] retreiveImageFromDB() throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + PERSONAL_INFO;
@@ -1595,6 +1608,62 @@ public ArrayList<Volunteer>getallvolunteer(){
         // mDB.close();
         return pro;
     }
+    public ArrayList<String> getallaward(String id){
+        ArrayList<String> pro = new ArrayList<String>();
+        mDB = this.getReadableDatabase();
+        Cursor cur;
+        cur = mDB.rawQuery("SELECT * FROM " + AWARDS + " WHERE _id = '" + id + "'", null);
+        if (cur.moveToFirst()) {
+            do {
+                pro.add(cur.getString(0));
+                pro.add(cur.getString(1));
+                pro.add(cur.getString(2));
+                pro.add(cur.getString(3));
+                pro.add(cur.getString(4));
+            } while (cur.moveToNext());
+        }
+        cur.close();
+        // mDB.close();
+        return pro;
+    }
+    public ArrayList<String> getallpublication(String id){
+        ArrayList<String> pro = new ArrayList<String>();
+        mDB = this.getReadableDatabase();
+        Cursor cur;
+        cur = mDB.rawQuery("SELECT * FROM " + PUBLICATION + " WHERE _id = '" + id + "'", null);
+        if (cur.moveToFirst()) {
+            do {
+                pro.add(cur.getString(0));
+                pro.add(cur.getString(1));
+                pro.add(cur.getString(2));
+                pro.add(cur.getString(3));
+                pro.add(cur.getString(4));
+            } while (cur.moveToNext());
+        }
+        cur.close();
+        // mDB.close();
+        return pro;
+    }
+    public ArrayList<String> getallvolunteer(String id){
+        ArrayList<String> pro = new ArrayList<String>();
+        mDB = this.getReadableDatabase();
+        Cursor cur;
+        cur = mDB.rawQuery("SELECT * FROM " + VOLUNTEER + " WHERE _id = '" + id + "'", null);
+        if (cur.moveToFirst()) {
+            do {
+                pro.add(cur.getString(0));
+                pro.add(cur.getString(1));
+                pro.add(cur.getString(2));
+                pro.add(cur.getString(3));
+                pro.add(cur.getString(4));
+                pro.add(cur.getString(5));
+                pro.add(cur.getString(6));
+            } while (cur.moveToNext());
+        }
+        cur.close();
+        // mDB.close();
+        return pro;
+    }
     public boolean deleterow(String id)
     {
         mDB = this.getWritableDatabase();
@@ -1631,16 +1700,22 @@ public ArrayList<Volunteer>getallvolunteer(){
         return mDB.delete(SKILLS, SKILLS_COLUMN_ID + "=" + id, null) > 0;
 
     }
-    public boolean deletaward(String id)
+    public boolean deleteaward(String id)
     {
         mDB = this.getWritableDatabase();
         return mDB.delete(AWARDS, AWARD_COLUMN_ID + "=" + id, null) > 0;
 
     }
-    public boolean deletpub(String id)
+    public boolean deletepub(String id)
     {
         mDB = this.getWritableDatabase();
         return mDB.delete(PUBLICATION, PUBLICATION_COLUMN_ID + "=" + id, null) > 0;
+
+    }
+    public boolean deletevolun(String id)
+    {
+        mDB = this.getWritableDatabase();
+        return mDB.delete(VOLUNTEER, VOLUNTEER_COLUMN_ID + "=" + id, null) > 0;
 
     }
     @Override

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.sdsmdg.tastytoast.TastyToast;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,7 +42,7 @@ public class Publications extends AppCompatActivity implements DatePickerDialog.
         time=(TextView)findViewById(R.id.publicationtext);
         timeimg=(ImageView)findViewById(R.id.publicationduration);
         addpublication=(Button)findViewById(R.id.addpublication);
-        toolbar.setTitle(" Add Awards");
+        toolbar.setTitle(" Add Publications");
         toolbar.setLogo(R.drawable.arrowlleft);
         toolbar.setTitleTextColor(0xffffffff);
         setSupportActionBar(toolbar);
@@ -70,9 +72,15 @@ public class Publications extends AppCompatActivity implements DatePickerDialog.
                             if (dbHelper.insert_publication(title.getText().toString(), org.getText().toString(), time.getText().toString(), desc.getText().toString())) {
                                 TastyToast.makeText(getApplicationContext(), "Project saved successfully !", TastyToast.LENGTH_LONG,
                                         TastyToast.SUCCESS);
+                                JSONObject jsonObject = new JSONObject();
+                                jsonObject.put("title",title.getText().toString());
+                                jsonObject.put("organization",org.getText().toString());
+                                jsonObject.put("date",time.getText().toString());
+                                jsonObject.put("desc",desc.getText().toString());
+                                long idd = dbHelper.getpublicationlastid();
+                                dbHelper.insert_personbit(idd, "mongo", "publication_bit", jsonObject, "not_done", "not_done", "pending");
                                 Intent intent = new Intent(Publications.this, ViewAndAddPublication.class);
                                 startActivity(intent);
-
                             } else {
                                 TastyToast.makeText(getApplicationContext(), "Could not save Project!", TastyToast.LENGTH_LONG,
                                         TastyToast.ERROR);

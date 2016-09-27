@@ -1,4 +1,4 @@
-package skillregister;
+package sprytechies.skillregister;
 
 import com.itextpdf.text.BaseColor;
 
