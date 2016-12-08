@@ -15,7 +15,6 @@ import java.net.URL;
 
 public class FileDownloader {
 
-
     private static final int  MEGABYTE = 1024 * 1024;
     static  int status;
 
@@ -25,12 +24,9 @@ public class FileDownloader {
 
             URL url = new URL(fileUrl);
             HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setDoOutput(false);
-            urlConnection.connect();
-             status = urlConnection.getResponseCode();
+            urlConnection.setRequestMethod("GET");urlConnection.setDoOutput(false);
+            urlConnection.connect();status = urlConnection.getResponseCode();
             System.out.println(status+"status");
-
             InputStream inputStream = urlConnection.getInputStream();
             FileOutputStream fileOutputStream = new FileOutputStream(directory);
             int totalSize = urlConnection.getContentLength();
@@ -51,11 +47,7 @@ public class FileDownloader {
             e.printStackTrace();
             return false;
         }
-        if(status==200){
-            return true;
-        }else {
-            return false;
-        }
+      return true;
     }
 }
 

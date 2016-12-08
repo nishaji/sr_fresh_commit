@@ -14,10 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -27,7 +25,6 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
 import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Experience;
@@ -43,11 +40,9 @@ import timber.log.Timber;
  */
 public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.ExperienceViewHolder> {
 
-    private List<ExperienceInsert> experience;
-    @Inject
+    private List<ExperienceInsert> experience;@Inject
     DatabaseHelper databaseHelper;
-    String edit_id;
-    private Subscription mSubscription;
+    String edit_id;private Subscription mSubscription;
     Context context;
     @Inject
     public ExperineceAdapter(){
@@ -79,20 +74,16 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edit_id=experience.get(position).experience().id();
-                edit_experience();
+                edit_id=experience.get(position).experience().id();edit_experience();
 
             }
         });
 
     }
-
     private void edit_experience() {
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getExperienceForUpdate(edit_id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<ExperienceInsert>>() {
+        mSubscription = databaseHelper.getExperienceForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<ExperienceInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -192,14 +183,14 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         String[] parts = duration.getText().toString().split("To");
-                                        String from = parts[0];
-                                        String to = parts[1];
+                                        String from = parts[0];String to = parts[1];
                                         databaseHelper.edit_experience(Experience.builder()
                                                 .setCompany(company_name.getText().toString()).setUpto(from).setFrom(to)
                                                 .setStatus(status.getText().toString()).setJob(job_title.getText().toString())
                                                 .setType(job_type.getText().toString()).setTitle(company_title.getText().toString())
                                                 .setLocation(new Location(location.getText().toString(),location_type.getText().toString()))
                                                 .setId(job_title.getText().toString()).setPutflag("0").build(),edit_id);
+                                                 context.startActivity( new Intent(context, ExperienceActivity.class));
 
                                     }}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogBox, int id) {
@@ -207,8 +198,7 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
                             }
                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                        alertDialogAndroid.show();
+                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();alertDialogAndroid.show();
 
                     }});
 
@@ -228,8 +218,7 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
         @BindView(R.id.edit_exp)ImageView edit;
         public ExperienceViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-            context = itemView.getContext();
+            ButterKnife.bind(this, itemView);context = itemView.getContext();
         }
     }
 }

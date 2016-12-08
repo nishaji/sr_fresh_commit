@@ -13,10 +13,6 @@ import sprytechies.skillregister.ui.base.BasePresenter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
 @ConfigPersistent
 public class ProjectPresenter extends BasePresenter<ProjectMvpView> {
     private final DataManager mDataManager;
@@ -39,21 +35,16 @@ public class ProjectPresenter extends BasePresenter<ProjectMvpView> {
 
     public void loadProject() {
         checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
-        mSubscription = mDataManager.getProject()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<ProjectInsert>>() {
+        RxUtil.unsubscribe(mSubscription);mSubscription = mDataManager.getProject().observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<ProjectInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the project.");
                         getMvpView().showError();
                     }
-
                     @Override
                     public void onNext(List<ProjectInsert> projectInserts) {
                         if (projectInserts.isEmpty()) {

@@ -15,8 +15,6 @@ import sprytechies.skillregister.data.model.CertificateInsert;
 public class Cert implements Serializable {
     @SerializedName("name")
     private String name;
-    @SerializedName("status")
-    private String status;
     @SerializedName("type")
     private String type;
     @SerializedName("certdate")
@@ -31,7 +29,6 @@ public class Cert implements Serializable {
     public Cert(CertificateInsert cert){
         Date date=new Date(cert.certificate().certdate());
         this.name=cert.certificate().name();
-        this.status=cert.certificate().status();
         this.type=cert.certificate().type();
         this.certdate=date;
         this.authority=cert.certificate().authority();
@@ -44,14 +41,6 @@ public class Cert implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getType() {

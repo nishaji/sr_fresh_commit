@@ -15,10 +15,6 @@ import sprytechies.skillregister.ui.base.BasePresenter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
 @ConfigPersistent
 public class CertificatePresenter extends BasePresenter<CertificateMvpView> {
     private final DataManager mDataManager;
@@ -43,20 +39,16 @@ public class CertificatePresenter extends BasePresenter<CertificateMvpView> {
     public void loadCertificate() {
         checkViewAttached();
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = mDataManager.getCertificate()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<CertificateInsert>>() {
+        mSubscription = mDataManager.getCertificate().observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<CertificateInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the ribots.");
                         getMvpView().showError();
                     }
-
                     @Override
                     public void onNext(List<CertificateInsert> certificateInserts) {
                         if (certificateInserts.isEmpty()) {

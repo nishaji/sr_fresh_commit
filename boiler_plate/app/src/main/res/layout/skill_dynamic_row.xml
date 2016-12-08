@@ -9,8 +9,10 @@
         android:text="Remove"
         android:src="@android:drawable/ic_delete"
         android:layout_alignParentRight="true" />
-    <EditText
-        android:hint="Type"
+
+    <AutoCompleteTextView
+        android:inputType="textCapWords"
+        android:hint="Skill Name"
         android:id="@+id/skill_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +20,7 @@
         android:layout_toStartOf="@id/remove_skill"
         android:layout_toLeftOf="@id/remove_skill"
         android:layout_alignParentLeft="true" />
-    <EditText
+<EditText
         android:inputType="number"
         android:hint="Level"
         android:layout_marginTop="35dp"

@@ -1,9 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:scrollbarStyle="outsideOverlay"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto">
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
     <android.support.v7.widget.Toolbar
         android:id="@+id/add_volunteer_tool"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -108,3 +114,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+    </ScrollView>

@@ -29,12 +29,13 @@
 
         <service android:name="sprytechies.skillregister.data.SyncService" />
         <service android:name="sprytechies.skillregister.data.UpdateService" />
+        <service android:name="sprytechies.skillregister.data.PullService" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.AwardPost" />
         <service android:name="sprytechies.skillregister.data.remote.postservice.CertificatePost" />
         <service android:name="sprytechies.skillregister.data.remote.postservice.ContactPost" />
         <service android:name="sprytechies.skillregister.data.remote.postservice.EducationPost" />
         <service android:name="sprytechies.skillregister.data.remote.postservice.ExperiencePost" />
         <service android:name="sprytechies.skillregister.data.remote.postservice.ProjectPost" />
-        <service android:name="sprytechies.skillregister.data.remote.postservice.PublicationPost" />
         <service android:name="sprytechies.skillregister.data.remote.postservice.PublicationPost" />
         <service android:name="sprytechies.skillregister.data.remote.postservice.VolunteerPost" />
         <service android:name="sprytechies.skillregister.data.remote.putservice.AwardPut" />
@@ -45,6 +46,7 @@
         <service android:name="sprytechies.skillregister.data.remote.putservice.ProjectPut" />
         <service android:name="sprytechies.skillregister.data.remote.putservice.PublicationPut" />
         <service android:name="sprytechies.skillregister.data.remote.putservice.VolunteerPut" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.PostProfile" />
 
 
 
@@ -61,15 +63,13 @@
             android:value="269354ab26629ff3eec799856de4a573123391de" />
 
         <activity
-            android:name="sprytechies.skillregister.ui.signin.SignActivity"
-            android:label="@string/title_activity_sign" />
-        <activity
             android:name="sprytechies.skillregister.ui.award.AwardActivity"
             android:label="@string/title_activity_award"
             android:noHistory="true" />
         <activity
             android:name="sprytechies.skillregister.ui.certificate.CertificateActivity"
-            android:label="@string/title_activity_certificate" />
+            android:label="@string/title_activity_certificate"
+            android:noHistory="true"/>
         <activity
             android:name="sprytechies.skillregister.ui.contact.ConatctActivity"
             android:label="@string/title_activity_conatct"
@@ -108,10 +108,12 @@
             android:label="@string/title_activity_add_contact"
             android:noHistory="true" />
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.education.AddEducation"
             android:label="@string/title_activity_add_education"
             android:noHistory="true" />
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.experience.AddExperience"
             android:label="@string/title_activity_add_experience"
             android:noHistory="true" />
@@ -121,21 +123,22 @@
             android:label="@string/title_activity_add_project"
             android:noHistory="true" />
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.publication.AddPublication"
             android:label="@string/title_activity_add_publication"
             android:noHistory="true" />
         <activity
             android:name="sprytechies.skillregister.ui.launcher.activity.ViewActivity"
-            android:label="@string/title_activity_view" />
+            android:label="@string/title_activity_view"
+            android:noHistory="true"/>
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.home.HomeActivity"
             android:label="@string/title_activity_home"
             android:noHistory="true" />
+
         <activity
-            android:name="sprytechies.skillregister.ui.signup.SignUpActivity"
-            android:label="@string/title_activity_sign_up"
-            android:noHistory="true" />
-        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.volunteer.AddVolunteer"
             android:label="@string/title_activity_add_volunteer"
             android:noHistory="true" />

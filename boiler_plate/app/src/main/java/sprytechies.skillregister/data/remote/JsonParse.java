@@ -13,6 +13,7 @@ import sprytechies.skillregister.data.remote.remote_model.CompanySugession;
 import sprytechies.skillregister.data.remote.remote_model.CourseSugeeion;
 import sprytechies.skillregister.data.remote.remote_model.JobSugession;
 import sprytechies.skillregister.data.remote.remote_model.SchoolSugession;
+import sprytechies.skillregister.data.remote.remote_model.SkillSugession;
 
 
 /**
@@ -157,6 +158,40 @@ public class JsonParse {
                             int i;
                             for (i = 0; i < jsonResponse.length(); i++) {
                                 ListData.add(new CourseSugeeion(jsonResponse.get(i).toString()));
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        return ListData;
+
+    }
+    public List<SkillSugession> getSkill(String sName) {
+        List<SkillSugession> ListData = new ArrayList<SkillSugession>();
+        try {
+            String temp = sName.replace(" ", "%20");
+            URL js = new URL("http://sr.api.sprytechies.net:3003/api/skills/search?name=" + temp);
+            URLConnection jc = js.openConnection();
+            StringBuilder sb = new StringBuilder();
+            InputStream is = jc.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            if (sb != null) {
+                if (!sb.toString().contains("failure") || !sb.toString().equalsIgnoreCase("")) {
+                    JSONArray jsonResponse;
+                    jsonResponse = new JSONArray(sb.toString());
+                    if (jsonResponse != null) {
+                        if (jsonResponse.length() > 0) {
+                            int i;
+                            for (i = 0; i < jsonResponse.length(); i++) {
+                                ListData.add(new SkillSugession(jsonResponse.get(i).toString()));
                             }
                         }
                     }

@@ -21,6 +21,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp" />
     <EditText
+        android:inputType="textCapWords"
         android:hint="Passion:"
         android:id="@+id/passion"
         android:layout_width="match_parent"

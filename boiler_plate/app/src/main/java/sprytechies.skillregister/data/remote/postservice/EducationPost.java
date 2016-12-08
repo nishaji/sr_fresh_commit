@@ -23,10 +23,11 @@ import sprytechies.skillregister.data.DataManager;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Education;
 import sprytechies.skillregister.data.model.EducationInsert;
+import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.data.remote.ApiClient;
 import sprytechies.skillregister.data.remote.PostService;
 import sprytechies.skillregister.data.remote.remote_model.Edu;
-import sprytechies.skillregister.ui.signin.SignActivity;
+import sprytechies.skillregister.ui.home.HomeActivity;
 import sprytechies.skillregister.util.NetworkUtil;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
@@ -49,26 +50,23 @@ public class EducationPost extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Timber.i("Service Created..");
+        Timber.i("Education Service Created..");
         BoilerplateApplication.get(this).getComponent().inject(this);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
-
-        SharedPreferences settings = this.getSharedPreferences(SignActivity.PREFS_NAME, 0);
+        SharedPreferences settings = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
         id = settings.getString("id", "id");
         access_token = settings.getString("access_token", "access_token");
         System.out.println("access-token" + " " + access_token + "id" + " " + id);
-
         if (!NetworkUtil.isNetworkConnected(this)) {
             Timber.i("Sync canceled, connection not available");
             stopSelf(startId);
             return START_NOT_STICKY;
         }
         post_education();
-
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
 
@@ -123,9 +121,8 @@ public class EducationPost extends Service {
                                             String id = response.body().getId();
                                             System.out.println("education send to server successfully");
                                             Toast.makeText(EducationPost.this, "Education send to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_education_flag(Education.builder()
-                                                    .setPostflag("1").setPutflag("1").setDate(date.toString()).setMongoid(id)
-                                                    .build(), education.get(finalI).education().id());
+                                            databaseHelper.update_education_flag(Education.builder().setPostflag("1").setDate(date.toString()).setMongoid(id).build(), education.get(finalI).education().id());
+                                           // databaseHelper.setSyncstatus(LiveSync.builder().setBit("education").setPost("1").build());
                                         }
                                     }
                                     @Override

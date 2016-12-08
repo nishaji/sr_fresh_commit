@@ -23,10 +23,11 @@ import sprytechies.skillregister.data.DataManager;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Contact;
 import sprytechies.skillregister.data.model.ContactInsert;
+import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.data.remote.ApiClient;
 import sprytechies.skillregister.data.remote.PostService;
 import sprytechies.skillregister.data.remote.remote_model.Cont;
-import sprytechies.skillregister.ui.signin.SignActivity;
+import sprytechies.skillregister.ui.home.HomeActivity;
 import sprytechies.skillregister.util.NetworkUtil;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
@@ -37,10 +38,8 @@ import timber.log.Timber;
 
 public class ContactPost extends Service {
 
-    @Inject
-    DataManager mDataManager;
-    @Inject
-    DatabaseHelper databaseHelper;
+    @Inject DataManager mDataManager;
+    @Inject DatabaseHelper databaseHelper;
     private Subscription mSubscription;
     String id, access_token;
     Date date=new Date();
@@ -58,7 +57,7 @@ public class ContactPost extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
 
-        SharedPreferences settings = this.getSharedPreferences(SignActivity.PREFS_NAME, 0);
+        SharedPreferences settings = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
         id = settings.getString("id", "id");
         access_token = settings.getString("access_token", "access_token");
         System.out.println("access-token" + " " + access_token + "id" + " " + id);
@@ -121,9 +120,8 @@ public class ContactPost extends Service {
                                         if (response.code() == 200) {
                                             String id = response.body().getId();
                                             Toast.makeText(ContactPost.this, "contact send to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_contact_flag(Contact.builder()
-                                                    .setPostflag("1").setPutflag("1").setDate(date.toString()).setMongoid(id)
-                                                    .build(), contact.get(finalI).contact().id());
+                                            databaseHelper.update_contact_flag(Contact.builder().setPostflag("1").setDate(date.toString()).setMongoid(id).build(), contact.get(finalI).contact().id());
+                                           // databaseHelper.setSyncstatus(LiveSync.builder().setBit("contact").setPost("1").build());
                                         }
                                     }
                                     @Override

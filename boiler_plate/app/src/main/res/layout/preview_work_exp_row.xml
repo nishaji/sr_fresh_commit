@@ -75,15 +75,6 @@
                 android:textColor="#757575"
                 android:textSize="15sp"
                 android:textStyle="normal"/>
-            <ImageButton
-                android:background="#fff"
-                android:id="@+id/delete_exp"
-                android:layout_toStartOf="@+id/edit_exp"
-                android:layout_below="@+id/status"
-                android:src="@mipmap/newdelete"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_toLeftOf="@+id/edit_exp" />
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/view_company_title"
@@ -216,16 +207,6 @@
                 android:textColor="#757575"
                 android:textSize="15sp"
                 android:textStyle="normal"/>
-            <ImageButton
-                android:layout_marginTop="2dp"
-                android:background="#fff"
-                android:id="@+id/edit_exp"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/status"
-                android:src="@mipmap/newedit"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

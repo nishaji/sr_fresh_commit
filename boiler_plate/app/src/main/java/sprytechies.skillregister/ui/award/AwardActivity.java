@@ -15,20 +15,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sprytechies.skillregister.R;
-import sprytechies.skillregister.data.SyncService;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.AwardInsert;
 import sprytechies.skillregister.ui.base.BaseActivity;
 import sprytechies.skillregister.ui.launcher.activity.ViewActivity;
 import sprytechies.skillregister.util.DialogFactory;
 
-
 public class AwardActivity extends BaseActivity implements AwardMvpView {
 
     @Inject AwardAdapter awardAdapter;
     @Inject AwardPresenter awardPresenter;
-    @Inject
-    DatabaseHelper databaseHelper;
+    @Inject DatabaseHelper databaseHelper;
     @BindView(R.id.award_recycler) RecyclerView recyclerView;
     @BindView(R.id.award_fab) FloatingActionButton floatingActionButton;
     @BindView(R.id.view_award_tool) Toolbar toolbar;
@@ -37,27 +34,21 @@ public class AwardActivity extends BaseActivity implements AwardMvpView {
         super.onCreate(savedInstanceState);
         activityComponent().inject(this);
         setContentView(R.layout.activity_view_and_add_awards);
-        ButterKnife.bind(this);
-        setuptoolbar();
+        ButterKnife.bind(this);setuptoolbar();
         recyclerView.setAdapter(awardAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        awardPresenter.attachView(this);
-        awardPresenter.loadAwards();
-        startService(SyncService.getStartIntent(this));
+        awardPresenter.attachView(this);awardPresenter.loadAwards();
     }
 
     private void setuptoolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle(" Award Details");
         toolbar.setTitleTextColor(0xffffffff);
         toolbar.setLogo(R.mipmap.arrowlleft);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AwardActivity.this, ViewActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                finish();
+                startActivity(new Intent(AwardActivity.this, ViewActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
             }
         });
     }
@@ -68,13 +59,11 @@ public class AwardActivity extends BaseActivity implements AwardMvpView {
     }
     @Override
     public void showAwards(List<AwardInsert> awardInserts) {
-        awardAdapter.setAwards(awardInserts);
-        awardAdapter.notifyDataSetChanged();
+        awardAdapter.setAwards(awardInserts);awardAdapter.notifyDataSetChanged();
     }
     @Override
     public void showAwardEmpty() {
-        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_awards))
-                .show();
+        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_awards)).show();
     }
     @Override
     public void showError() {
@@ -86,5 +75,12 @@ public class AwardActivity extends BaseActivity implements AwardMvpView {
     void addAward(){
         startActivity(new Intent(AwardActivity.this, AddAwardActivity.class));
         overridePendingTransition(R.anim.animation, R.anim.animation2);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(AwardActivity.this, ViewActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
     }
 }

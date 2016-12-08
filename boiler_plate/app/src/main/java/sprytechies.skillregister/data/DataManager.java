@@ -44,7 +44,7 @@ public class DataManager {
 
 
 
-public Observable<AwardInsert> syncAward() {
+/*public Observable<AwardInsert> syncAward() {
                 return mRibotsService.getAwards()
                 .concatMap(new Func1<List<AwardInsert>, Observable<AwardInsert>>() {
                     @Override
@@ -53,7 +53,7 @@ public Observable<AwardInsert> syncAward() {
                     }
                 });
 
-    }
+    }*/
 
     public Observable<List<AwardInsert>> getAwards() {
         return mDatabaseHelper.getAwards().distinct();

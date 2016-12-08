@@ -10,14 +10,11 @@ import java.util.ArrayList;
  */
 
 public class GetProfile implements Serializable {
-    @SerializedName("type")
-    private String type;
-    @SerializedName("meta")
-    private Meta meta;
-    @SerializedName("skills")
-    private ArrayList<skill> skill;
-    @SerializedName("language")
-    private ArrayList<Lan> language;
+    @SerializedName("type") private String type;
+    @SerializedName("meta") private Meta meta;
+    @SerializedName("skills") private ArrayList<skill> skill;
+    @SerializedName("language") private ArrayList<Lan> language;
+
     public GetProfile(String type,Meta meta,ArrayList<skill> skill,ArrayList<Lan> lan){
         this.type=type;
         this.meta=meta;
@@ -55,4 +52,5 @@ public class GetProfile implements Serializable {
     public void setLanguage(ArrayList<Lan> language) {
         this.language = language;
     }
+
 }

@@ -34,27 +34,21 @@ public class ProjectActivity extends BaseActivity implements ProjectMvpView {
         super.onCreate(savedInstanceState);
         activityComponent().inject(this);
         setContentView(R.layout.activity_projects);
-        ButterKnife.bind(this);
-        setuptoolbar();
+        ButterKnife.bind(this);setuptoolbar();
         recyclerView.setAdapter(projectAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        projectPresenter.attachView(this);
-        projectPresenter.loadProject();
-       // startService(SyncService.getStartIntent(this));
+        projectPresenter.attachView(this);projectPresenter.loadProject();
     }
 
     private void setuptoolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle(" Project Details");
         toolbar.setTitleTextColor(0xffffffff);
         toolbar.setLogo(R.mipmap.arrowlleft);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProjectActivity.this, ViewActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                finish();
+                startActivity(new Intent(ProjectActivity.this, ViewActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
             }
         });
     }
@@ -63,19 +57,15 @@ public class ProjectActivity extends BaseActivity implements ProjectMvpView {
         super.onDestroy();
         projectPresenter.detachView();
     }
-
     @Override
     public void showProjectss(List<ProjectInsert> project) {
-        projectAdapter.setProjects(project);
-        projectAdapter.notifyDataSetChanged();
+        projectAdapter.setProjects(project);projectAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showProjectEmpty() {
-        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_projects))
-                .show();
+        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_projects)).show();
     }
-
     @Override
     public void showError() {
         projectAdapter.setProjects(Collections.<ProjectInsert>emptyList());
@@ -86,5 +76,12 @@ public class ProjectActivity extends BaseActivity implements ProjectMvpView {
     void addAward(){
         startActivity(new Intent(ProjectActivity.this, AddProject.class));
         overridePendingTransition(R.anim.animation, R.anim.animation2);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ProjectActivity.this, ViewActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
     }
 }

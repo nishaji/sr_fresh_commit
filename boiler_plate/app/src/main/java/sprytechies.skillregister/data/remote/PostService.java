@@ -1,7 +1,7 @@
 package sprytechies.skillregister.data.remote;
 
+import org.json.JSONObject;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -16,13 +16,14 @@ import sprytechies.skillregister.data.remote.remote_model.Cert;
 import sprytechies.skillregister.data.remote.remote_model.Cont;
 import sprytechies.skillregister.data.remote.remote_model.Edu;
 import sprytechies.skillregister.data.remote.remote_model.Exp;
+import sprytechies.skillregister.data.remote.remote_model.ExportResume;
 import sprytechies.skillregister.data.remote.remote_model.GetProfile;
 import sprytechies.skillregister.data.remote.remote_model.Login;
 import sprytechies.skillregister.data.remote.remote_model.PermissionBit;
 import sprytechies.skillregister.data.remote.remote_model.Person;
 import sprytechies.skillregister.data.remote.remote_model.Pro;
 import sprytechies.skillregister.data.remote.remote_model.Pub;
-import sprytechies.skillregister.data.remote.remote_model.SaveProfile;
+import sprytechies.skillregister.data.remote.remote_model.SaveProfilePost;
 import sprytechies.skillregister.data.remote.remote_model.User;
 import sprytechies.skillregister.data.remote.remote_model.Volun;
 
@@ -55,7 +56,7 @@ public interface PostService {
     @POST("people/{id}/volunteer")
     Call<Volun>post_volunteer(@Path("id") String id, @Query("access_token")String access_token, @Body Volun volun);
     @POST("people/{id}/profile")
-    Call<SaveProfile>post_profile(@Path("id") String id, @Query("access_token")String access_token, @Body SaveProfile volun);
+    Call<SaveProfilePost>post_profile(@Path("id") String id, @Query("access_token")String access_token, @Body SaveProfilePost volun);
 
     //////////////////////////PUT SERVICES////////////////////////////////////////////
 
@@ -100,6 +101,8 @@ public interface PostService {
     @GET("people/{id}")
     Call<Person>get_user(@Path("id")String id, @Query("access_token")String token);
     @GET("people/{id}/profile")
-    Call<List<GetProfile>>get_profile(@Path("id")String id, @Query("access_token")String token);
+    Call<List<GetProfile>>get_profile(@Path("id")String id, @Query("filter")JSONObject filter, @Query("access_token")String token);
+    @GET("people/{id}/exportResume")
+    Call<ExportResume>export_resume(@Path("id")String id, @Query("template")String template, @Query("onlyPreview")String only, @Query("access_token")String token);
 
 }

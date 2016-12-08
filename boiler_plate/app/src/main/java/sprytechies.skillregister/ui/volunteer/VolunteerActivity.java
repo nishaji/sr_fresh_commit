@@ -41,18 +41,15 @@ public class VolunteerActivity extends BaseActivity implements VolunteerMvpView 
         setuptoolbar();
 
     }
-
     private void setuptoolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle(" Volunteer Details");
         toolbar.setTitleTextColor(0xffffffff);
         toolbar.setLogo(R.mipmap.arrowlleft);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(VolunteerActivity.this, ViewActivity.class));
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
 
             }
         });
@@ -84,5 +81,12 @@ public class VolunteerActivity extends BaseActivity implements VolunteerMvpView 
     public void showError() {
         volunteerAdapter.notifyDataSetChanged();
         Toast.makeText(this, R.string.empty_volunteer, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(VolunteerActivity.this, ViewActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
     }
 }

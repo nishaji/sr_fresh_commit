@@ -32,7 +32,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.beginTransaction();
         try {
-            db.execSQL(Db.RibotProfileTable.CREATE);
+            db.execSQL(Db.RibotProfileTable.CREATE_LIVE_SYNC_STATUS);
             db.execSQL(Db.RibotProfileTable.CREATE_AWARDS);
             db.execSQL(Db.RibotProfileTable.CREATE_CERTIFICATE);
             db.execSQL(Db.RibotProfileTable.CREATE_CONTACT);
@@ -41,7 +41,6 @@ public class DbOpenHelper extends SQLiteOpenHelper {
             db.execSQL(Db.RibotProfileTable.CREATE_PROJECT);
             db.execSQL(Db.RibotProfileTable.CREATE_PUBLICATION);
             db.execSQL(Db.RibotProfileTable.CREATE_SIGUP);
-            db.execSQL(Db.RibotProfileTable.CREATE_PROFILE_BIT);
             db.execSQL(Db.RibotProfileTable.CREATE_VOLUNTEER);
             db.execSQL(Db.RibotProfileTable.CREATE_SAVE_PROFILE);
             //Add other tables here

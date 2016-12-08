@@ -15,10 +15,6 @@ import sprytechies.skillregister.ui.base.BasePresenter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
 @ConfigPersistent
 public class ContactPresenter extends BasePresenter<ContactMvpView> {
     private final DataManager mDataManager;
@@ -42,20 +38,16 @@ public class ContactPresenter extends BasePresenter<ContactMvpView> {
     public void loadContact() {
         checkViewAttached();
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = mDataManager.getContact()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<ContactInsert>>() {
+        mSubscription = mDataManager.getContact().observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<ContactInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the ribots.");
                         getMvpView().showError();
                     }
-
                     @Override
                     public void onNext(List<ContactInsert> contactInserts) {
                         if (contactInserts.isEmpty()) {

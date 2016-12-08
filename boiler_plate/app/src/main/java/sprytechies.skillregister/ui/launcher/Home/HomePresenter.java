@@ -1,17 +1,11 @@
 package sprytechies.skillregister.ui.launcher.Home;
 
-
-
 import java.util.List;
-
 import javax.inject.Inject;
-
-
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
 import sprytechies.skillregister.data.DataManager;
 import sprytechies.skillregister.data.model.AwardInsert;
 import sprytechies.skillregister.data.model.CertificateInsert;
@@ -22,15 +16,9 @@ import sprytechies.skillregister.ui.base.BasePresenter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-/**
- * Created by sprydev5 on 17/11/16.
- */
-
 public class HomePresenter extends BasePresenter<HomeMvp> {
-    @Inject
-    DataManager mDataManager;
+    @Inject DataManager mDataManager;
     private Subscription mSubscription;
-
     @Inject
     public HomePresenter(DataManager dataManager) {
         mDataManager = dataManager;
@@ -49,24 +37,19 @@ public class HomePresenter extends BasePresenter<HomeMvp> {
     void loadEducation() {
         checkViewAttached();
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = mDataManager.getEducation()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<EducationInsert>>() {
+        mSubscription = mDataManager.getEducation().observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<EducationInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the education.");
                         getMvpView().showEducationError();
                     }
-
                     @Override
                     public void onNext(List<EducationInsert> education) {
                         if (education.isEmpty()) {
-
                         } else {
                             getMvpView().showEducations(education);
                         }
@@ -75,23 +58,16 @@ public class HomePresenter extends BasePresenter<HomeMvp> {
 
     }
      void loadExperience() {
-         checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
-    mSubscription = mDataManager.getExperience()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+         checkViewAttached();RxUtil.unsubscribe(mSubscription);mSubscription = mDataManager.getExperience()
+            .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
             .subscribe(new Subscriber<List<ExperienceInsert>>() {
         @Override
         public void onCompleted() {
-        }
-
-        @Override
+        }@Override
         public void onError(Throwable e) {
             Timber.e(e, "There was an error loading the education.");
             getMvpView().showExperienceError();
-        }
-
-        @Override
+        }@Override
         public void onNext(List<ExperienceInsert> experience) {
             if (experience.isEmpty()) {
 
@@ -102,22 +78,17 @@ public class HomePresenter extends BasePresenter<HomeMvp> {
     });
 }
     void loadAward() {
-        checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
-        mSubscription = mDataManager.getAwards()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+        checkViewAttached();RxUtil.unsubscribe(mSubscription);mSubscription = mDataManager.getAwards()
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<AwardInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the award.");
                         getMvpView().showExperienceError();
                     }
-
                     @Override
                     public void onNext(List<AwardInsert> experience) {
                         if (experience.isEmpty()) {
@@ -129,22 +100,18 @@ public class HomePresenter extends BasePresenter<HomeMvp> {
                 });
     }
     void loadContact() {
-        checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
+        checkViewAttached();RxUtil.unsubscribe(mSubscription);
         mSubscription = mDataManager.getContact()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<ContactInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the contact.");
                         getMvpView().showExperienceError();
                     }
-
                     @Override
                     public void onNext(List<ContactInsert> experience) {
                         if (experience.isEmpty()) {
@@ -156,22 +123,17 @@ public class HomePresenter extends BasePresenter<HomeMvp> {
                 });
     }
     void loadCertificate() {
-        checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
-        mSubscription = mDataManager.getCertificate()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<CertificateInsert>>() {
+        checkViewAttached();RxUtil.unsubscribe(mSubscription);
+        mSubscription = mDataManager.getCertificate().observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<CertificateInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the certificate.");
                         getMvpView().showExperienceError();
                     }
-
                     @Override
                     public void onNext(List<CertificateInsert> experience) {
                         if (experience.isEmpty()) {

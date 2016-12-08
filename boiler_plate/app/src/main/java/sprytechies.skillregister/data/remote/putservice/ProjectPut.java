@@ -19,16 +19,13 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import sprytechies.skillregister.BoilerplateApplication;
-import sprytechies.skillregister.data.DataManager;
-import sprytechies.skillregister.data.UpdateService;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Project;
 import sprytechies.skillregister.data.model.ProjectInsert;
 import sprytechies.skillregister.data.remote.ApiClient;
 import sprytechies.skillregister.data.remote.PostService;
-import sprytechies.skillregister.data.remote.postservice.AwardPost;
 import sprytechies.skillregister.data.remote.remote_model.Pro;
-import sprytechies.skillregister.ui.signin.SignActivity;
+import sprytechies.skillregister.ui.home.HomeActivity;
 import sprytechies.skillregister.util.NetworkUtil;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
@@ -45,7 +42,7 @@ public class ProjectPut extends Service {
 
 
     public static Intent getStartIntent(Context context) {
-        return new Intent(context, AwardPost.class);
+        return new Intent(context, ProjectPut.class);
     }
 
     @Override
@@ -58,7 +55,7 @@ public class ProjectPut extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
 
-        SharedPreferences settings = this.getSharedPreferences(SignActivity.PREFS_NAME, 0);
+        SharedPreferences settings = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
         id = settings.getString("id", "id");
         access_token = settings.getString("access_token", "access_token");
         System.out.println("access-token" + " " + access_token + "id" + " " + id);

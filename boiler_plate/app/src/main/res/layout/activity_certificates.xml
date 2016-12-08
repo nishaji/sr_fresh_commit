@@ -20,12 +20,18 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:layout_marginTop="55dp">
-
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/certificate_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" Type"
+            app:met_floatingLabel="normal"
+            />
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/certificate_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Certificate Name"
+            android:hint="Name"
             app:met_floatingLabel="normal"
             app:met_textColor="#000"
             app:met_floatingLabelTextColor="#000"
@@ -36,12 +42,16 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-                android:id="@+id/certificate_type"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:inputType="textCapWords"
+                android:id="@+id/authority"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:hint="Certificate Type"
+                android:hint="Authority"
                 app:met_floatingLabel="normal"
+                app:met_textColor="#000"
+                app:met_floatingLabelTextColor="#000"
+                app:met_textColorHint="#9E9E9E"
                 />
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/rank"
@@ -51,35 +61,13 @@
                 app:met_floatingLabel="normal"
                 app:met_textColor="#000"
                 app:met_floatingLabelTextColor="#000"
+                android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:maxLines="1"
                 app:met_textColorHint="#9E9E9E"
                 android:inputType="number"/>
 
         </LinearLayout>
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/authority"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Authority"
-            app:met_floatingLabel="normal"
-            app:met_textColor="#000"
-            app:met_floatingLabelTextColor="#000"
-            android:maxLines="1"
-            app:met_textColorHint="#9E9E9E"
-            android:inputType="textCapWords" />
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/certificate_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Status"
-            app:met_floatingLabel="normal"
-            app:met_textColor="#000"
-            app:met_floatingLabelTextColor="#000"
-            android:maxLines="1"
-            app:met_textColorHint="#9E9E9E"
-            android:inputType="textCapWords"/>
-
         <LinearLayout
             android:gravity="left"
             android:layout_marginTop="10dp"
@@ -100,7 +88,7 @@
                 android:saveEnabled="false"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:hint="Certification Date"
+                android:hint="12/12/2015"
                 android:textSize="17sp"/>
         </LinearLayout>
         <info.hoang8f.widget.FButton

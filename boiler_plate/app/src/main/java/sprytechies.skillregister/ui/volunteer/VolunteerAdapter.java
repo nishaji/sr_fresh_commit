@@ -150,6 +150,7 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
                                                 .setDescription(desc.getText().toString()).setOrganisation(org.getText().toString())
                                                 .setRole(role.getText().toString()).setType(type.getText().toString())
                                                 .setFrom(from).setUpto(to).setPutflag("0").build(),edit_id);
+                                        context.startActivity( new Intent(context, VolunteerActivity.class));
 
                                     }}).setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {

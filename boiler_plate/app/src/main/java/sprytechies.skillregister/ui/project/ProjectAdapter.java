@@ -32,12 +32,6 @@ import sprytechies.skillregister.data.model.ProjectInsert;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
-
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
     List<ProjectInsert> projects;
     @Inject
@@ -78,8 +72,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edit_id = projects.get(position).project().id();
-                edit_project();
+                edit_id = projects.get(position).project().id();edit_project();
             }
         });
 
@@ -87,19 +80,15 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
     private void edit_project() {
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getProjectForUpdate(edit_id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<ProjectInsert>>() {
+        mSubscription = databaseHelper.getProjectForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<ProjectInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the project.");
                     }
-
                     @Override
                     public void onNext(List<ProjectInsert> projects) {
                         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(context);
@@ -151,7 +140,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
                             }
                         });
-
                         alertDialogBuilderUserInput
                                 .setCancelable(false)
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -162,6 +150,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                                         databaseHelper.edit_project(Project.builder()
                                                 .setProject(project_name.getText().toString()).setMeta(responsibility.getText().toString())
                                                 .setRole(role.getText().toString()).setFrom(from).setUpto(to).setPutflag("0").build(), edit_id);
+                                        context.startActivity(new Intent(context, ProjectActivity.class));
                                     }
                                 })
                                 .setNegativeButton("Cancel",
@@ -171,8 +160,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                                             }
                                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                        alertDialogAndroid.show();
+                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();alertDialogAndroid.show();
 
                     }
                 });
@@ -191,9 +179,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         @BindView(R.id.edit_project) ImageView edit;
 
         public ProjectViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-            context = itemView.getContext();
+            super(itemView);ButterKnife.bind(this, itemView);context = itemView.getContext();
 
         }
     }

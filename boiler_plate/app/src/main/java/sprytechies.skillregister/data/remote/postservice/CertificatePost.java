@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -23,10 +22,11 @@ import sprytechies.skillregister.data.DataManager;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Certificate;
 import sprytechies.skillregister.data.model.CertificateInsert;
+import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.data.remote.ApiClient;
 import sprytechies.skillregister.data.remote.PostService;
 import sprytechies.skillregister.data.remote.remote_model.Cert;
-import sprytechies.skillregister.ui.signin.SignActivity;
+import sprytechies.skillregister.ui.home.HomeActivity;
 import sprytechies.skillregister.util.NetworkUtil;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
@@ -53,7 +53,7 @@ public class CertificatePost extends Service {
     }
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
-        SharedPreferences settings = this.getSharedPreferences(SignActivity.PREFS_NAME, 0);
+        SharedPreferences settings = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
         id = settings.getString("id", "id");
         access_token = settings.getString("access_token", "access_token");
         if (!NetworkUtil.isNetworkConnected(this)) {
@@ -109,9 +109,9 @@ public class CertificatePost extends Service {
                                             String id = response.body().getId();
                                             System.out.println("certificate send to server successfully");
                                             Toast.makeText(CertificatePost.this, "certificate send to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_certificate_flag(Certificate.builder()
-                                                    .setPostflag("1").setPutflag("1").setDate(date.toString()).setMongoid(id)
+                                            databaseHelper.update_certificate_flag(Certificate.builder().setPostflag("1").setDate(date.toString()).setMongoid(id)
                                                     .build(), certificate.get(finalI).certificate().id());
+                                            databaseHelper.setSyncstatus(LiveSync.builder().setBit("certificate").setPost("1").build());
                                         }
                                     }
                                     @Override

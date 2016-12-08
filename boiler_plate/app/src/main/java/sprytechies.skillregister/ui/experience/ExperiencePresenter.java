@@ -1,9 +1,7 @@
 package sprytechies.skillregister.ui.experience;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -14,17 +12,11 @@ import sprytechies.skillregister.ui.base.BasePresenter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
-
 public class ExperiencePresenter extends BasePresenter<ExperienceMvp> {
     private final DataManager mDataManager;
     private Subscription mSubscription;
 
-    @Inject
-    public ExperiencePresenter(DataManager dataManager) {
+    @Inject public ExperiencePresenter(DataManager dataManager) {
         mDataManager = dataManager;
     }
     @Override
@@ -39,22 +31,17 @@ public class ExperiencePresenter extends BasePresenter<ExperienceMvp> {
     }
 
     public void loadExperience() {
-        checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
-        mSubscription = mDataManager.getExperience()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<ExperienceInsert>>() {
+        checkViewAttached();RxUtil.unsubscribe(mSubscription);
+        mSubscription = mDataManager.getExperience().observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<ExperienceInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the ribots.");
                         getMvpView().showError();
                     }
-
                     @Override
                     public void onNext(List<ExperienceInsert> awards) {
                         if (awards.isEmpty()) {

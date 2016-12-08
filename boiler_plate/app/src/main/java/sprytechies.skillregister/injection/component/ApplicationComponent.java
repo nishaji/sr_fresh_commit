@@ -20,6 +20,7 @@ import sprytechies.skillregister.data.remote.postservice.CertificatePost;
 import sprytechies.skillregister.data.remote.postservice.ContactPost;
 import sprytechies.skillregister.data.remote.postservice.EducationPost;
 import sprytechies.skillregister.data.remote.postservice.ExperiencePost;
+import sprytechies.skillregister.data.remote.postservice.PostProfile;
 import sprytechies.skillregister.data.remote.postservice.ProjectPost;
 import sprytechies.skillregister.data.remote.postservice.PublicationPost;
 import sprytechies.skillregister.data.remote.postservice.VolunteerPost;
@@ -42,26 +43,13 @@ import sprytechies.skillregister.util.RxEventBus;
 public interface ApplicationComponent {
 
 
-    void inject(SyncService syncService);
-    void inject(UpdateService updateService);
-    void inject(HomeFragment homeFragment);
-    void inject(PullService pullService);
-    void inject(AwardPost awardPost);
-    void inject(CertificatePost certificatePost);
-    void inject(ContactPost contactPost);
-    void inject(EducationPost educationPost);
-    void inject(ExperiencePost experiencePost);
-    void inject(ProjectPost projectPost);
-    void inject(PublicationPost publicationPost);
-    void inject(VolunteerPost volunteerPost);
-    void inject(AwardPut awardPut);
-    void inject(contactPut contactPut);
-    void inject(CertificatePut certificatePut);
-    void inject(EducationPut educationPut);
-    void inject(ExperiencePut experiencePut);
-    void inject(ProjectPut projectPut);
-    void inject(PublicationPut publicationPut);
-    void inject(VolunteerPut volunteerPut);
+    void inject(SyncService syncService);void inject(UpdateService updateService);void inject(HomeFragment homeFragment);
+    void inject(PullService pullService);void inject(AwardPost awardPost);void inject(CertificatePost certificatePost);
+    void inject(ContactPost contactPost);void inject(EducationPost educationPost);void inject(ExperiencePost experiencePost);
+    void inject(ProjectPost projectPost);void inject(PublicationPost publicationPost);void inject(VolunteerPost volunteerPost);
+    void inject(AwardPut awardPut);void inject(contactPut contactPut);void inject(CertificatePut certificatePut);
+    void inject(EducationPut educationPut);void inject(ExperiencePut experiencePut);void inject(ProjectPut projectPut);
+    void inject(PublicationPut publicationPut);void inject(VolunteerPut volunteerPut);void inject(PostProfile postProfile);
 
     @ApplicationContext
     Context context();

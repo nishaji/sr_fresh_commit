@@ -27,12 +27,6 @@ import sprytechies.skillregister.data.model.Publication;
 import sprytechies.skillregister.data.model.PublicationInsert;
 import sprytechies.skillregister.util.RxUtil;
 
-
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
-
 public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.PublicationViewHolder> {
     List<PublicationInsert> publications;
     Context context;String edit_id;
@@ -82,14 +76,11 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
 
     private void edit_publication() {
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getPublicationForUpdate(edit_id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<PublicationInsert>>() {
+        mSubscription = databaseHelper.getPublicationForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<PublicationInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                     }
@@ -125,13 +116,11 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
                                     }
                                 });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                        alertDialogAndroid.show();
+                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();alertDialogAndroid.show();
                     }
                 });
 
     }
-
     @Override
     public int getItemCount() {
         return publications.size();
@@ -145,9 +134,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
         @BindView(R.id.delete_publication) ImageView delete;
 
         public PublicationViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-            context = itemView.getContext();
+            super(itemView);ButterKnife.bind(this, itemView);context = itemView.getContext();
         }
     }
 }

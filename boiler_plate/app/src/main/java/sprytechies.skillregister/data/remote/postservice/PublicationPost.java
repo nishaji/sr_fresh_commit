@@ -21,12 +21,13 @@ import rx.schedulers.Schedulers;
 import sprytechies.skillregister.BoilerplateApplication;
 import sprytechies.skillregister.data.DataManager;
 import sprytechies.skillregister.data.local.DatabaseHelper;
+import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.data.model.Publication;
 import sprytechies.skillregister.data.model.PublicationInsert;
 import sprytechies.skillregister.data.remote.ApiClient;
 import sprytechies.skillregister.data.remote.PostService;
 import sprytechies.skillregister.data.remote.remote_model.Pub;
-import sprytechies.skillregister.ui.signin.SignActivity;
+import sprytechies.skillregister.ui.home.HomeActivity;
 import sprytechies.skillregister.util.NetworkUtil;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
@@ -56,7 +57,7 @@ public class PublicationPost extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
 
-        SharedPreferences settings = this.getSharedPreferences(SignActivity.PREFS_NAME, 0);
+        SharedPreferences settings = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
         id = settings.getString("id", "id");
         access_token = settings.getString("access_token", "access_token");
         System.out.println("access-token" + " " + access_token + "id" + " " + id);
@@ -67,10 +68,8 @@ public class PublicationPost extends Service {
             return START_NOT_STICKY;
         }
         post_publication();
-
         return START_STICKY;
     }
-
 
     @Override
     public void onDestroy() {
@@ -85,7 +84,6 @@ public class PublicationPost extends Service {
     }
 
     private void post_publication() {
-
         Integer integer = 0;
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getPublicationForPost(integer).observeOn(AndroidSchedulers.mainThread())
@@ -123,8 +121,9 @@ public class PublicationPost extends Service {
                                             System.out.println("certificate send to server successfully");
                                             Toast.makeText(PublicationPost.this, "certificate send to server successfully", Toast.LENGTH_SHORT).show();
                                             databaseHelper.update_publication_flag(Publication.builder()
-                                                    .setPostflag("1").setPutflag("1").setDate(date.toString()).setMongoid(id)
+                                                    .setPostflag("1").setDate(date.toString()).setMongoid(id)
                                                     .build(), certificate.get(finalI).publication().id());
+                                            databaseHelper.setSyncstatus(LiveSync.builder().setBit("publication").setPost("1").build());
                                         }
                                     }
                                     @Override

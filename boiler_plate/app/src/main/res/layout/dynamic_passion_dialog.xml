@@ -10,6 +10,7 @@
         android:src="@android:drawable/ic_delete"
         android:layout_alignParentRight="true" />
     <EditText
+        android:inputType="textCapWords"
         android:id="@+id/passion_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

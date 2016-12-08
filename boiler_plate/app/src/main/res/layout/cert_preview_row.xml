@@ -81,15 +81,7 @@
                 android:textSize="15sp"
                 android:textStyle="normal" />
 
-            <ImageButton
-                android:background="#fff"
-                android:id="@+id/cert_delete"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_below="@+id/rank"
-                android:layout_toStartOf="@+id/cert_edit"
-                android:src="@mipmap/newdelete"
-                android:layout_toLeftOf="@+id/cert_edit" />
+
 
             <TextView
                 android:id="@+id/responsibility"
@@ -137,34 +129,12 @@
                 android:textColor="#757575"
                 android:textSize="15sp"
                 android:textStyle="normal" />
-            <TextView
-                android:id="@+id/authority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/view_certificate_date"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="10dp"
-                android:text="Status"
-                android:textColor="#616161"
-                android:textSize="17sp"
-                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/view_certificate_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/authority"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="3dp"
-                android:text="Developer"
-                android:textColor="#757575"
-                android:textSize="15sp"
-                android:textStyle="normal" />
             <TextView
                 android:id="@+id/rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/view_certificate_status"
+                android:layout_below="@+id/view_certificate_date"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="10dp"
                 android:text="Rank"
@@ -183,16 +153,6 @@
                 android:textColor="#757575"
                 android:textSize="15sp"
                 android:textStyle="normal" />
-            <ImageButton
-                android:layout_marginTop="2dp"
-                android:background="#fff"
-                android:id="@+id/cert_edit"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/rank"
-                android:src="@mipmap/newedit"
-                android:layout_alignParentRight="true" />
 
             <TextView
                 android:id="@+id/projid"

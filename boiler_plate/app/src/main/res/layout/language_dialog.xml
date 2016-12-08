@@ -21,6 +21,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp" />
     <EditText
+        android:inputType="textCapWords"
         android:hint="Name:*"
         android:id="@+id/lan_title"
         android:layout_width="match_parent"
@@ -29,14 +30,14 @@
         <requestFocus />
 
     </EditText>
-    <EditText
+    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
         android:maxLines="1"
         android:inputType="number"
         android:hint="Level:*"
         android:id="@+id/lan_level"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-    </EditText>
+    </com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner>
     <LinearLayout
         android:id="@+id/language_container"
         android:layout_width="match_parent"

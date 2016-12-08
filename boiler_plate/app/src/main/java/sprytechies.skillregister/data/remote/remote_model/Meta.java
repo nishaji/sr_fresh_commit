@@ -16,10 +16,13 @@ public class Meta implements Serializable {
     private ArrayList<String> passion;
     @SerializedName("strength")
     private ArrayList<String> strength;
-    public Meta(ArrayList<String> books,ArrayList<String> passion,ArrayList<String> strength){
+    @SerializedName("routine")
+    private ArrayList<Routine> routine;
+    public Meta(ArrayList<String> books,ArrayList<String> passion,ArrayList<String> strength,ArrayList<Routine> routine){
         this.books=books;
         this.passion=passion;
         this.strength=strength;
+        this.routine=routine;
     }
 
     public ArrayList<String> getBooks() {
@@ -44,5 +47,13 @@ public class Meta implements Serializable {
 
     public void setStrength(ArrayList<String> strength) {
         this.strength = strength;
+    }
+
+    public ArrayList<Routine> getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(ArrayList<Routine> routine) {
+        this.routine = routine;
     }
 }

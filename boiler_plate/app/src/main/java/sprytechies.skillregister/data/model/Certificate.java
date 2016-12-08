@@ -16,7 +16,6 @@ public abstract class Certificate implements Parcelable {
     @Nullable public abstract String name();
     @Nullable public abstract String authority();
     @Nullable public abstract String certdate();
-    @Nullable public abstract String status();
     @Nullable public abstract String type();
     @Nullable public abstract String rank();
     @Nullable public abstract String id();
@@ -39,7 +38,6 @@ public abstract class Certificate implements Parcelable {
         public abstract Certificate.Builder setName(String name);
         public abstract Certificate.Builder setAuthority(String authority);
         public abstract Certificate.Builder setCertdate(String certdate);
-        public abstract Certificate.Builder setStatus(String status);
         public abstract Certificate.Builder setType(String type);
         public abstract Certificate.Builder setRank(String rank);
         public abstract Certificate.Builder setId(String id);

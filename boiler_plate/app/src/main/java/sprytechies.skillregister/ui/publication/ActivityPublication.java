@@ -21,39 +21,31 @@ import sprytechies.skillregister.util.DialogFactory;
 
 
 public class ActivityPublication extends BaseActivity implements PublicationMvpView {
-
     @Inject PublicationPresenter publication;
     @Inject PublicationAdapter pu_adapter;
     @BindView(R.id.view_publication_tool)Toolbar toolbar;
     @BindView(R.id.publication_recycler)RecyclerView recyclerView;
     @BindView(R.id.publication_fab)FloatingActionButton floatingActionButton;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityComponent().inject(this);
         setContentView(R.layout.activity_view_and_add_publication);
-        ButterKnife.bind(this);
-        setuptoolbar();
+        ButterKnife.bind(this);setuptoolbar();
         recyclerView.setAdapter(pu_adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        publication.attachView(this);
-        publication.loadpublication();
+        publication.attachView(this);publication.loadpublication();
 
     }
-
     private void setuptoolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle(" Publication Details");
         toolbar.setTitleTextColor(0xffffffff);
         toolbar.setLogo(R.mipmap.arrowlleft);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ActivityPublication.this, ViewActivity.class));
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
 
             }
         });
@@ -65,20 +57,17 @@ public class ActivityPublication extends BaseActivity implements PublicationMvpV
     }
     @Override
     public void showPublications(List<PublicationInsert> publication) {
-        pu_adapter.setPublication(publication);
-        pu_adapter.notifyDataSetChanged();
+        pu_adapter.setPublication(publication);pu_adapter.notifyDataSetChanged();
     }
 
     @Override
     public void showPublicationEmpty() {
-        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_volunteer))
-                .show();
+        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_publication)).show();
     }
-
     @Override
     public void showError() {
         pu_adapter.notifyDataSetChanged();
-        Toast.makeText(this, R.string.empty_volunteer, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.empty_publication, Toast.LENGTH_LONG).show();
     }
     @OnClick(R.id.publication_fab)
     void onFabClick(){

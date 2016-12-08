@@ -3,6 +3,9 @@
     <item android:title="Home"
         android:id="@+id/nav_item_home"
         android:icon="@mipmap/home"/>
+    <item android:title="My Account"
+        android:id="@+id/account_setting"
+        android:icon="@mipmap/bookmark"/>
     <item android:title="Set Permissions"
         android:id="@+id/set_permissions"
         android:icon="@mipmap/bookmark"/>

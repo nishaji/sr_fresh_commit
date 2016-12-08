@@ -12,14 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscriber;
@@ -33,15 +29,9 @@ import sprytechies.skillregister.data.model.ContactInsert;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
-
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
     private List<ContactInsert> contacts;
-    @Inject
-    DatabaseHelper databaseHelper;
+    @Inject DatabaseHelper databaseHelper;
     Context context;String edit_id;
     private Subscription mSubscription;
     @Inject
@@ -68,21 +58,19 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             public void onClick(View view) {
                 String deleteid=contacts.get(position).contact().id();
                 databaseHelper.delete_contact(deleteid);
-                context.startActivity( new Intent(context, ConatctActivity.class));}});
+                context.startActivity( new Intent(context, ConatctActivity.class));
+            }});
                 holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edit_id=contacts.get(position).contact().id();
-                edit_contact();
+                edit_id=contacts.get(position).contact().id();edit_contact();
             }});
     }
 
     private void edit_contact() {
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getContactForUpdate(edit_id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<ContactInsert>>() {
+        mSubscription = databaseHelper.getContactForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<ContactInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -103,11 +91,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                         ArrayAdapter<String> contact_type_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, context.getResources().getStringArray(R.array.contact_array));
                         contact_type_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                         contact_type.setAdapter(contact_type_adapter);
+                        System.out.println(contactlist.get(0).contact().type());
                         if (!contactlist.get(0).contact().type().equals(null)) {
-                            int spinnerPosition = contact_type_adapter.getPosition(contacts.get(0).contact().type());
+                            int spinnerPosition = contact_type_adapter.getPosition(contactlist.get(0).contact().type());
+                            System.out.println(spinnerPosition+"position");
                             try {
                                 if (contactlist.get(0).contact().type().trim().length() > 0) {
-                                    contact_type.setText(contact_type_adapter.getItem(spinnerPosition).toString());
+                                    contact_type.setText(contact_type_adapter.getItem(spinnerPosition));
                                 } else {
                                     System.out.println("do nothing");
                                 }
@@ -119,7 +109,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                         category_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                         category.setAdapter(category_adapter);
                         if (!contactlist.get(0).contact().category().equals(null)) {
-                            int spinnerPosition = category_adapter.getPosition(contacts.get(0).contact().category());
+                            int spinnerPosition = category_adapter.getPosition(contactlist.get(0).contact().category());
+                            System.out.println(spinnerPosition+"position");
                             try {
                                 if (contactlist.get(0).contact().category().trim().length() > 0) {
                                     category.setText(category_adapter.getItem(spinnerPosition).toString());
@@ -137,7 +128,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                                         databaseHelper.edit_contact(Contact.builder()
                                                 .setContact(contact.getText().toString()).setCategory(category.getText().toString())
                                                 .setStatus("pending").setType(contact_type.getText().toString()).setPutflag("0")
-                                                .build(),edit_id);}})
+                                                .build(),edit_id);
+                                        context.startActivity( new Intent(context, ConatctActivity.class));
+                                    }})
                                 .setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialogBox, int id) {
@@ -145,8 +138,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                                             }
                                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                        alertDialogAndroid.show();
+                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();alertDialogAndroid.show();
                     }});
 
     }
@@ -164,9 +156,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         @BindView(R.id.contact_delete)ImageView delete;
         public ContactViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-            context = itemView.getContext();
-
+            ButterKnife.bind(this, itemView);context = itemView.getContext();
         }
     }
 }

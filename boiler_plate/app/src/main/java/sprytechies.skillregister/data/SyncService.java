@@ -10,6 +10,12 @@ import javax.inject.Inject;
 import rx.Subscription;
 import sprytechies.skillregister.BoilerplateApplication;
 import sprytechies.skillregister.data.local.DatabaseHelper;
+import sprytechies.skillregister.data.remote.postservice.AwardPost;
+import sprytechies.skillregister.data.remote.postservice.CertificatePost;
+import sprytechies.skillregister.data.remote.postservice.ContactPost;
+import sprytechies.skillregister.data.remote.postservice.EducationPost;
+import sprytechies.skillregister.data.remote.postservice.ExperiencePost;
+import sprytechies.skillregister.data.remote.postservice.ProjectPost;
 import sprytechies.skillregister.util.AndroidComponentUtil;
 import sprytechies.skillregister.util.NetworkUtil;
 import timber.log.Timber;
@@ -43,8 +49,14 @@ public class SyncService extends Service {
             stopSelf(startId);
             return START_NOT_STICKY;
         }
+          startService(AwardPost.getStartIntent(this));
+          /*startService(EducationPost.getStartIntent(this));
+          startService(ExperiencePost.getStartIntent(this));
+          startService(ProjectPost.getStartIntent(this));
+          startService(ContactPost.getStartIntent(this));
+          startService(CertificatePost.getStartIntent(this));*/
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
 

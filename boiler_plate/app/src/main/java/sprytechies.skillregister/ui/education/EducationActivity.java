@@ -21,9 +21,7 @@ import sprytechies.skillregister.ui.base.BaseActivity;
 import sprytechies.skillregister.ui.launcher.activity.ViewActivity;
 import sprytechies.skillregister.util.DialogFactory;
 
-
 public class EducationActivity extends BaseActivity implements EducationMvpView {
-
 
     @Inject EducationAdapter educationAdapter;
     @Inject EducationPresenter educationPresenter;
@@ -37,30 +35,24 @@ public class EducationActivity extends BaseActivity implements EducationMvpView 
         super.onCreate(savedInstanceState);
         activityComponent().inject(this);
         setContentView(R.layout.activity_viewand_addeducation);
-        ButterKnife.bind(this);
-        setuptoolbar();
+        ButterKnife.bind(this);setuptoolbar();
         recyclerView.setAdapter(educationAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        educationPresenter.attachView(this);
-        educationPresenter.loadEducation();
+        educationPresenter.attachView(this);educationPresenter.loadEducation();
     }
     private void setuptoolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle(" Education Details");
         toolbar.setTitleTextColor(0xffffffff);
         toolbar.setLogo(R.mipmap.arrowlleft);
         toolbar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(EducationActivity.this, ViewActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    finish();
+                    startActivity(new Intent(EducationActivity.this, ViewActivity.class));
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
 
                 }
             });
         }
-
     @OnClick(R.id.education_fab)
     void onFabClick(){
         startActivity(new Intent(EducationActivity.this,AddEducation.class));
@@ -73,20 +65,22 @@ public class EducationActivity extends BaseActivity implements EducationMvpView 
     }
     @Override
     public void showEducations(List<EducationInsert> educationInserts) {
-        educationAdapter.setEducation(educationInserts);
-        educationAdapter.notifyDataSetChanged();
+        educationAdapter.setEducation(educationInserts);educationAdapter.notifyDataSetChanged();
     }
-
     @Override
     public void showEducationEmpty() {
-        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_education))
-                .show();
+        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_education)).show();
     }
-
     @Override
     public void showError() {
         educationAdapter.setEducation(Collections.<EducationInsert>emptyList());
         educationAdapter.notifyDataSetChanged();
         Toast.makeText(this, R.string.empty_education, Toast.LENGTH_LONG).show();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(EducationActivity.this, ViewActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);finish();
     }
 }

@@ -2,7 +2,6 @@ package sprytechies.skillregister.ui.award;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,8 +12,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import butterknife.BindView;
@@ -30,18 +30,11 @@ import sprytechies.skillregister.data.model.AwardInsert;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
+public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHolder> implements DatePickerDialog.OnDateSetListener {
 
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
-
-public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHolder> {
-
-    private List<AwardInsert> awards;
-    @Inject
-    DatabaseHelper databaseHelper;
-    Context context;String edit_id;
+    private List<AwardInsert> awards;AlertDialog ab;
+    @Inject DatabaseHelper databaseHelper;
+    Context context;String edit_id; TextView time;
     private Subscription mSubscription;
     @Inject public AwardAdapter() {
         awards=new ArrayList<>();
@@ -53,7 +46,6 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
     public AwardAdapter.AwardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.award_row, parent, false);
         return new AwardViewHolder(itemView);
-
     }
     @Override
     public void onBindViewHolder(final AwardAdapter.AwardViewHolder holder, final int position) {
@@ -64,22 +56,19 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String deleteid=awards.get(position).award().id();
-                databaseHelper.delete_AWARDS(deleteid);
-                context.startActivity( new Intent(context, AwardActivity.class));}});
+                String deleteid=awards.get(position).award().id();databaseHelper.delete_AWARDS(deleteid);
+                context.startActivity( new Intent(AwardAdapter.this.context, AwardActivity.class));}});
                 holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edit_id=awards.get(position).award().id();
-                edit_award();
+                edit_id=awards.get(position).award().id();edit_award();
             }});
     }
 
     private void edit_award() {
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getAwardForUpdate(edit_id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<AwardInsert>>() {
                     @Override
                     public void onCompleted() {
@@ -97,41 +86,29 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
                         final EditText title = (EditText) mView.findViewById(R.id.di_award_title);
                         final EditText description = (EditText) mView.findViewById(R.id.di_award_description);
                         final EditText organisation = (EditText) mView.findViewById(R.id.di_award_organisation);
-                        final TextView time = (TextView) mView.findViewById(R.id.di_award_duration_text);
+                        time = (TextView) mView.findViewById(R.id.di_award_duration_text);
                         final ImageView duration = (ImageView) mView.findViewById(R.id.di_award_duration);
-                        final FragmentManager manager = ((Activity) context).getFragmentManager();
-
                         duration.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                final SmoothDateRangePickerFragment smoothDateRangePickerFragment =
-                                        SmoothDateRangePickerFragment
-                                                .newInstance(new SmoothDateRangePickerFragment.OnDateRangeSetListener() {
-                                                    @Override
-                                                    public void onDateRangeSet(SmoothDateRangePickerFragment view,
-                                                                               int yearStart, int monthStart,
-                                                                               int dayStart, int yearEnd,
-                                                                               int monthEnd, int dayEnd) {
-                                                        String date = dayStart + "/" + (++monthStart) + "/" + yearStart + " To " + dayEnd + "/"
-                                                                + (++monthEnd) + "/" + yearEnd;time.setText(date);
-
-                                                    }
-                                                });
-                                smoothDateRangePickerFragment.show(manager, "Datepickerdialog");
+                                Calendar now = Calendar.getInstance();
+                                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                                        AwardAdapter.this, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)
+                                );
+                                dpd.show(((Activity)AwardAdapter.this.context).getFragmentManager(), "Datepickerdialog");
                             }
                         });
                         title.setText(awards.get(0).award().title());
                         description.setText(awards.get(0).award().description());
-                        organisation.setText(awards.get(0).award().organisation());
-                        time.setText(awards.get(0).award().duration());
-                        alertDialogBuilderUserInput
-                                .setCancelable(false)
+                        organisation.setText(awards.get(0).award().organisation());time.setText(awards.get(0).award().duration());
+                        alertDialogBuilderUserInput.setCancelable(false)
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         databaseHelper.edit_awards(Award.builder()
                                                 .setTitle(title.getText().toString()).setDescription(description.getText().toString())
                                                 .setOrganisation(organisation.getText().toString()).setDuration(time.getText().toString()).setPutflag("0")
                                                 .build(),edit_id);
+                                         context.startActivity( new Intent(AwardAdapter.this.context, AwardActivity.class));
 
                                     }})
                                 .setNegativeButton("Cancel",
@@ -141,8 +118,7 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
                                             }
                                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                        alertDialogAndroid.show();
+                        ab = alertDialogBuilderUserInput.create();ab.show();
                     }
                 });
     }
@@ -150,6 +126,12 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
     @Override
     public int getItemCount() {
         return awards.size();
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+          String date =" "+dayOfMonth + "/" + (++monthOfYear) + "/" + year;
+          time.setText(date);
     }
 
     class AwardViewHolder extends RecyclerView.ViewHolder  {
@@ -164,6 +146,9 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
         }
-
+    }
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        ab.dismiss();
     }
 }

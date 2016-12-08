@@ -78,15 +78,7 @@
                 android:textColor="#757575"
                 android:textSize="15sp"
                 android:textStyle="normal"/>
-            <ImageButton
-                android:background="#fff"
-                android:id="@+id/delete_award"
-                android:layout_toStartOf="@+id/edit_award"
-                android:layout_below="@+id/view_award_desc"
-                android:src="@mipmap/newdelete"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_toLeftOf="@+id/edit_award" />
+
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/view_award_org"
@@ -131,15 +123,6 @@
                 android:textColor="#757575"
                 android:textSize="15sp"
                 android:textStyle="normal"/>
-
-            <ImageButton
-                android:id="@+id/edit_award"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/view_award_desc"
-                android:src="@mipmap/newedit"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true" />
             <TextView
                 android:id="@+id/projid"
                 android:layout_width="wrap_content"

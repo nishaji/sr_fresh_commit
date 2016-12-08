@@ -1,7 +1,6 @@
 package sprytechies.skillregister.injection.component;
 
 import dagger.Subcomponent;
-
 import sprytechies.skillregister.injection.PerActivity;
 import sprytechies.skillregister.injection.module.ActivityModule;
 import sprytechies.skillregister.ui.award.AddAwardActivity;
@@ -18,14 +17,11 @@ import sprytechies.skillregister.ui.home.HomeActivity;
 import sprytechies.skillregister.ui.launcher.Exportpdf.ExportPdf;
 import sprytechies.skillregister.ui.launcher.Permission.SetPermission;
 import sprytechies.skillregister.ui.launcher.activity.ViewActivity;
-
 import sprytechies.skillregister.ui.profile.AddProfileActivity;
 import sprytechies.skillregister.ui.project.AddProject;
 import sprytechies.skillregister.ui.project.ProjectActivity;
 import sprytechies.skillregister.ui.publication.ActivityPublication;
 import sprytechies.skillregister.ui.publication.AddPublication;
-import sprytechies.skillregister.ui.signin.SignActivity;
-import sprytechies.skillregister.ui.signup.SignUpActivity;
 import sprytechies.skillregister.ui.volunteer.AddVolunteer;
 import sprytechies.skillregister.ui.volunteer.VolunteerActivity;
 
@@ -42,8 +38,8 @@ public interface ActivityComponent {
     void inject(ProjectActivity projectActivity);void inject(ActivityPublication activityPublication);void inject(AddAwardActivity addAwardActivity);
     void inject(AddEducation addEducation);void inject(AddExperience addExperience);void inject(AddProject addProject);
     void inject(AddPublication addPublication);void inject(AddContact addContact);void inject(AddCertificate addCertificate);
-    void inject(ViewActivity viewActivity);void inject(HomeActivity homeActivity);void inject (SignActivity signActivity);
-    void inject(SignUpActivity signUpActivity);void inject(AddProfileActivity addProfileActivity);void inject(ExportPdf exportPdf);
+    void inject(ViewActivity viewActivity);void inject(HomeActivity homeActivity);
+    void inject(AddProfileActivity addProfileActivity);void inject(ExportPdf exportPdf);
     void inject(AddVolunteer addVolunteer);void inject(VolunteerActivity volunteerActivity);void inject(SetPermission setPermission);
 
 

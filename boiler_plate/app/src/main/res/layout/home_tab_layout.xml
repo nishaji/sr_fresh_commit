@@ -28,22 +28,23 @@
                     android:layout_marginTop="6dp"
                     card_view:cardCornerRadius="5dp"
                     card_view:cardUseCompatPadding="true"
-                    card_view:cardBackgroundColor="@color/style_color_accent">
+                  >
                     <TextView
+                        android:layout_height="22dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:background="@color/style_color_accent"
                         android:layout_gravity="top"
-                        android:layout_marginLeft="10dp"
                         android:textStyle="bold"
                         android:text="Education"
                         android:textColor="#fff"
-                        android:id="@+id/muhurta_zone"
                         android:textSize="15sp"
                         android:ellipsize="none"
-                        android:scrollHorizontally="false"
-                        android:layout_marginBottom="15dp"
-                        android:layout_height="15dp"
-                        android:layout_width="match_parent" />
+                        android:layout_width="match_parent"
+                        />
                     <android.support.v7.widget.RecyclerView
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="26dp"
                         android:id="@+id/education_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -60,18 +61,18 @@
                     android:layout_marginTop="15dp"
                     card_view:cardElevation="5dp"
                     card_view:cardUseCompatPadding="true"
-                    card_view:cardBackgroundColor="@color/style_color_accent">
+                   >
                     <TextView
                         android:layout_gravity="top"
-                        android:layout_marginLeft="10dp"
                         android:textStyle="bold"
                         android:text="Experience"
                         android:textColor="#fff"
                         android:textSize="15sp"
-                        android:ellipsize="none"
-                        android:scrollHorizontally="false"
-                        android:layout_marginBottom="15dp"
-                        android:layout_height="15dp"
+                        android:layout_height="22dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:background="@color/style_color_accent"
                         android:layout_width="match_parent" />
                     <android.support.v7.widget.RecyclerView
                         android:layout_marginTop="25dp"
@@ -90,20 +91,19 @@
                     android:layout_marginTop="15dp"
                     card_view:cardElevation="5dp"
                     card_view:cardUseCompatPadding="true"
-                    card_view:cardBackgroundColor="@color/style_color_accent">
+                    >
                     <TextView
-                        android:layout_gravity="top"
-                        android:layout_marginStart="10dp"
                         android:textStyle="bold"
                         android:text="Award"
                         android:textColor="#fff"
                         android:textSize="15sp"
-                        android:ellipsize="none"
-                        android:scrollHorizontally="false"
-                        android:layout_marginBottom="15dp"
-                        android:layout_height="15dp"
+                        android:layout_height="22dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:background="@color/style_color_accent"
                         android:layout_width="match_parent"
-                        android:layout_marginLeft="10dp" />
+                         />
                     <android.support.v7.widget.RecyclerView
                         android:layout_marginTop="25dp"
                         android:id="@+id/award_recycler"
@@ -121,20 +121,19 @@
                     android:layout_marginTop="15dp"
                     card_view:cardElevation="5dp"
                     card_view:cardUseCompatPadding="true"
-                    card_view:cardBackgroundColor="@color/style_color_accent">
+                   >
                     <TextView
-                        android:layout_gravity="top"
-                        android:layout_marginStart="10dp"
                         android:textStyle="bold"
                         android:text="Contact"
                         android:textColor="#fff"
                         android:textSize="15sp"
-                        android:ellipsize="none"
-                        android:scrollHorizontally="false"
-                        android:layout_marginBottom="15dp"
-                        android:layout_height="15dp"
+                        android:layout_height="22dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:background="@color/style_color_accent"
                         android:layout_width="match_parent"
-                        android:layout_marginLeft="10dp" />
+                         />
                     <android.support.v7.widget.RecyclerView
                         android:layout_marginTop="25dp"
                         android:id="@+id/contact_recycler"
@@ -152,7 +151,7 @@
                     android:layout_marginTop="15dp"
                     card_view:cardElevation="5dp"
                     card_view:cardUseCompatPadding="true"
-                    card_view:cardBackgroundColor="@color/style_color_accent">
+                   >
                     <TextView
                         android:layout_gravity="top"
                         android:layout_marginStart="10dp"
@@ -163,8 +162,11 @@
                         android:ellipsize="none"
                         android:scrollHorizontally="false"
                         android:layout_marginBottom="15dp"
-                        android:layout_height="15dp"
-                        android:layout_width="match_parent"
+                        android:layout_height="22dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:background="@color/style_color_accent"                        android:layout_width="match_parent"
                         android:layout_marginLeft="10dp" />
                     <android.support.v7.widget.RecyclerView
                         android:layout_marginTop="25dp"

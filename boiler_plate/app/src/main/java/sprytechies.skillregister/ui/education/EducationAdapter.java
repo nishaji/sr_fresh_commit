@@ -14,10 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -27,7 +25,6 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
 import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Education;
@@ -35,18 +32,14 @@ import sprytechies.skillregister.data.model.EducationInsert;
 import sprytechies.skillregister.data.model.Location;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
-;
 
-/**
- * Created by sprydev5 on 4/10/16.
- */
+
 public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.EducationViewHolder> {
 
     private List<EducationInsert> education;
-    @Inject
-    DatabaseHelper databaseHelper;
+    @Inject DatabaseHelper databaseHelper;
     private Subscription mSubscription;
-    String edit_id;Context context;
+    String edit_id;Context context;AlertDialog ab;
     @Inject EducationAdapter(){
         education=new ArrayList<>();
     }
@@ -70,18 +63,13 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
             public void onClick(View view) {
               String deleteid=education.get(position).education().id();
                 databaseHelper.delete_education(deleteid);
-                System.out.println(deleteid+"deleteid");
                 context.startActivity( new Intent(context, EducationActivity.class));
 
             }});
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edit_id=education.get(position).education().id();
-                System.out.println(edit_id+"editid");
-                edit_education();
-
-
+                edit_id=education.get(position).education().id();edit_education();
             }});
 
     }
@@ -105,10 +93,8 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
     }
     private void edit_education() {
                  RxUtil.unsubscribe(mSubscription);
-                 mSubscription = databaseHelper.getEducationForUpdate(edit_id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<EducationInsert>>() {
+                 mSubscription = databaseHelper.getEducationForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<EducationInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -219,7 +205,6 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
                                                                                int monthEnd, int dayEnd) {
                                                         String date = dayStart + "/" + (++monthStart) + "/" + yearStart + " To " + dayEnd + "/"
                                                                 + (++monthEnd) + "/" + yearEnd;duration.setText(date);
-
                                                     }
                                                 });
                                 smoothDateRangePickerFragment.show(manager, "Datepickerdialog");
@@ -232,8 +217,7 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         String[] parts = duration.getText().toString().split("To");
-                                        final String from = parts[0];
-                                        final String to = parts[1];
+                                        final String from = parts[0];final String to = parts[1];
                                         databaseHelper.edit_education
                                                 (Education.builder()
                                                         .setCgpi(cgpi.getText().toString()).setCgpitype(cgpi_type.getText().toString())
@@ -245,22 +229,16 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
                                                         .build(),edit_id);
                                         context.startActivity( new Intent(context, EducationActivity.class));
                                     }}
-                                )
-
-                                .setNegativeButton("Cancel",
+                                ).setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialogBox, int id) {
                                                 dialogBox.cancel();
                                             }
                                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                        alertDialogAndroid.show();
-
+                        ab = alertDialogBuilderUserInput.create();ab.show();
                     }
                 });
-
-
 
     }
 }

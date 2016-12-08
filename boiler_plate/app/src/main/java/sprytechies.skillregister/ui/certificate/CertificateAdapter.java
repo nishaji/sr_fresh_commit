@@ -1,5 +1,6 @@
 package sprytechies.skillregister.ui.certificate;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,14 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
-
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscriber;
@@ -38,18 +37,15 @@ import timber.log.Timber;
  * Created by sprydev5 on 4/10/16.
  */
 
-public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.CertificateViewHolder> {
+public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.CertificateViewHolder> implements DatePickerDialog.OnDateSetListener {
     private List<CertificateInsert>certificateInsertList;
-    @Inject
-    DatabaseHelper databaseHelper;
-    String edit_id;
-    Context context;
+    @Inject DatabaseHelper databaseHelper;TextView time;
+    String edit_id;Context context;AlertDialog ab;
     private Subscription mSubscription;
 
     @Inject
     CertificateAdapter(){
         certificateInsertList=new ArrayList<>();
-
     }
     public void setCertificates(List<CertificateInsert> certificates) {
         certificateInsertList = certificates;
@@ -72,20 +68,19 @@ public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.
             public void onClick(View view) {
                 String deleteid=certificateInsertList.get(position).certificate().id();
                 databaseHelper.delete_certificate(deleteid);
-                context.startActivity( new Intent(context, CertificateActivity.class));}});
+                context.startActivity( new Intent(context, CertificateActivity.class));
+            }});
                 holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edit_id=certificateInsertList.get(position).certificate().id();
-                edit_certificate();
+                edit_id=certificateInsertList.get(position).certificate().id();edit_certificate();
             }});
 
     }
 
     private void edit_certificate() {
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getCertificateForUpdate(edit_id)
-                .observeOn(AndroidSchedulers.mainThread())
+        mSubscription = databaseHelper.getCertificateForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<CertificateInsert>>() {
                     @Override
@@ -106,13 +101,22 @@ public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.
         final MaterialBetterSpinner cert_type=(MaterialBetterSpinner)mView.findViewById(R.id.di_certificate_type);
         final EditText rank=(EditText)mView.findViewById(R.id.di_rank);
         final EditText authority=(EditText)mView.findViewById(R.id.di_authority);
-        final EditText status=(EditText)mView.findViewById(R.id.di_cert_status);
-        final TextView duration=(TextView)mView.findViewById(R.id.di_cert_duration_text);
+        time=(TextView)mView.findViewById(R.id.di_cert_duration_text);
+        final ImageView duration = (ImageView) mView.findViewById(R.id.di_cert_duration);
+        duration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        CertificateAdapter.this, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.show(((Activity)CertificateAdapter.this.context).getFragmentManager(), "Datepickerdialog");
+            }
+        });
         cert_name.setText(certificateInsertList.get(0).certificate().name());
         rank.setText(certificateInsertList.get(0).certificate().rank());
         authority.setText(certificateInsertList.get(0).certificate().authority());
-        status.setText(certificateInsertList.get(0).certificate().status());
-        duration.setText(certificateInsertList.get(0).certificate().certdate());
+        time.setText(certificateInsertList.get(0).certificate().certdate());
         ArrayAdapter<String> cert_type_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, context.getResources().getStringArray(R.array.certificate_array));
         cert_type_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         cert_type.setAdapter(cert_type_adapter);
@@ -134,10 +138,12 @@ public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogBox, int id) {
                         databaseHelper.edit_certificate(Certificate.builder()
-                                .setAuthority(authority.getText().toString()).setCertdate(duration.getText().toString())
+                                .setAuthority(authority.getText().toString()).setCertdate(time.getText().toString())
                                 .setName(cert_name.getText().toString()).setRank(rank.getText().toString())
-                                .setStatus(status.getText().toString()).setType(cert_type.getText().toString())
-                                .build(),edit_id);}})
+                                 .setType(cert_type.getText().toString())
+                                .build(),edit_id);
+                        context.startActivity( new Intent(context, CertificateActivity.class));
+                    }})
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogBox, int id) {
@@ -145,15 +151,17 @@ public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.
                             }
                         });
 
-        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-        alertDialogAndroid.show();
-
+        ab = alertDialogBuilderUserInput.create();ab.show();
 
     }
 
     @Override
     public int getItemCount() {
         return certificateInsertList.size();
+    }
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String date =" "+dayOfMonth + "/" + (++monthOfYear) + "/" + year;time.setText(date);
     }
 
     class CertificateViewHolder extends RecyclerView.ViewHolder {
@@ -163,9 +171,7 @@ public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.
         @BindView(R.id.cert_edit)ImageView edit;
         @BindView(R.id.cert_delete)ImageView delete;
         public CertificateViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-            context = itemView.getContext();
+            super(itemView);ButterKnife.bind(this, itemView);context = itemView.getContext();
         }
     }
 }

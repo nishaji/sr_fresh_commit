@@ -2,14 +2,12 @@ package sprytechies.skillregister.data.local;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-
-import java.util.Date;
-
 import sprytechies.skillregister.data.model.Award;
 import sprytechies.skillregister.data.model.Certificate;
 import sprytechies.skillregister.data.model.Contact;
 import sprytechies.skillregister.data.model.Education;
 import sprytechies.skillregister.data.model.Experience;
+import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.data.model.Location;
 import sprytechies.skillregister.data.model.Profile;
 import sprytechies.skillregister.data.model.ProfileBit;
@@ -114,7 +112,6 @@ public class Db {
         public static final String CERTIFICATE_MONGOID = "mongoid";
         public static final String CERTIFICATENAME = "certificatename";
         public static final String CERTIFICATETYPE = "certificatetype";
-        public static final String CERTIFICATESTATUS = "status";
         public static final String CERTIFICATEDATE = "certificatedate";
         public static final String AUTHORITY = "authority";
         public static final String RANK = "rank";
@@ -167,20 +164,6 @@ public class Db {
         public static final String PUBLICATION_REMOTE_PUT_FLAG="publication_remote_put_flag";
         public static final String PUB_API_CALL_DATE_TIME="date_time";
 
-        public static final String PROFILE_BIT="profile_bit";
-        public static final String PROFILE_BIT_COLUMN_ID="_id";
-        public static final String PROFILE_BIT_MONGOID = "mongoid";
-        public static final String PROFILE_TYPE="profile_type";
-        public static final String BOOKS="books";
-        public static final String SKILLS="skills";
-        public static final String LANGUAGES="languages";
-        public static final String ROUTINE="routine";
-        public static final String STRENGTH="strength";
-        public static final String PASSION="passion";
-        public static final String PROFILE_POST_FLAG="profile_post_flag";
-        public static final String PROFILE_PUT_FLAG="profile_put_flag";
-        public static final String PROFILE_API_CALL_DATE_TIME="date_time";
-
         public static final String SAVE_PROFILE_BIT="save_profile_bit";
         public static final String SAVE_PROFILE_BIT_COLUMN_ID="_id";
         public static final String TYPE="type";
@@ -188,19 +171,22 @@ public class Db {
         public static final String SKILL="skills";
         public static  final String Language="language";
 
+        public static final String LIVE_SYNC_STATUS="live_sync";
+        public static final String LIVE_SYNC_STATUS_COLUMN_ID="_id";
+        public static final String BIT_TYPE="bit_type";
+        public static final String POST_BIT_FLAG="post_bit_flag";
+        public static final String PUT_BIT_FLAG="put_bit_flag";
 
 
 
-        public static final String CREATE =
-                "CREATE TABLE " + TABLE_NAME + " (" +
-                        COLUMN_EMAIL + " TEXT PRIMARY KEY, " +
-                        COLUMN_FIRST_NAME + " TEXT NOT NULL, " +
-                        COLUMN_LAST_NAME + " TEXT NOT NULL, " +
-                        COLUMN_HEX_COLOR + " TEXT NOT NULL, " +
-                        COLUMN_DATE_OF_BIRTH + " INTEGER NOT NULL, " +
-                        COLUMN_AVATAR + " TEXT, " +
-                        COLUMN_BIO + " TEXT" +
-                " ); ";
+
+        public static final String CREATE_LIVE_SYNC_STATUS =
+                "CREATE TABLE " + LIVE_SYNC_STATUS + " (" +
+                        LIVE_SYNC_STATUS_COLUMN_ID + " integer primary key autoincrement, " +
+                        BIT_TYPE + " text , " +
+                        POST_BIT_FLAG + " text , " +
+                        PUT_BIT_FLAG + " text ) ";
+
 
         public static final String CREATE_EDUCATION = "create table " + EDUCATION + " ( "
                 + EDUCATION_COLUMN_ID + " integer primary key autoincrement , "
@@ -279,7 +265,6 @@ public class Db {
                 + CERTIFICATE_COLUMN_ID + " integer primary key autoincrement , "
                 + CERTIFICATE_MONGOID + " text ,"
                 + CERTIFICATENAME + " text ,"
-                + CERTIFICATESTATUS + " text  , "
                 + CERTIFICATETYPE + "  text  , "
                 + CERTIFICATEDATE + " text ,"
                 + AUTHORITY + "  text ,"
@@ -334,19 +319,6 @@ public class Db {
                 + PUBLICATION_REMOTE_PUT_FLAG + " integer , "
                 + PUB_API_CALL_DATE_TIME + " date )";
 
-        public static final String CREATE_PROFILE_BIT=" create table " + PROFILE_BIT + " ( "
-                + PROFILE_BIT_COLUMN_ID + " integer primary key autoincrement ,"
-                + PROFILE_BIT_MONGOID + " text ,"
-                + PROFILE_TYPE + " text ,"
-                + BOOKS + " text ,"
-                + SKILLS + " text ,"
-                + LANGUAGES + " text ,"
-                + ROUTINE + " text ,"
-                + STRENGTH + " text ,"
-                + PASSION + " text ,"
-                + PROFILE_POST_FLAG + " integer , "
-                + PROFILE_PUT_FLAG + " integer , "
-                + PROFILE_API_CALL_DATE_TIME + " date )";
 
         public static final String CREATE_SAVE_PROFILE = " create table " + SAVE_PROFILE_BIT + " ( "
                 + SAVE_PROFILE_BIT_COLUMN_ID + " integer primary key autoincrement , "
@@ -355,15 +327,11 @@ public class Db {
                 + SKILL + " text ,"
                 + Language + "  text )";
 
-        public static ContentValues toContentValues(Profile profile) {
+        public static ContentValues insert_sync_status(LiveSync liveSync) {
             ContentValues values = new ContentValues();
-            values.put(COLUMN_EMAIL, profile.email());
-            values.put(COLUMN_FIRST_NAME, profile.name().first());
-            values.put(COLUMN_LAST_NAME, profile.name().last());
-            values.put(COLUMN_HEX_COLOR, profile.hexColor());
-            values.put(COLUMN_DATE_OF_BIRTH, profile.dateOfBirth().getTime());
-            values.put(COLUMN_AVATAR, profile.avatar());
-            if (profile.bio() != null) values.put(COLUMN_BIO, profile.bio());
+            if (liveSync.bit() != null) values.put(BIT_TYPE, liveSync.bit());
+            if (liveSync.post() != null) values.put(POST_BIT_FLAG, liveSync.post());
+            if (liveSync.put() != null) values.put(PUT_BIT_FLAG, liveSync.put());
             return values;
         }
         public static ContentValues insert_awards(Award award) {
@@ -392,7 +360,6 @@ public class Db {
         public static ContentValues insert_certificate(Certificate certificate){
             ContentValues values = new ContentValues();
             values.put(CERTIFICATENAME, certificate.name());
-            values.put(CERTIFICATESTATUS, certificate.status());
             values.put(CERTIFICATETYPE, certificate.type());
             values.put(CERTIFICATEDATE, certificate.certdate());
             values.put(AUTHORITY, certificate.authority());
@@ -591,17 +558,12 @@ public class Db {
         }
         public static ContentValues insert_Skill(SaveProfile profile){
             ContentValues values=new ContentValues();
-            if (profile.skill() != null) values.put(SKILLS, profile.skill());
+            if (profile.skill() != null) values.put(SKILL, profile.skill());
             return values;
         }
         public static ContentValues insert_Language(SaveProfile profile){
             ContentValues values=new ContentValues();
             if (profile.lan() != null) values.put(Language, profile.lan());
-            return values;
-        }
-        public static ContentValues insert_Routine(ProfileBit profile){
-            ContentValues values=new ContentValues();
-            if (profile.routine() != null) values.put(ROUTINE, profile.routine());
             return values;
         }
 
@@ -615,8 +577,11 @@ public class Db {
                     .setDate(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_API_CALL_DATE_TIME)))
                     .build();
         }
+        public static LiveSync parseLiveSync(Cursor cursor){
+            return LiveSync.builder()
+                    .setPost(cursor.getString(cursor.getColumnIndexOrThrow(POST_BIT_FLAG))).build();
+        }
         public static Education parseEducation(Cursor cursor) {
-
 
             return Education.builder()
                     .setSchool(cursor.getString(cursor.getColumnIndexOrThrow(SCHOOLNAME)))
@@ -664,7 +629,6 @@ public class Db {
                     .setName(cursor.getString(cursor.getColumnIndexOrThrow(CERTIFICATENAME)))
                     .setAuthority(cursor.getString(cursor.getColumnIndexOrThrow(AUTHORITY)))
                     .setCertdate(cursor.getString(cursor.getColumnIndexOrThrow(CERTIFICATEDATE)))
-                    .setStatus(cursor.getString(cursor.getColumnIndexOrThrow(CERTIFICATESTATUS)))
                     .setRank(cursor.getString(cursor.getColumnIndexOrThrow(RANK)))
                     .setType(cursor.getString(cursor.getColumnIndexOrThrow(CERTIFICATETYPE)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(CERTIFICATE_COLUMN_ID)))
@@ -705,30 +669,15 @@ public class Db {
                     .setDate(cursor.getString(cursor.getColumnIndexOrThrow(VOLUN_API_CALL_DATE_TIME)))
                     .build();
         }
-        public static ProfileBit parseProfile(Cursor cursor){
-            return ProfileBit.builder()
-                    .setBooks(cursor.getString(cursor.getColumnIndexOrThrow(BOOKS)))
-                    .setSkills(cursor.getString(cursor.getColumnIndexOrThrow(SKILLS)))
-                    .setLanguages(cursor.getString(cursor.getColumnIndexOrThrow(LANGUAGES)))
-                    .setPassion(cursor.getString(cursor.getColumnIndexOrThrow(PASSION)))
-                    .setRoutine(cursor.getString(cursor.getColumnIndexOrThrow(ROUTINE)))
-                    .setStrength(cursor.getString(cursor.getColumnIndexOrThrow(STRENGTH)))
-                    .setId(cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_BIT_COLUMN_ID)))
-                    .build();
-        }
         public static SaveProfile parseSaveProfile(Cursor cursor){
             return SaveProfile.builder()
+                    .setType(cursor.getString(cursor.getColumnIndexOrThrow(TYPE)))
                     .setskill(cursor.getString(cursor.getColumnIndexOrThrow(SKILL)))
                     .setLan(cursor.getString(cursor.getColumnIndexOrThrow(Language)))
                     .setMeta(cursor.getString(cursor.getColumnIndexOrThrow(META)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(SAVE_PROFILE_BIT_COLUMN_ID)))
                     .build();
         }
-        public static SignUp parseUser(Cursor cursor){
-            return SignUp.builder()
-                    .setEmail(cursor.getString(cursor.getColumnIndexOrThrow(EMAILL)))
-                    .setPassword(cursor.getString(cursor.getColumnIndexOrThrow(PASSWORD)))
-                    .build();
-        }
+
     }
 }

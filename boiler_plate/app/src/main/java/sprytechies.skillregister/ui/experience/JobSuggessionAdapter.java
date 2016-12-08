@@ -3,21 +3,14 @@ package sprytechies.skillregister.ui.experience;
 import android.app.Activity;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import sprytechies.skillregister.data.remote.JsonParse;
 import sprytechies.skillregister.data.remote.remote_model.JobSugession;
 
 
-/**
- * Created by sprydev5 on 6/11/16.
- */
-
 public class JobSuggessionAdapter extends ArrayAdapter<String> {
 
-    protected static final String TAG = "JobSuggessionAdapter";
     private List<String> suggestions;
 
     public JobSuggessionAdapter(Activity context, String nameFilter) {
@@ -43,16 +36,11 @@ public class JobSuggessionAdapter extends ArrayAdapter<String> {
                 FilterResults filterResults = new FilterResults();
                 JsonParse jp = new JsonParse();
                 if (constraint != null) {
-                    // A class that queries a web API, parses the data and
-                    // returns an ArrayList<GoEuroGetSet>
                     List<JobSugession> new_suggestions = jp.getParseJsonJob(constraint.toString());
                     suggestions.clear();
                     for (int i = 0; i < new_suggestions.size(); i++) {
                         suggestions.add(new_suggestions.get(i).getItem());
                     }
-
-                    // Now assign the values and count to the FilterResults
-                    // object
                     filterResults.values = suggestions;
                     filterResults.count = suggestions.size();
                 }

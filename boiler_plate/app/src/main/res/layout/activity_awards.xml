@@ -80,7 +80,7 @@
                 android:saveEnabled="false"
                 android:layout_width="220dp"
                 android:layout_height="50dp"
-                android:hint="Date"
+                android:hint="12/2/2016"
                 android:textSize="17sp"/>
         </LinearLayout>
         <info.hoang8f.widget.FButton

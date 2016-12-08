@@ -15,11 +15,6 @@ import sprytechies.skillregister.R;
 import sprytechies.skillregister.ui.library.FitChart;
 import sprytechies.skillregister.ui.library.FitChartValue;
 
-
-/**
- * Created by sprydev5 on 16/11/16.
- */
-
 public class DashBoard extends Fragment {
     @Nullable
     @Override

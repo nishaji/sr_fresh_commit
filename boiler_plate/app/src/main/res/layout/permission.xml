@@ -35,25 +35,26 @@
 
                     <TextView
                         android:id="@+id/icon_entry"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
                         android:text="E"
                         android:textAllCaps="true"
                         android:textColor="#FFF"
-                        android:textSize="32sp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvname_categories"
-                        android:layout_gravity="top"
-                        android:paddingLeft="10sp"
-                        android:layout_weight=".8"
+                        android:layout_gravity="center"
                         android:textColor="#000"
-                        android:text="Education"/>
+                        android:text="Education"
+                        android:paddingLeft="10sp"
+                        android:paddingStart="10sp"
+                        />
 
 
                     <ImageView
@@ -104,23 +105,22 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
                         android:text="E"
                         android:textAllCaps="true"
                         android:textColor="#FFF"
-                        android:textSize="32sp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="top"
+                        android:layout_gravity="center"
                         android:paddingLeft="10sp"
-                        android:layout_weight=".8"
-                        android:textColor="#000"
+                        android:paddingStart="10sp"                        android:textColor="#000"
                         android:text="Experience"/>
 
                     <ImageView
@@ -168,22 +168,22 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
                         android:text="C"
                         android:textAllCaps="true"
                         android:textColor="#FFF"
-                        android:textSize="32sp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="top"
+                        android:layout_gravity="center"
                         android:paddingLeft="10sp"
-                        android:layout_weight=".8"
+                        android:paddingStart="10sp"                        android:layout_weight=".8"
                         android:textColor="#000"
                         android:text="Certificate"/>
 
@@ -232,22 +232,21 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
                         android:text="C"
                         android:textAllCaps="true"
                         android:textColor="#FFF"
-                        android:textSize="32sp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="top"
+                        android:layout_gravity="center"
                         android:paddingStart="10sp"
-                        android:layout_weight=".8"
                         android:textColor="#000"
                         android:text="Contact"
                         android:paddingLeft="10sp" />
@@ -297,22 +296,21 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
                         android:text="A"
                         android:textAllCaps="true"
                         android:textColor="#FFF"
-                        android:textSize="32sp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="top"
+                        android:layout_gravity="center"
                         android:paddingStart="10sp"
-                        android:layout_weight=".8"
                         android:textColor="#000"
                         android:text="Award"
                         android:paddingLeft="10sp" />
@@ -362,22 +360,21 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
                         android:text="P"
                         android:textAllCaps="true"
                         android:textColor="#FFF"
-                        android:textSize="32sp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
                         android:paddingStart="10sp"
-                        android:layout_weight=".8"
                         android:textColor="#000"
                         android:text="Project"
                         android:paddingLeft="10sp" />
@@ -427,22 +424,21 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
                         android:text="P"
                         android:textAllCaps="true"
                         android:textColor="#FFF"
-                        android:textSize="32sp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="top"
+                        android:layout_gravity="center"
                         android:paddingStart="10sp"
-                        android:layout_weight=".8"
                         android:textColor="#000"
                         android:text="Publication"
                         android:paddingLeft="10sp" />
@@ -492,9 +488,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
@@ -507,7 +503,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
                         android:paddingStart="10sp"
-                        android:layout_weight=".8"
                         android:textColor="#000"
                         android:text="Volunteer"
                         android:paddingLeft="10sp" />
@@ -558,22 +553,21 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/circular_textview"
                         android:fontFamily="sans-serif-thin"
                         android:gravity="center"
                         android:text="P"
                         android:textAllCaps="true"
                         android:textColor="#FFF"
-                        android:textSize="32sp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
                         android:paddingStart="10sp"
-                        android:layout_weight=".8"
                         android:textColor="#000"
                         android:text="Profile"
                         android:paddingLeft="10sp" />

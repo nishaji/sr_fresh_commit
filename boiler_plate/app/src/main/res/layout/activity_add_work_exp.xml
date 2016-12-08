@@ -1,10 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbarStyle="outsideOverlay"
-  >
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
     <android.support.v7.widget.Toolbar
         android:id="@+id/add_exp_tool"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -151,4 +156,4 @@
             fbutton:shadowEnabled="true" />
     </LinearLayout>
 </RelativeLayout>
-
+</ScrollView>

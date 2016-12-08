@@ -1,47 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    android:background="@mipmap/back"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="true"
-    tools:context=".sprytechies.skillregister.ui.home.HomeActivity">
-    <RelativeLayout
-        android:padding="16dp"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:gravity="bottom|center"
+    tools:context=".ui.home.HomeActivity">
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <info.hoang8f.widget.FButton
-            android:layout_above="@+id/sign_in"
-            android:id="@+id/sign_up"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/bg_people" />
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackTrans"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/llSignin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@color/colorPrimaryTrans"
+            android:orientation="horizontal"
+            app:layout_widthPercent="85%">
+
+            <sprytechies.skillregister.ui.home.VerticalTextview
+                android:id="@+id/tvSigninInvoker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:text="Signin"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/llSigninContent"
+                layout="@layout/layout_signin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSignup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorAccentTrans"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_widthPercent="15%">
+
+            <sprytechies.skillregister.ui.home.VerticalTextview
+                android:id="@+id/tvSignupInvoker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:text="Signup"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:visibility="visible" />
+
+            <include
+                android:id="@+id/llSignupContent"
+                layout="@layout/layout_signup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"/>
+        </LinearLayout>
+    </android.support.percent.PercentRelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:minHeight="@dimen/demo_button_min_height"
-            android:minWidth="@dimen/demo_button_min_width"
-            android:text="Sign UP"
-            android:textColor="@android:color/white"
-            fbutton:buttonColor="#F4511E"
-            fbutton:shadowEnabled="true"
-            />
-        <info.hoang8f.widget.FButton
-            android:id="@+id/sign_in"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_facebook" />
+
+        <ImageView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:minHeight="@dimen/demo_button_min_height"
-            android:minWidth="@dimen/demo_button_min_width"
-            android:text="Login "
-            android:textColor="@android:color/white"
-            fbutton:buttonColor="#F4511E"
-            fbutton:shadowEnabled="true"
-             />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:src="@drawable/ic_twitter" />
 
-
-
-</android.support.design.widget.CoordinatorLayout>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_linkedin" />
+    </LinearLayout>
+</RelativeLayout>

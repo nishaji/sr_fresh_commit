@@ -5,18 +5,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import java.util.ArrayList;
 import java.util.List;
-
 import sprytechies.skillregister.data.remote.JsonParse;
 import sprytechies.skillregister.data.remote.remote_model.CompanySugession;
 
 
-/**
- * Created by sprydev5 on 6/11/16.
- */
-
 public class CompanySuggessionAdapter extends ArrayAdapter<String> {
 
-    protected static final String TAG = "BusinessSuggestionAdapter";
     private List<String> suggestions;
 
     public CompanySuggessionAdapter(Activity context, String nameFilter) {
@@ -42,16 +36,11 @@ public class CompanySuggessionAdapter extends ArrayAdapter<String> {
                 FilterResults filterResults = new FilterResults();
                 JsonParse jp = new JsonParse();
                 if (constraint != null) {
-                    // A class that queries a web API, parses the data and
-                    // returns an ArrayList<GoEuroGetSet>
                     List<CompanySugession> new_suggestions = jp.getParseJsonBuss(constraint.toString());
                     suggestions.clear();
                     for (int i = 0; i < new_suggestions.size(); i++) {
                         suggestions.add(new_suggestions.get(i).getItem());
                     }
-
-                    // Now assign the values and count to the FilterResults
-                    // object
                     filterResults.values = suggestions;
                     filterResults.count = suggestions.size();
                 }

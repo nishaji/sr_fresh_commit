@@ -20,15 +20,21 @@
     android:layout_gravity="right"
     android:layout_width="25dp"
     android:layout_height="25dp" />
-    <EditText
-        android:hint="Type"
-        android:id="@+id/ski_title"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1">
-        <requestFocus />
+        >
+        <AutoCompleteTextView
+            android:hint="Skill Name"
+            android:id="@+id/ski_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="textCapWords"
+            android:textColorHint="#000">
 
-    </EditText>
+        </AutoCompleteTextView>
+    </android.support.design.widget.TextInputLayout>
     <EditText
         android:inputType="number"
         android:hint="Level"

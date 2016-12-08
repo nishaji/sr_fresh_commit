@@ -68,15 +68,6 @@
                 android:textColor="#757575"
                 android:textSize="15sp"
                 android:textStyle="normal"/>
-            <ImageButton
-                android:background="#fff"
-                android:id="@+id/delete_edu"
-                android:layout_toStartOf="@+id/edit_edu"
-                android:layout_below="@+id/cgpi_type"
-                android:src="@mipmap/newdelete"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_toLeftOf="@+id/edit_edu" />
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/view_course"
@@ -253,16 +244,6 @@
                 android:textColor="#757575"
                 android:textSize="15sp"
                 android:textStyle="normal"/>
-            <ImageButton
-                android:layout_marginTop="2dp"
-                android:background="#fff"
-                android:id="@+id/edit_edu"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/cgpi_type"
-                android:src="@mipmap/newedit"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true" />
             <TextView
                 android:id="@+id/mongoid"
                 android:layout_width="wrap_content"

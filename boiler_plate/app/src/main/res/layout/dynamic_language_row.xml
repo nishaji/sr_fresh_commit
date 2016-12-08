@@ -9,6 +9,7 @@
         android:src="@android:drawable/ic_delete"
         android:layout_alignParentRight="true" />
     <EditText
+        android:inputType="textCapWords"
         android:hint="Name"
         android:id="@+id/language_name"
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
         android:layout_toStartOf="@id/remove_language"
         android:layout_toLeftOf="@id/remove_language"
         android:layout_alignParentLeft="true" />
-    <EditText
+    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
         android:inputType="number"
         android:hint="Level"
         android:layout_marginTop="35dp"

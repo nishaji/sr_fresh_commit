@@ -13,10 +13,6 @@ import sprytechies.skillregister.ui.base.BasePresenter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
 @ConfigPersistent
 public class AwardPresenter extends BasePresenter<AwardMvpView> {
     private final DataManager mDataManager;
@@ -41,20 +37,16 @@ public class AwardPresenter extends BasePresenter<AwardMvpView> {
     public void loadAwards() {
         checkViewAttached();
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = mDataManager.getAwards()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+        mSubscription = mDataManager.getAwards().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<AwardInsert>>() {
                     @Override
                     public void onCompleted() {
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the awards.");
                         getMvpView().showError();
                     }
-
                     @Override
                     public void onNext(List<AwardInsert> awards) {
                         if (awards.isEmpty()) {

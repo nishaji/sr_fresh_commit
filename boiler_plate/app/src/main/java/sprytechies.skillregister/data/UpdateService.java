@@ -11,7 +11,13 @@ import javax.inject.Inject;
 import rx.Subscription;
 import sprytechies.skillregister.BoilerplateApplication;
 import sprytechies.skillregister.data.local.DatabaseHelper;
-import sprytechies.skillregister.ui.signin.SignActivity;
+import sprytechies.skillregister.data.remote.putservice.AwardPut;
+import sprytechies.skillregister.data.remote.putservice.CertificatePut;
+import sprytechies.skillregister.data.remote.putservice.EducationPut;
+import sprytechies.skillregister.data.remote.putservice.ExperiencePut;
+import sprytechies.skillregister.data.remote.putservice.ProjectPut;
+import sprytechies.skillregister.data.remote.putservice.PublicationPut;
+import sprytechies.skillregister.data.remote.putservice.contactPut;
 import sprytechies.skillregister.util.AndroidComponentUtil;
 import sprytechies.skillregister.util.NetworkUtil;
 import timber.log.Timber;
@@ -21,11 +27,7 @@ import timber.log.Timber;
  */
 
 public class UpdateService extends Service {
-
-    @Inject DataManager mDataManager;
-    @Inject DatabaseHelper databaseHelper;
     private Subscription mSubscription;
-    String id, access_token;
     public static Intent getStartIntent(Context context) {
         return new Intent(context, UpdateService.class);
     }
@@ -37,16 +39,20 @@ public class UpdateService extends Service {
     }
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
-        SharedPreferences settings = this.getSharedPreferences(SignActivity.PREFS_NAME, 0);
-        id = settings.getString("id", "id");
-        access_token = settings.getString("access_token", "access_token");
-        System.out.println("access-token" + " " + access_token + "id" + " " + id);
         if (!NetworkUtil.isNetworkConnected(this)) {
             Timber.i("Sync canceled, connection not available");
             AndroidComponentUtil.toggleComponent(this, UpdateService.SyncOnConnectionAvailable.class, true);
             stopSelf(startId);
             return START_NOT_STICKY;
         }
+        startService(AwardPut.getStartIntent(this));
+        startService(EducationPut.getStartIntent(this));
+        startService(ExperiencePut.getStartIntent(this));
+        startService(ProjectPut.getStartIntent(this));
+        startService(contactPut.getStartIntent(this));
+        startService(CertificatePut.getStartIntent(this));
+        startService(PublicationPut.getStartIntent(this));
+
 
         return START_STICKY;
     }

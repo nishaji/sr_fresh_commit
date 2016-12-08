@@ -14,24 +14,15 @@ import sprytechies.skillregister.data.model.Location;
  */
 
 public class Exp implements Serializable {
-    @SerializedName("from")
-    private Date from;
-    @SerializedName("upto")
-    private Date upto;
-    @SerializedName("status")
-    private String status;
-    @SerializedName("type")
-    private String type;
-    @SerializedName("title")
-    private String title;
-    @SerializedName("company")
-    private String company;
-    @SerializedName("job")
-    private String job;
-    @SerializedName("location")
-    private Location location;
-    @SerializedName("id")
-    private String id;
+    @SerializedName("from") private Date from;
+    @SerializedName("upto") private Date upto;
+    @SerializedName("status") private String status;
+    @SerializedName("type") private String type;
+    @SerializedName("title") private String title;
+    @SerializedName("company") private String company;
+    @SerializedName("job") private String job;
+    @SerializedName("location") private Location location;
+    @SerializedName("id") private String id;
 
     public Exp(ExperienceInsert experience){
         Date date=new Date(experience.experience().from());

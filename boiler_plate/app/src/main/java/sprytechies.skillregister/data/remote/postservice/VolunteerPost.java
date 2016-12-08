@@ -11,7 +11,7 @@ import rx.Subscription;
 import sprytechies.skillregister.BoilerplateApplication;
 import sprytechies.skillregister.data.DataManager;
 import sprytechies.skillregister.data.local.DatabaseHelper;
-import sprytechies.skillregister.ui.signin.SignActivity;
+import sprytechies.skillregister.ui.home.HomeActivity;
 import sprytechies.skillregister.util.NetworkUtil;
 import timber.log.Timber;
 
@@ -40,7 +40,7 @@ public class VolunteerPost extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
 
-        SharedPreferences settings = this.getSharedPreferences(SignActivity.PREFS_NAME, 0);
+        SharedPreferences settings = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
         id = settings.getString("id", "id");
         access_token = settings.getString("access_token", "access_token");
         System.out.println("access-token" + " " + access_token + "id" + " " + id);

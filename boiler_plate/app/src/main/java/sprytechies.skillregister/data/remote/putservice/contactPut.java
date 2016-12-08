@@ -24,9 +24,8 @@ import sprytechies.skillregister.data.model.Contact;
 import sprytechies.skillregister.data.model.ContactInsert;
 import sprytechies.skillregister.data.remote.ApiClient;
 import sprytechies.skillregister.data.remote.PostService;
-import sprytechies.skillregister.data.remote.postservice.AwardPost;
 import sprytechies.skillregister.data.remote.remote_model.Cont;
-import sprytechies.skillregister.ui.signin.SignActivity;
+import sprytechies.skillregister.ui.home.HomeActivity;
 import sprytechies.skillregister.util.NetworkUtil;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
@@ -43,7 +42,7 @@ public class contactPut extends Service {
 
 
     public static Intent getStartIntent(Context context) {
-        return new Intent(context, AwardPost.class);
+        return new Intent(context, contactPut.class);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class contactPut extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
 
-        SharedPreferences settings = this.getSharedPreferences(SignActivity.PREFS_NAME, 0);
+        SharedPreferences settings = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
         id = settings.getString("id", "id");
         access_token = settings.getString("access_token", "access_token");
         System.out.println("access-token" + " " + access_token + "id" + " " + id);
