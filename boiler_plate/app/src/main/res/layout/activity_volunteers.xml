@@ -1,0 +1,117 @@
+<ScrollView
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbarStyle="outsideOverlay"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/add_volunteer_tool"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:background="@color/style_color_accent"
+        />
+    <LinearLayout
+        android:background="#fff"
+        android:layout_marginTop="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="26dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/volunteer_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Role"
+            app:met_floatingLabel="normal"
+            app:met_textColorHint="#9E9E9E"
+            app:met_textColor="#000"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="1"
+            android:inputType="textCapWords"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/volunteer_role_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Role Type"
+            app:met_floatingLabel="normal"
+            app:met_textColorHint="#9E9E9E"
+            app:met_textColor="#000"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="1"
+            android:inputType="textCapWords"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/volunteer_org"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Organisation"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="1"
+            app:met_textColorHint="#9E9E9E"
+            android:inputType="textCapWords"/>
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/volunteer_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="1"
+            android:inputType="textCapWords"/>
+        <LinearLayout
+            android:gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:id="@+id/volunteer_duration"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/cal"/>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:id="@+id/volunteer_text"
+                android:saveEnabled="false"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:textSize="17sp"/>
+        </LinearLayout>
+        <info.hoang8f.widget.FButton
+            android:layout_gravity="center"
+            android:id="@+id/add_volunteer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text=" Add Volunteers"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/style_color_accent"
+            fbutton:shadowEnabled="true" />
+    </LinearLayout>
+
+</RelativeLayout>
+    </ScrollView>

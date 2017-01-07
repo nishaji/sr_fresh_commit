@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#222222</color>
+    <color name="primary_dark">#000000</color>
+    <color name="accent">#FFFFFF</color>
+    <color name="gray">#ffdfdfdf</color>
+    <color name="black">#000</color>
+    <color name="orange">#139D57</color>
+    <color name="white">#FFF</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="text_like_counter">#2b5a83</color>
+    <color name="style_color_primary">#2d5d82</color>
+    <color name="style_color_primary_dark">#21425d</color>
+    <color name="style_color_accent">#01bcd5</color>
+    <color name="default_back_color">@android:color/transparent</color>
+    <color name="default_back_stroke_color">#f0f0f0</color>
+    <color name="default_chart_value_color">#ff3d00</color>
+    <color name="colorPrimaryTrans">#a0673AB7</color>
+    <color name="colorAccentTrans">#a0009688</color>
+    <color name="colorBlackTrans">#a0000000</color>
+</resources>

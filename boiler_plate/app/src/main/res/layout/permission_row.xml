@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <ImageView
+        android:id="@+id/gmailitem_letter"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin" />
+
+    <TextView
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/gmailitem_letter"
+        android:id="@+id/gmailitem_title"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="Title"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:layout_toRightOf="@+id/gmailitem_letter" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/gmailitem_title"
+        android:textSize="15sp"
+        android:id="@+id/permission"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        />
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switche"
+        android:layout_gravity="right"
+        android:layout_alignParentEnd="true"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

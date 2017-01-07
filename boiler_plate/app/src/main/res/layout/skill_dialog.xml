@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Skill : "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+<ImageView
+    android:id="@+id/add_skill_view"
+    android:src="@mipmap/add"
+    android:layout_gravity="right"
+    android:layout_width="25dp"
+    android:layout_height="25dp" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <AutoCompleteTextView
+            android:hint="Skill Name"
+            android:id="@+id/ski_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="textCapWords"
+            android:textColorHint="#000">
+
+        </AutoCompleteTextView>
+    </android.support.design.widget.TextInputLayout>
+    <EditText
+        android:inputType="number"
+        android:hint="Level"
+        android:id="@+id/ski_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        </EditText>
+    <LinearLayout
+        android:id="@+id/skill_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+</LinearLayout>

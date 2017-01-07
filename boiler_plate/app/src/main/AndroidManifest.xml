@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="sprytechies.skillregister">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name="sprytechies.skillregister.BoilerplateApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
+        <activity
+            android:name="sprytechies.skillregister.ui.profile.MainOneActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="sprytechies.skillregister.data.SyncService" />
+        <service android:name="sprytechies.skillregister.data.UpdateService" />
+        <service android:name="sprytechies.skillregister.data.PullService" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.AwardPost" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.CertificatePost" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.ContactPost" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.EducationPost" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.ExperiencePost" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.ProjectPost" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.PublicationPost" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.VolunteerPost" />
+        <service android:name="sprytechies.skillregister.data.remote.putservice.AwardPut" />
+        <service android:name="sprytechies.skillregister.data.remote.putservice.contactPut" />
+        <service android:name="sprytechies.skillregister.data.remote.putservice.CertificatePut" />
+        <service android:name="sprytechies.skillregister.data.remote.putservice.EducationPut" />
+        <service android:name="sprytechies.skillregister.data.remote.putservice.ExperiencePut" />
+        <service android:name="sprytechies.skillregister.data.remote.putservice.ProjectPut" />
+        <service android:name="sprytechies.skillregister.data.remote.putservice.PublicationPut" />
+        <service android:name="sprytechies.skillregister.data.remote.putservice.VolunteerPut" />
+        <service android:name="sprytechies.skillregister.data.remote.postservice.PostProfile" />
+
+
+
+        <receiver
+            android:name="sprytechies.skillregister.data.SyncService$SyncOnConnectionAvailable"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="269354ab26629ff3eec799856de4a573123391de" />
+
+        <activity
+            android:name="sprytechies.skillregister.ui.award.AwardActivity"
+            android:label="@string/title_activity_award"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.certificate.CertificateActivity"
+            android:label="@string/title_activity_certificate"
+            android:noHistory="true"/>
+        <activity
+            android:name="sprytechies.skillregister.ui.contact.ConatctActivity"
+            android:label="@string/title_activity_conatct"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.education.EducationActivity"
+            android:label="@string/title_activity_education"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.experience.ExperienceActivity"
+            android:label="@string/title_activity_experience"
+            android:noHistory="true" />
+
+        <activity
+            android:name="sprytechies.skillregister.ui.project.ProjectActivity"
+            android:label="@string/title_activity_project"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.publication.ActivityPublication"
+            android:label="@string/title_activity_publication"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.volunteer.VolunteerActivity"
+            android:label="@string/title_activity_volunteer"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.award.AddAwardActivity"
+            android:label="@string/title_activity_add_award"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.certificate.AddCertificate"
+            android:label="@string/title_activity_add_certificate"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.contact.AddContact"
+            android:label="@string/title_activity_add_contact"
+            android:noHistory="true" />
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name="sprytechies.skillregister.ui.education.AddEducation"
+            android:label="@string/title_activity_add_education"
+            android:noHistory="true" />
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name="sprytechies.skillregister.ui.experience.AddExperience"
+            android:label="@string/title_activity_add_experience"
+            android:noHistory="true" />
+
+        <activity
+            android:name="sprytechies.skillregister.ui.project.AddProject"
+            android:label="@string/title_activity_add_project"
+            android:noHistory="true" />
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name="sprytechies.skillregister.ui.publication.AddPublication"
+            android:label="@string/title_activity_add_publication"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.launcher.activity.ViewActivity"
+            android:label="@string/title_activity_view"
+            android:noHistory="true"/>
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name="sprytechies.skillregister.ui.home.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:noHistory="true" />
+
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name="sprytechies.skillregister.ui.volunteer.AddVolunteer"
+            android:label="@string/title_activity_add_volunteer"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.profile.AddProfileActivity"
+            android:label="@string/title_activity_add_profile"
+            android:noHistory="true" />
+        <activity
+            android:name="sprytechies.skillregister.ui.launcher.activity.UserProfileActivity"
+            android:label="@string/title_activity_user_profile"/>
+        <activity
+            android:label="@string/title_activity_user_set_permission"
+            android:name="sprytechies.skillregister.ui.launcher.Permission.SetPermission"/>
+
+        <activity
+            android:label="@string/title_activity_user_export_pdf"
+            android:name="sprytechies.skillregister.ui.launcher.Exportpdf.ExportPdf"/>
+    </application>
+
+</manifest>

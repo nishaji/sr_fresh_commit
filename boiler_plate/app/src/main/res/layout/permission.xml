@@ -1,0 +1,611 @@
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_permissions"
+            >
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/permission_tool"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:background="@color/style_color_accent"
+                />
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/permission_tool"
+                android:id="@+id/edu_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="2dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/icon_entry"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="E"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvname_categories"
+                        android:layout_gravity="center"
+                        android:textColor="#000"
+                        android:text="Education"
+                        android:paddingLeft="10sp"
+                        android:paddingStart="10sp"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/imgedit_my_daily"
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="5dp" />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/edu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="0dp"
+                        android:paddingLeft="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/edu_per_card"
+                android:id="@+id/exp_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="5dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="E"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="10sp"
+                        android:paddingStart="10sp"                        android:textColor="#000"
+                        android:text="Experience"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/exp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/exp_per_card"
+                android:id="@+id/cert_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="5dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="C"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="10sp"
+                        android:paddingStart="10sp"                        android:layout_weight=".8"
+                        android:textColor="#000"
+                        android:text="Certificate"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/cert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/cert_per_card"
+                android:id="@+id/contact_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="5dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="C"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="10sp"
+                        android:textColor="#000"
+                        android:text="Contact"
+                        android:paddingLeft="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/contact_per_card"
+                android:id="@+id/award_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="5dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="10sp"
+                        android:textColor="#000"
+                        android:text="Award"
+                        android:paddingLeft="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/award"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/award_per_card"
+                android:id="@+id/pro_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="5dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="P"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:paddingStart="10sp"
+                        android:textColor="#000"
+                        android:text="Project"
+                        android:paddingLeft="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/project"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/pro_per_card"
+                android:id="@+id/pub_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="5dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="P"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="10sp"
+                        android:textColor="#000"
+                        android:text="Publication"
+                        android:paddingLeft="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/publication"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/pub_per_card"
+                android:id="@+id/volunteer_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="5dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="V"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="32sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:paddingStart="10sp"
+                        android:textColor="#000"
+                        android:text="Volunteer"
+                        android:paddingLeft="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/volunteer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_below="@+id/volunteer_per_card"
+                android:id="@+id/profile_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardElevation="10dp"
+                android:padding="5dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:contentPadding= "5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circular_textview"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="center"
+                        android:text="P"
+                        android:textAllCaps="true"
+                        android:textColor="#FFF"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:paddingStart="10sp"
+                        android:textColor="#000"
+                        android:text="Profile"
+                        android:paddingLeft="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pro"
+                        />
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:hint="Privacy"
+                        android:id="@+id/profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".1"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#fff"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <Button
+                android:text="Save Changes"
+                android:id="@+id/save_permission"
+                android:textColor="#fff"
+                android:background="@color/style_color_accent"
+                android:layout_below="@+id/profile_per_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </ScrollView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Home"
+        android:id="@+id/nav_item_home"
+        android:icon="@mipmap/home"/>
+    <item android:title="My Account"
+        android:id="@+id/account_setting"
+        android:icon="@mipmap/bookmark"/>
+    <item android:title="Set Permissions"
+        android:id="@+id/set_permissions"
+        android:icon="@mipmap/bookmark"/>
+    <item android:title="Export n View Pdf"
+        android:id="@+id/export_pdf"
+        android:icon="@mipmap/newp"/>
+    <item android:title="Others">
+        <menu>
+            <item
+                android:title="Help"
+                android:icon="@mipmap/backup"/>
+            <item
+                android:title="Synchronisation"
+                android:icon="@mipmap/store"/>
+        </menu>
+    </item>
+</menu>

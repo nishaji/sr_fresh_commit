@@ -1,0 +1,186 @@
+<ScrollView
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbarStyle="outsideOverlay"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/add_education_tool"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:background="@color/style_color_accent"
+        />
+
+        <LinearLayout
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                >
+                <AutoCompleteTextView
+                    android:hint="School Name"
+                    android:id="@+id/school_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="textCapWords"
+                    android:textColorHint="#000">
+
+                </AutoCompleteTextView>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <AutoCompleteTextView
+                    android:hint="Course Name"
+                    android:id="@+id/course_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="textCapWords"
+                    android:textColorHint="#000">
+
+                </AutoCompleteTextView>
+            </android.support.design.widget.TextInputLayout>
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/school_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mode of Study"
+                app:met_floatingLabel="normal"
+                />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edu_title"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Education Title"
+                    app:met_floatingLabel="normal"
+                    app:met_textColor="#000"
+                    app:met_textColorHint="#9E9E9E"
+                    app:met_floatingLabelTextColor="#000"
+                    android:maxLines="1"
+                    android:inputType="textCapWords"/>
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/edu_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Education Type"
+                    app:met_floatingLabel="normal"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/location_name"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Name"
+                    app:met_floatingLabel="normal"
+                    app:met_textColor="#000"
+                    app:met_textColorHint="#9E9E9E"
+                    app:met_floatingLabelTextColor="#000"
+                    android:maxLines="1"
+                    android:inputType="textCapWords"/>
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/location_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Type"
+                    app:met_floatingLabel="normal"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/cgpi"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:hint="CGPI"
+                    app:met_floatingLabel="normal"
+                    app:met_textColor="#000"
+                    app:met_textColorHint="#9E9E9E"
+                    app:met_floatingLabelTextColor="#000"
+                    android:maxLines="1"
+                    android:inputType="numberDecimal"/>
+
+
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/cgpi_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Cgpi Type"
+                    app:met_floatingLabel="normal"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginLeft="10dp">
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/edu_duration"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/cal"/>
+                <TextView
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:id="@+id/edu_duration_text"
+                    android:saveEnabled="false"
+                    android:layout_width="220dp"
+                    android:layout_height="50dp"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+            <info.hoang8f.widget.FButton
+                android:layout_gravity="center"
+                android:id="@+id/add_education"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="Add Education"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/style_color_accent"
+                fbutton:shadowEnabled="true" />
+        </LinearLayout>
+</RelativeLayout>
+
+</ScrollView>

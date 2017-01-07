@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/remove_routine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="Remove"
+        android:src="@android:drawable/ic_delete"
+        android:layout_alignParentRight="true" />
+    <EditText
+        android:inputType="textCapWords"
+        android:hint="Activity:"
+        android:id="@+id/routine_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/remove_routine"
+        android:layout_toLeftOf="@id/remove_routine"
+        android:layout_alignParentLeft="true" />
+    <RelativeLayout
+        android:layout_below="@+id/routine_name"
+        android:layout_toStartOf="@id/remove_routine"
+        android:layout_toLeftOf="@id/remove_routine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:hint="Type:"
+            android:id="@+id/type"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true" />
+        <EditText
+            android:inputType="number"
+            android:layout_toEndOf="@id/type"
+            android:hint="Time:"
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/type" />
+    </RelativeLayout>
+
+</RelativeLayout>
