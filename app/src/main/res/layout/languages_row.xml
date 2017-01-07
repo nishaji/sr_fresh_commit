@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/lan_card"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="#fff"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="5dp"
+        android:padding="2dp"
+        card_view:cardCornerRadius="8dp"
+        card_view:contentPadding= "5dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#263238"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:id="@+id/header_when"
+            />
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/title"
+                android:text="Language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/title"
+                android:text="Language Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/school"
+                android:layout_gravity="center_vertical"
+                android:textColor="#616161"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/view_languages_name"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/school"
+                android:text="Any Car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="#757575"
+                android:textSize="15sp"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/view_languages_name"
+                android:text="Level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/skii_description"
+                android:layout_gravity="center_vertical"
+                android:textColor="#616161"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/view_languages_level"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/skii_description"
+                android:text="Developer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="#757575"
+                android:textSize="15sp"
+                android:textStyle="normal"/>
+            <ImageButton
+                android:id="@+id/landelete"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/lanedit"
+                android:layout_below="@+id/skii_description"
+                android:src="@mipmap/addd"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/lanedit" />
+
+
+            <ImageButton
+                android:id="@+id/lanedit"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/skii_description"
+                android:src="@mipmap/addd"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                />
+            <TextView
+                android:id="@+id/projid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:layout_marginTop="2dp"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>
+
+
+
+

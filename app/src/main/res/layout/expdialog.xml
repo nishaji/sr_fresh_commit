@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_marginTop="16dp"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp">
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Experience"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/di_company_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Company Name"
+        app:met_floatingLabel="normal"
+        app:met_textColor="#000"
+        app:met_textColorHint="#9E9E9E"
+        app:met_floatingLabelTextColor="#000"
+        android:maxLines="1"
+        android:layout_marginTop="5dp"
+        android:inputType="textCapWords"/>
+
+
+    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/di_company_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Company Title"
+            android:gravity="left" />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/di_job_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Job Title"
+        app:met_floatingLabel="normal"
+        app:met_textColor="#000"
+        app:met_textColorHint="#9E9E9E"
+        app:met_floatingLabelTextColor="#000"
+        android:maxLines="1"
+        android:layout_marginTop="5dp"
+        android:inputType="textCapWords"/>
+    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+        android:id="@+id/di_job_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Job Type"
+        app:met_floatingLabel="normal"
+        />
+       <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/di_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Status"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:inputType="textCapWords"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/di_exp_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:inputType="textCapWords"/>
+    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+        android:id="@+id/di_exp_location_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Job Type"
+        app:met_floatingLabel="normal"
+        />
+        <LinearLayout
+            android:gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+            <ImageView
+                android:id="@+id/di_exp_duration"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/cal"/>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:id="@+id/di_exp_duration_text"
+                android:saveEnabled="false"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:textSize="17sp"/>
+        </LinearLayout>
+    </LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Routine : "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <ImageView
+        android:id="@+id/add_routine_row"
+        android:src="@mipmap/add"
+        android:layout_gravity="right"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+    <EditText
+        android:inputType="textCapWords"
+        android:hint="Activity:"
+        android:id="@+id/routine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="15">
+        <requestFocus />
+
+    </EditText>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:hint="Type:"
+            android:id="@+id/type"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true" />
+        <EditText
+            android:inputType="number"
+            android:layout_toEndOf="@id/type"
+            android:hint="Time:"
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/type" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/routine_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+</LinearLayout>
