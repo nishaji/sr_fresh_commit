@@ -21,6 +21,7 @@ public abstract class Experience implements Parcelable {
     @Nullable public abstract String upto();
     @Nullable public abstract String type();
     @Nullable public abstract String status();
+    @Nullable public abstract String meta();
     @Nullable public abstract String id();
     @Nullable public abstract String createflag();
     @Nullable public abstract String updateflag();
@@ -48,6 +49,7 @@ public abstract class Experience implements Parcelable {
         public abstract Experience.Builder setUpto(String upto);
         public abstract Experience.Builder setType(String type);
         public abstract Experience.Builder setStatus(String status);
+        public abstract Experience.Builder setMeta(String meta);
         public abstract Experience.Builder setId(String id);
         public abstract Experience.Builder setCreateflag(String createflag);
         public abstract Experience.Builder setUpdateflag(String updateflag);

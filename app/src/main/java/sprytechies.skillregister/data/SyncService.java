@@ -80,9 +80,9 @@ public class SyncService extends Service {
                     }
                 }});*/
         //  startService(AwardPost.getStartIntent(this));
-         //startService(EducationPost.getStartIntent(this));
+        startService(EducationPost.getStartIntent(this));
          // startService(ExperiencePost.getStartIntent(this));
-         startService(ProjectPost.getStartIntent(this));
+         //startService(ProjectPost.getStartIntent(this));
 
          // startService(ContactPost.getStartIntent(this));
          // startService(CertificatePost.getStartIntent(this));

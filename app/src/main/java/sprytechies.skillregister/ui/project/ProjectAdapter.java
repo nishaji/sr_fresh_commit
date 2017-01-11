@@ -27,6 +27,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
+import sprytechies.skillregister.data.model.Meta;
 import sprytechies.skillregister.data.model.Project;
 import sprytechies.skillregister.data.model.ProjectInsert;
 import sprytechies.skillregister.util.RxUtil;
@@ -60,7 +61,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         ProjectInsert projectInsert = projects.get(position);
         holder.project_name.setText(projectInsert.project().project());
         holder.role_name.setText(projectInsert.project().role());
-        holder.res_name.setText(projectInsert.project().meta());
+        holder.res_name.setText(projectInsert.project().meta().getResponsibility());
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,11 +98,15 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                         alertDialogBuilderUserInput.setView(mView);
                         final EditText project_name = (EditText) mView.findViewById(R.id.di_project_name);
                         final EditText responsibility = (EditText) mView.findViewById(R.id.di_responsibility);
+                        final EditText achievement = (EditText) mView.findViewById(R.id.di_achievement);
+                        final EditText desc = (EditText) mView.findViewById(R.id.di_project_desc);
                         final TextView duration = (TextView) mView.findViewById(R.id.di_project_duration_text);
                         final ImageView duration_clock = (ImageView) mView.findViewById(R.id.di_project_duration);
                         final MaterialBetterSpinner role = (MaterialBetterSpinner) mView.findViewById(R.id.di_role);
                         project_name.setText(projects.get(0).project().project());
-                        responsibility.setText(projects.get(0).project().meta());
+                        responsibility.setText(projects.get(0).project().meta().getResponsibility());
+                        achievement.setText(projects.get(0).project().meta().getAchievements());
+                        desc.setText(projects.get(0).project().meta().getDesc());
                         String du = projects.get(0).project().from().concat(projects.get(0).project().upto());
                         duration.setText(du);
                         ArrayAdapter<String> role_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, context.getResources().getStringArray(R.array.project_role_array));
@@ -148,7 +153,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                                         final String from = parts[0];
                                         final String to = parts[1];
                                         databaseHelper.edit_project(Project.builder()
-                                                .setProject(project_name.getText().toString()).setMeta(responsibility.getText().toString())
+                                                .setProject(project_name.getText().toString())
+                                                .setMeta(new Meta(responsibility.getText().toString(),achievement.getText().toString(),desc.getText().toString()))
                                                 .setRole(role.getText().toString()).setFrom(from).setUpto(to).setPutflag("0").build(), edit_id);
                                         context.startActivity(new Intent(context, ProjectActivity.class));
                                     }

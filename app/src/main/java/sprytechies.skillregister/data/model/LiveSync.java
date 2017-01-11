@@ -14,8 +14,9 @@ import com.google.gson.TypeAdapter;
 public abstract class LiveSync implements Parcelable {
     @Nullable public abstract String id();
     @Nullable public abstract String bit();
-    @Nullable public abstract String post();
-    @Nullable public abstract String put();
+    @Nullable public abstract String bitbefore();
+    @Nullable public abstract String bitafter();
+    @Nullable public abstract String syncstatus();
     @Nullable public abstract String bitid();
     @Nullable public abstract String bitmongoid();
     public static LiveSync.Builder builder() {
@@ -29,8 +30,9 @@ public abstract class LiveSync implements Parcelable {
     public abstract static class Builder {
         public abstract LiveSync.Builder setId(String id);
         public abstract LiveSync.Builder setBit(String bit);
-        public abstract LiveSync.Builder setPost(String post);
-        public abstract LiveSync.Builder setPut(String put);
+        public abstract LiveSync.Builder setBitbefore(String bitbefore);
+        public abstract LiveSync.Builder setBitafter(String bitafter);
+        public abstract LiveSync.Builder setSyncstatus(String syncstatus);
         public abstract LiveSync.Builder setBitid(String bitid);
         public abstract LiveSync.Builder setBitmongoid(String bitmongoid);
 

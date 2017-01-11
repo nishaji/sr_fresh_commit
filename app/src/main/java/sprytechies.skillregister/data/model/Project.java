@@ -15,7 +15,7 @@ import com.google.gson.TypeAdapter;
 public abstract class Project implements Parcelable {
     @Nullable public abstract String project();
     @Nullable public abstract String role();
-    @Nullable public abstract String meta();
+    @Nullable public abstract Meta meta();
     @Nullable public abstract String from();
     @Nullable public abstract String  upto();
     @Nullable public abstract String id();
@@ -39,7 +39,7 @@ public abstract class Project implements Parcelable {
     public abstract static class Builder {
         public abstract Project.Builder setProject(String project);
         public abstract Project.Builder setRole(String role);
-        public abstract Project.Builder setMeta(String meta);
+        public abstract Project.Builder setMeta(Meta meta);
         public abstract Project.Builder setFrom(String from);
         public abstract Project.Builder setUpto(String upto);
         public abstract Project.Builder setId(String id);

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import sprytechies.skillregister.R;
+import sprytechies.skillregister.data.SyncService;
 import sprytechies.skillregister.ui.base.BaseActivity;
 import sprytechies.skillregister.ui.launcher.DashBoard;
 import sprytechies.skillregister.ui.launcher.Exportpdf.ExportPdf;
@@ -70,7 +71,7 @@ public class ViewActivity extends BaseActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             case R.id.sync:
-               // startService(SyncService.getStartIntent(this));
+                startService(SyncService.getStartIntent(this));
 
         }
         return super.onOptionsItemSelected(item);

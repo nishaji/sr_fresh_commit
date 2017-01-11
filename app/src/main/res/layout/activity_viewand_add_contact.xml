@@ -13,15 +13,12 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/view_contact_tool"
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="4dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/style_color_accent"
-            />
+            app:layout_scrollFlags="scroll|enterAlways" />
 
     </android.support.design.widget.AppBarLayout>
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/contact_recycler"
@@ -29,15 +26,7 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    <TextView
-        android:layout_gravity="center"
-        android:layout_below="@+id/contact_recycler"
-        android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:gravity="center"
-        android:visibility="gone"
-        android:text="Click + button to add Contact" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/contact_fab"
         android:layout_width="wrap_content"
@@ -45,6 +34,6 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/addd"
-         />
+        app:layout_behavior="sprytechies.skillregister.util.FABScrollBehaviour" />
 
 </android.support.design.widget.CoordinatorLayout>

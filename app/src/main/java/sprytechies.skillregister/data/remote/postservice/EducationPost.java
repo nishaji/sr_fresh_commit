@@ -114,7 +114,7 @@ public class EducationPost extends Service {
                                             String id = response.body().getId();
                                             System.out.println("education send to server successfully");
                                             Toast.makeText(EducationPost.this, "Education send to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_education_flag(Education.builder().setPostflag("1").setDate(date.toString()).setMongoid(id).build(), education.get(finalI).education().id());
+                                            //databaseHelper.update_education_flag(Education.builder().setPostflag("1").setDate(date.toString()).setMongoid(id).build(), education.get(finalI).education().id());
                                            // databaseHelper.setSyncstatus(LiveSync.builder().setBit("education").setPost("1").build());
                                         }
                                     }

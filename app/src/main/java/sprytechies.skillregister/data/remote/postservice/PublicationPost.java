@@ -123,7 +123,7 @@ public class PublicationPost extends Service {
                                             databaseHelper.update_publication_flag(Publication.builder()
                                                     .setPostflag("1").setDate(date.toString()).setMongoid(id)
                                                     .build(), certificate.get(finalI).publication().id());
-                                            databaseHelper.setSyncstatus(LiveSync.builder().setBit("publication").setPost("1").build());
+                                          //  databaseHelper.setSyncstatus(LiveSync.builder().setBit("publication").setPost("1").build());
                                         }
                                     }
                                     @Override

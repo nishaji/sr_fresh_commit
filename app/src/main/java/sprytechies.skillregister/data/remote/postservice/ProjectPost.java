@@ -21,9 +21,6 @@ import rx.schedulers.Schedulers;
 import sprytechies.skillregister.BoilerplateApplication;
 import sprytechies.skillregister.data.DataManager;
 import sprytechies.skillregister.data.local.DatabaseHelper;
-import sprytechies.skillregister.data.model.LiveSync;
-import sprytechies.skillregister.data.model.LiveSyncinsert;
-import sprytechies.skillregister.data.model.Project;
 import sprytechies.skillregister.data.model.ProjectInsert;
 import sprytechies.skillregister.data.remote.ApiClient;
 import sprytechies.skillregister.data.remote.PostService;
@@ -53,7 +50,7 @@ public class ProjectPost extends Service {
         SharedPreferences settings = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
         id = settings.getString("id", "id");
         access_token = settings.getString("access_token", "access_token");
-        post_project();
+        post();
         return START_NOT_STICKY;
     }
 
@@ -70,7 +67,7 @@ public class ProjectPost extends Service {
 
     private void post_project() {
 
-        RxUtil.unsubscribe(mSubscription);
+  /*      RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getLiveSync()
                 .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<LiveSyncinsert>>() {
                     @Override public void onCompleted() {}
@@ -81,16 +78,16 @@ public class ProjectPost extends Service {
                             id_list=new ArrayList<String>();
                             for(int j=0;j<livesync.size();j++){
                                 id_list.add(livesync.get(j).liveSync().id());
-                               if(bit_type.equals(livesync.get(j).liveSync().bit()) && status.equals(livesync.get(j).liveSync().post())){
+                             *//*  if(bit_type.equals(livesync.get(j).liveSync().bit()) && status.equals(livesync.get(j).liveSync().post())){
                                     System.out.println("updating post flag");
                                     databaseHelper.update_project_flag(Project.builder().setPostflag("1").setDate(date.toString()).setMongoid(livesync.get(j).liveSync().bitmongoid())
                                             .build(), livesync.get(j).liveSync().bitid());
-                                } else{System.out.println("eeeeeeeeeeeeeeeeeee");}}
+                                } else{System.out.println("eeeeeeeeeeeeeeeeeee");}}*//*
                             post();
 
                         }
                     }
-                });
+                });*/
     }
 public void post(){
     System.out.println("calling post method");
@@ -119,10 +116,11 @@ public void post(){
                                     Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                     if(response.code()==200){
                                         String id = response.body().getId();
-                                        String live_id=id_list.get(finalI);
-                                        System.out.println(project.get(finalI).project().id()+"project send to server successfully"+live_id);
+                                      //  String live_id=id_list.get(finalI);
+                                        System.out.println(response.body().toString()+"response body");
+                                        System.out.println(project.toString()+"project send to server successfully");
                                         Toast.makeText(ProjectPost.this, "project send to server successfully", Toast.LENGTH_SHORT).show();
-                                        databaseHelper.upDatesyncstatus(LiveSync.builder().setBit("project").setPost("1").setBitid(project.get(finalI).project().id()).setBitmongoid(id).build(),live_id);
+                                       // databaseHelper.setSyncstatus(LiveSync.builder().setBit("project").setBitbefore("1").setBitid(project.get(finalI).project().id()).setBitmongoid(id).build());
                                     }
                                 }
                                 @Override

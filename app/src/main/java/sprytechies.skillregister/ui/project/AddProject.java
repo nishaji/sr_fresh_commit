@@ -23,6 +23,7 @@ import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.SyncService;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.LiveSync;
+import sprytechies.skillregister.data.model.Meta;
 import sprytechies.skillregister.data.model.Project;
 import sprytechies.skillregister.data.remote.postservice.CertificatePost;
 import sprytechies.skillregister.data.remote.postservice.ProjectPost;
@@ -37,6 +38,8 @@ public class AddProject extends BaseActivity {
     @BindView(R.id.project_name)EditText project_name;
     @BindView(R.id.role)MaterialBetterSpinner role;
     @BindView(R.id.responsibility)EditText responsibility;
+    @BindView(R.id.achievement)EditText achievement;
+    @BindView(R.id.project_description)EditText desc;
     @BindView(R.id.add_project)Button add_project;
     @BindView(R.id.project_duration)ImageView du;
     @BindView(R.id.project_duration_text)TextView du_text;
@@ -80,10 +83,10 @@ public class AddProject extends BaseActivity {
             String[] parts = du_text.getText().toString().split("To");
             String from = parts[0];String to = parts[1];
             databaseHelper.setProject(Project.builder()
-                    .setProject(project_name.getText().toString()).setMeta(responsibility.getText().toString())
+                    .setProject(project_name.getText().toString()).setMeta(new Meta(responsibility.getText().toString(),achievement.getText().toString(),desc.getText().toString()))
                     .setRole(role.getText().toString()).setFrom(from).setUpto(to)
                     .setDate(date.toString()).setPostflag("0").setPutflag("0").setCreateflag("1").setUpdateflag("0").build());
-            databaseHelper.setSyncstatus(LiveSync.builder().setBit("project").setPost("0").build());
+            //databaseHelper.setSyncstatus(LiveSync.builder().setBit("project").setPost("0").build());
             startActivity(new Intent(AddProject.this,ProjectActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 

@@ -23,6 +23,7 @@ public abstract class Education implements Parcelable {
     @Nullable public abstract String cgpi();
     @Nullable public abstract String cgpitype();
     @Nullable public abstract Location location();
+    @Nullable public abstract EduMeta meta();
     @Nullable public abstract String id();
     @Nullable public abstract String createflag();
     @Nullable public abstract String updateflag();
@@ -52,6 +53,7 @@ public abstract class Education implements Parcelable {
         public abstract Education.Builder setEdutype(String edutype);
         public abstract Education.Builder setCgpi(String cgpi);
         public abstract Education.Builder setCgpitype(String cgpitype);
+        public abstract Education.Builder setMeta(EduMeta meta);
         public abstract Education.Builder setId(String id);
         public abstract Education.Builder setCreateflag(String createflag);
         public abstract Education.Builder setUpdateflag(String updateflag);

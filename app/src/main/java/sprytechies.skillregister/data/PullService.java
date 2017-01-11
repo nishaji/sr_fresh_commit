@@ -133,7 +133,7 @@ public class PullService  extends Service {
                                 .setOrganisation(awards.get(i).getOrg()).setTitle(awards.get(i).getTitle())
                                 .setMongoid(awards.get(i).getId()).setDate(date.toString())
                                 .setCreateflag("1").setUpdateflag("1").setPostflag("1").setPutflag("1").build());
-                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setPost("1").build());
+                       // databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setPost("1").build());
                     }
                 }
             }
@@ -163,7 +163,7 @@ public class PullService  extends Service {
                                 .setCreateflag("1").setUpdateflag("1").setPostflag("1").setPutflag("1")
                                 .setCertdate(cert.get(i).getCertdate().toString()).setName(cert.get(i).getName())
                                 .setRank(cert.get(i).getRank()).setType(cert.get(i).getType()).build());
-                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("certificate").setPost("1").build());
+                       // databaseHelper.setSyncstatus(LiveSync.builder().setBit("certificate").setPost("1").build());
                     }
                 }
             }
@@ -192,7 +192,7 @@ public class PullService  extends Service {
                                 .setFrom(pros.get(i).getFrom().toString()).setUpto(pros.get(i).getUpto().toString())
                                 .setRole(pros.get(i).getRole()).setProject(pros.get(i).getProject())
                                 .setMongoid(pros.get(i).getId()).build());
-                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("project").setPost("1").build());
+                       // databaseHelper.setSyncstatus(LiveSync.builder().setBit("project").setPost("1").build());
                     }
                 }
             }
@@ -225,7 +225,7 @@ public class PullService  extends Service {
                                 .setSchooltype(edus.get(i).getType()).setCgpi(edus.get(i).getCgpi()).setCgpitype(edus.get(i).getCgpitype())
                                 .setCourse(edus.get(i).getCourse()).setTitle(edus.get(i).getTitle()).setEdutype(edus.get(i).getEdutype())
                                 .build());
-                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("education").setPost("1").build());
+                       // databaseHelper.setSyncstatus(LiveSync.builder().setBit("education").setPost("1").build());
                     }
                 }
             }
@@ -254,7 +254,7 @@ public class PullService  extends Service {
                                 .setMongoid(edus.get(i).getId()).setJob(edus.get(i).getJob()).setType(edus.get(i).getType())
                                 .setCompany(edus.get(i).getCompany()).setTitle(edus.get(i).getTitle()).setStatus(edus.get(i).getStatus())
                                 .build());
-                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("experience").setPost("1").build());
+                       // databaseHelper.setSyncstatus(LiveSync.builder().setBit("experience").setPost("1").build());
                     }
                 }
             }
@@ -281,7 +281,7 @@ public class PullService  extends Service {
                                 .setFrom(voluns.get(i).getFrom().toString()).setUpto(voluns.get(i).getUpto().toString())
                                 .setRole(voluns.get(i).getRole()).setMongoid(voluns.get(i).getId()).setType(voluns.get(i).getType())
                                 .setOrganisation(voluns.get(i).getOrganization()).setDescription(voluns.get(i).getDesc()).build());
-                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("volunteer").setPost("1").build());
+                      //  databaseHelper.setSyncstatus(LiveSync.builder().setBit("volunteer").setPost("1").build());
                     }
                 }
             }
@@ -360,7 +360,7 @@ public class PullService  extends Service {
                         String languages = language_array.toString();
                         String skills = skill_array.toString();
                         databaseHelper.saveProfile(SaveProfile.builder().setType(awards.get(i).getType()).setMeta(meta).setskill(skills).setLan(languages).build(),profile_id);
-                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("profile").setPost("1").build());
+                      //  databaseHelper.setSyncstatus(LiveSync.builder().setBit("profile").setPost("1").build());
                     }
                 }
             }

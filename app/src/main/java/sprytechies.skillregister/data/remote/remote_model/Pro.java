@@ -1,11 +1,10 @@
 package sprytechies.skillregister.data.remote.remote_model;
 
 import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 import java.util.Date;
-
 import sprytechies.skillregister.data.model.ProjectInsert;
+import sprytechies.skillregister.data.model.Meta;
 
 
 /**
@@ -21,6 +20,8 @@ public class Pro implements Serializable {
     private Date upto;
     @SerializedName("role")
     private String role;
+    @SerializedName("meta")
+    private Meta meta;
     @SerializedName("id")
     private String id;
 
@@ -31,6 +32,7 @@ public class Pro implements Serializable {
         this.from=date;
         this.upto=date1;
         this.role=project.project().role();
+        this.meta=project.project().meta();
 
    }
 
@@ -72,5 +74,13 @@ public class Pro implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }
 }

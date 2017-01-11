@@ -74,15 +74,19 @@
             android:inputType="textCapWords"/>
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/publication_desc"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="top|left"
             android:hint="Description"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="6"
+            android:scrollbars="vertical"
             app:met_floatingLabel="normal"
-            app:met_textColor="#000"
             app:met_floatingLabelTextColor="#000"
-            android:maxLines="1"
-            app:met_textColorHint="#9E9E9E"
-            android:inputType="textCapWords"/>
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E" />
         <LinearLayout
             android:gravity="left"
             android:layout_marginTop="10dp"

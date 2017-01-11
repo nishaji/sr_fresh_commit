@@ -5,10 +5,12 @@ import android.database.Cursor;
 import sprytechies.skillregister.data.model.Award;
 import sprytechies.skillregister.data.model.Certificate;
 import sprytechies.skillregister.data.model.Contact;
+import sprytechies.skillregister.data.model.EduMeta;
 import sprytechies.skillregister.data.model.Education;
 import sprytechies.skillregister.data.model.Experience;
 import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.data.model.Location;
+import sprytechies.skillregister.data.model.Meta;
 import sprytechies.skillregister.data.model.Profile;
 import sprytechies.skillregister.data.model.ProfileBit;
 import sprytechies.skillregister.data.model.Project;
@@ -24,14 +26,7 @@ public class Db {
 
     public abstract static class RibotProfileTable {
 
-        public static final String TABLE_NAME = "ribot_profile";
-        public static final String COLUMN_EMAIL = "email";
-        public static final String COLUMN_FIRST_NAME = "first_name";
-        public static final String COLUMN_LAST_NAME = "last_name";
-        public static final String COLUMN_HEX_COLOR = "hex_color";
-        public static final String COLUMN_DATE_OF_BIRTH = "date_of_birth";
-        public static final String COLUMN_AVATAR = "avatar";
-        public static final String COLUMN_BIO = "bio";
+
 
         public static final String EDUCATION = "education";
         public static final String EDUCATION_COLUMN_ID = "_id";
@@ -47,6 +42,7 @@ public class Db {
         public static final String LOCATIONTYPE = "locationtype";
         public static final String DEGREEFROM = "degreefrom";
         public static final String DEGREEUPTO = "upto";
+        public static final String EDUCATION_DESCRIPTION="education_description";
         public static final String EDUCATION_LOCAL_CREATE_FLAG="education_local_create_flag";
         public static final String EDUCATION_LOCAL_UPDATE_FLAG="education_local_update_flag";
         public static final String EDUCATION_REMOTE_POST_FLAG="education_remote_post_flag";
@@ -68,8 +64,10 @@ public class Db {
         public static final String PROJECTNAME = "projectname";
         public static final String ROLE = "role";
         public static final String RESPONSIBILITY = "responsibility";
+        public static final String ACHIEVEMENTS= "achievements";
         public static final String PROJECTFROM = "projfrom";
         public static final String PROJECTUPTO = "projupto";
+        public static final String PROJECT_DESCRIPTION="project_description";
         public static final String PROJECTS_LOCAL_CREATE_FLAG="projects_local_create_flag";
         public static final String PROJECTS_LOCAL_UPDATE_FLAG="projects_local_update_flag";
         public static final String PROJECTS_REMOTE_POST_FLAG="projects_remote_post_flag";
@@ -88,6 +86,7 @@ public class Db {
         public static final String EXPSTATUS = "expstatus";
         public static final String JOBLOCATION = "joblocation";
         public static final String JOBLOCATION_TYPE = "joblocation_type";
+        public static final String EXP_DESCRIPTION="exp_description";
         public static final String WORKEXP_LOCAL_CREATE_FLAG="workexp_create_flag";
         public static final String WORKEXP_LOCAL_UPDATE_FLAG="workexp_update_flag";
         public static final String WORKEXP_REMOTE_POST_FLAG="workexp_remote_post_flag";
@@ -174,8 +173,9 @@ public class Db {
         public static final String LIVE_SYNC_STATUS="live_sync";
         public static final String LIVE_SYNC_STATUS_COLUMN_ID="_id";
         public static final String BIT_TYPE="bit_type";
-        public static final String POST_BIT_FLAG="post_bit_flag";
-        public static final String PUT_BIT_FLAG="put_bit_flag";
+        public static final String BIT_BEFORE_DATA="bit_before_data";
+        public static final String BIT_AFTER_DATA="bit_after_data";
+        public static final String SYNC_STATUS="sync_status";
         public static final String BIT_Id="id";
         public static final String BIT_MONGO_ID="mongo_id";
 
@@ -186,10 +186,11 @@ public class Db {
                 "CREATE TABLE " + LIVE_SYNC_STATUS + " (" +
                         LIVE_SYNC_STATUS_COLUMN_ID + " integer primary key autoincrement, " +
                         BIT_TYPE + " text , " +
-                        POST_BIT_FLAG + " text , " +
+                        BIT_BEFORE_DATA + " text , " +
+                        BIT_AFTER_DATA + " text , " +
                         BIT_Id + " integer , " +
                         BIT_MONGO_ID + " text , " +
-                        PUT_BIT_FLAG + " text ) ";
+                        SYNC_STATUS + " text ) ";
 
 
         public static final String CREATE_EDUCATION = "create table " + EDUCATION + " ( "
@@ -204,6 +205,7 @@ public class Db {
                 + CGPITYPE + " text ,"
                 + LOCATIONNAME + "  text  , "
                 + LOCATIONTYPE + "  text ,"
+                + EDUCATION_DESCRIPTION + "  text ,"
                 + DEGREEFROM + " text ,"
                 + DEGREEUPTO + " text ,"
                 + EDUCATION_LOCAL_CREATE_FLAG + " integer , "
@@ -230,6 +232,7 @@ public class Db {
                 + EXPSTATUS + " text ,"
                 + JOBLOCATION + "  text ,"
                 + JOBLOCATION_TYPE + "  text ,"
+                + EXP_DESCRIPTION + "  text ,"
                 + EXPFROM + " text ,"
                 + EXPUPTO + " text ,"
                 + WORKEXP_LOCAL_CREATE_FLAG + " integer ,"
@@ -244,8 +247,10 @@ public class Db {
                 + PROJECTNAME + " text ,"
                 + ROLE + " text  , "
                 + RESPONSIBILITY + "  text  , "
+                + ACHIEVEMENTS + "  text  , "
                 + PROJECTFROM + " text ,"
                 + PROJECTUPTO + "  text ,"
+                + PROJECT_DESCRIPTION + "  text ,"
                 + PROJECTS_LOCAL_CREATE_FLAG +" integer ,"
                 + PROJECTS_LOCAL_UPDATE_FLAG + " integer ,"
                 + PROJECTS_REMOTE_POST_FLAG + " integer , "
@@ -334,14 +339,14 @@ public class Db {
         public static ContentValues insert_sync_status(LiveSync liveSync) {
             ContentValues values = new ContentValues();
             if (liveSync.bit() != null) values.put(BIT_TYPE, liveSync.bit());
-            if (liveSync.post() != null) values.put(POST_BIT_FLAG, liveSync.post());
-            if (liveSync.put() != null) values.put(PUT_BIT_FLAG, liveSync.put());
+            if (liveSync.bitbefore() != null) values.put(BIT_BEFORE_DATA, liveSync.bitbefore());
+            if (liveSync.bitafter() != null) values.put(BIT_AFTER_DATA, liveSync.bitafter());
+            if (liveSync.syncstatus() != null) values.put(SYNC_STATUS, liveSync.syncstatus());
             if (liveSync.bitid() != null) values.put(BIT_Id, liveSync.bitid());
             if (liveSync.bitmongoid() != null) values.put(BIT_MONGO_ID, liveSync.bitmongoid());
             return values;
         }
         public static ContentValues insert_awards(Award award) {
-
             ContentValues values = new ContentValues();
             values.put(AWARD_TITLE,award.title() );
             values.put(AWARD_ORGANISATION,award.organisation() );
@@ -399,6 +404,7 @@ public class Db {
             values.put(LOCATIONTYPE, education.location().getType());
             values.put(DEGREEFROM, education.from());
             values.put(DEGREEUPTO, education.upto());
+            values.put(EDUCATION_DESCRIPTION,education.meta().getDesc());
             values.put(EDUCATION_LOCAL_CREATE_FLAG,education.createflag());
             values.put(EDU_API_CALL_DATE_TIME,education.date());
             values.put(EDUCATION_LOCAL_UPDATE_FLAG,education.updateflag());
@@ -434,8 +440,8 @@ public class Db {
             values.put(COMPANYTITLE, experience.title());
             values.put(JOB, experience.job());
             values.put(JOBTYPE, experience.type());
-            values.put(JOBLOCATION, experience.location().name);
-            values.put(JOBLOCATION_TYPE, experience.location().type);
+            values.put(JOBLOCATION, experience.location().getName());
+            values.put(JOBLOCATION_TYPE, experience.location().getType());
             values.put(EXP_API_CALL_DATE_TIME,experience.date());
             values.put(EXP_MONGOID,experience.mongoid());
             values.put(WORKEXP_LOCAL_CREATE_FLAG,experience.createflag());
@@ -456,7 +462,9 @@ public class Db {
             ContentValues values=new ContentValues();
             values.put(PROJECTNAME, project.project());
             values.put(ROLE, project.role());
-            values.put(RESPONSIBILITY, project.meta());
+            values.put(RESPONSIBILITY, project.meta().getResponsibility());
+            values.put(PROJECT_DESCRIPTION, project.meta().getDesc());
+            values.put(ACHIEVEMENTS, project.meta().getResponsibility());
             values.put(PROJECTFROM, project.from());
             values.put(PROJECTUPTO, project.upto());
             values.put(PRO_API_CALL_DATE_TIME,project.date());
@@ -590,7 +598,7 @@ public class Db {
                     .setBitmongoid(cursor.getString(cursor.getColumnIndexOrThrow(BIT_MONGO_ID)))
                     .setBit(cursor.getString(cursor.getColumnIndexOrThrow(BIT_TYPE)))
                     .setBitid(cursor.getString(cursor.getColumnIndexOrThrow(BIT_Id)))
-                    .setPost(cursor.getString(cursor.getColumnIndexOrThrow(POST_BIT_FLAG))).build();
+                    .setBitbefore(cursor.getString(cursor.getColumnIndexOrThrow(BIT_BEFORE_DATA))).build();
         }
         public static Education parseEducation(Cursor cursor) {
 
@@ -606,6 +614,7 @@ public class Db {
                     .setCgpi(cursor.getString(cursor.getColumnIndexOrThrow(CGPI)))
                     .setCgpitype(cursor.getString(cursor.getColumnIndexOrThrow(CGPITYPE)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(EDUCATION_COLUMN_ID)))
+                    .setMeta(new EduMeta(cursor.getString(cursor.getColumnIndexOrThrow(EDUCATION_DESCRIPTION))))
                     .setMongoid(cursor.getString(cursor.getColumnIndexOrThrow(EDUCATION_MONGOID)))
                     .build();
         }
@@ -628,7 +637,7 @@ public class Db {
             return Project.builder()
                     .setProject(cursor.getString(cursor.getColumnIndexOrThrow(PROJECTNAME)))
                     .setRole(cursor.getString(cursor.getColumnIndexOrThrow(ROLE)))
-                    .setMeta(cursor.getString(cursor.getColumnIndexOrThrow(RESPONSIBILITY)))
+                    .setMeta(new Meta(cursor.getString(cursor.getColumnIndexOrThrow(RESPONSIBILITY)),cursor.getString(cursor.getColumnIndexOrThrow(ACHIEVEMENTS)),cursor.getString(cursor.getColumnIndexOrThrow(PROJECT_DESCRIPTION))))
                     .setFrom(cursor.getString(cursor.getColumnIndexOrThrow(PROJECTFROM)))
                     .setUpto(cursor.getString(cursor.getColumnIndexOrThrow(PROJECTUPTO)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(PROJECTS_COLUMN_ID)))

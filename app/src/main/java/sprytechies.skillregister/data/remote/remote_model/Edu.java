@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.Date;
 
+import sprytechies.skillregister.data.model.EduMeta;
 import sprytechies.skillregister.data.model.EducationInsert;
 import sprytechies.skillregister.data.model.Location;
 
@@ -35,6 +36,8 @@ public class Edu implements Serializable {
     private Location location;
     @SerializedName("title")
     private String title;
+    @SerializedName("meta")
+    private EduMeta meta;
     @SerializedName("id")
     private String id;
 
@@ -51,6 +54,7 @@ public class Edu implements Serializable {
         this.edutype=education.education().edutype();
         this.location=education.education().location();
         this.title=education.education().title();
+        this.meta=education.education().meta();
 
     }
 

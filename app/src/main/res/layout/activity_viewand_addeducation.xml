@@ -34,6 +34,6 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/addd"
-        />
+        app:layout_behavior="sprytechies.skillregister.util.FABScrollBehaviour"/>
 
 </android.support.design.widget.CoordinatorLayout>

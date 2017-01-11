@@ -100,10 +100,12 @@
             android:label="@string/title_activity_volunteer"
             android:noHistory="true" />
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.award.AddAwardActivity"
             android:label="@string/title_activity_add_award"
             android:noHistory="true" />
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.certificate.AddCertificate"
             android:label="@string/title_activity_add_certificate"
             android:noHistory="true" />
@@ -123,6 +125,7 @@
             android:noHistory="true" />
 
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.project.AddProject"
             android:label="@string/title_activity_add_project"
             android:noHistory="true" />

@@ -23,6 +23,7 @@ import butterknife.OnClick;
 import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.SyncService;
 import sprytechies.skillregister.data.local.DatabaseHelper;
+import sprytechies.skillregister.data.model.EduMeta;
 import sprytechies.skillregister.data.model.Education;
 import sprytechies.skillregister.data.model.Location;
 import sprytechies.skillregister.data.remote.postservice.CertificatePost;
@@ -40,6 +41,7 @@ public class AddEducation extends BaseActivity {
     @BindView(R.id.edu_title)EditText edu_title;
     @BindView(R.id.edu_type)MaterialBetterSpinner edu_type;
     @BindView(R.id.location_name)EditText location_name;
+    @BindView(R.id.education_description)EditText desc;
     @BindView(R.id.location_type)MaterialBetterSpinner location_type;
     @BindView(R.id.cgpi)EditText cgpi;
     @BindView(R.id.cgpi_type)MaterialBetterSpinner cgpi_type;
@@ -107,6 +109,7 @@ public class AddEducation extends BaseActivity {
                     .setCourse(course_name.getText().toString()).setEdutype(edu_type.getText().toString())
                     .setLocation(new Location(location_name.getText().toString(),location_type.getText().toString()))
                     .setSchool(school_name.getText().toString()).setSchooltype(school_type.getText().toString())
+                    .setMeta(new EduMeta(desc.getText().toString()))
                     .setTitle(edu_title.getText().toString()).setDate(date.toString()).setPostflag("0").setPutflag("0").setCreateflag("1").setUpdateflag("0").build());
             startActivity(new Intent(AddEducation.this,EducationActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
