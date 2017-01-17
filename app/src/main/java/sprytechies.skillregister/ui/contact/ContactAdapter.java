@@ -50,9 +50,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     @Override
     public void onBindViewHolder(ContactAdapter.ContactViewHolder holder,final int position) {
       ContactInsert contactInsert=contacts.get(position);
-        holder.contact.setText(contactInsert.contact().contact());
         holder.cateory.setText(contactInsert.contact().category());
         holder.type.setText(contactInsert.contact().type());
+        holder.contact.setText(contactInsert.contact().contact());
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

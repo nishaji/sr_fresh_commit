@@ -26,10 +26,12 @@ import rx.schedulers.Schedulers;
 import sprytechies.skillregister.BoilerplateApplication;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Award;
+import sprytechies.skillregister.data.model.AwardInsert;
 import sprytechies.skillregister.data.model.Certificate;
 import sprytechies.skillregister.data.model.Education;
 import sprytechies.skillregister.data.model.Experience;
 import sprytechies.skillregister.data.model.LiveSync;
+import sprytechies.skillregister.data.model.LiveSyncinsert;
 import sprytechies.skillregister.data.model.Location;
 import sprytechies.skillregister.data.model.Project;
 import sprytechies.skillregister.data.model.SaveProfile;
@@ -64,7 +66,7 @@ public class PullService  extends Service {
     ArrayList<String> ski;
     ArrayList<String> lan;
     String profile_id;
-    Integer post_flag=1;
+    String mongo="mongo";
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, PullService.class);
@@ -120,20 +122,21 @@ public class PullService  extends Service {
         call.enqueue(new Callback<List<Awrd>>() {
             @Override
             public void onResponse(Call<List<Awrd>> call, Response<List<Awrd>> response) {
-                Log.v("RESPONSE_CALLED", "ON_RESPONSE_CALLED");
-                String didItWork = String.valueOf(response.isSuccessful());
-                Log.v("SUCCESS?", didItWork);
-                Log.v("RESPONSE_CODE", String.valueOf(response.code()));
+                Log.v("ProjectPullRESPONSECODE", String.valueOf(response.code()));
                 if (response.code() == 200) {
                     List<Awrd> awards = response.body();
-                    databaseHelper.flush_awards(Award.builder().build(),post_flag);
+                    for(int j=0; j<awards.size();j++){
+                        String  mongo_id=awards.get(j).getId();
+                        System.out.println(mongo_id+"in loop");
+                        databaseHelper.flush_awards(Award.builder().build(),mongo_id);
+                        databaseHelper.flush_Live_Sync(LiveSync.builder().build(),mongo_id);
+                    }
                     for (int i = 0; i < awards.size(); i++) {
                         databaseHelper.setAwards(Award.builder()
                                 .setDescription(awards.get(i).getDesc()).setDuration(awards.get(i).getDate().toString())
                                 .setOrganisation(awards.get(i).getOrg()).setTitle(awards.get(i).getTitle())
-                                .setMongoid(awards.get(i).getId()).setDate(date.toString())
-                                .setCreateflag("1").setUpdateflag("1").setPostflag("1").setPutflag("1").build());
-                       // databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setPost("1").build());
+                                .setMongoid(awards.get(i).getId()).setDate(date.toString()).build());
+                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setBitmongoid(awards.get(i).getId()).setBitafter(awards.get(i).getId()).build());
                     }
                 }
             }
@@ -145,7 +148,7 @@ public class PullService  extends Service {
 
             }
         });
-        Call<List<Cert>> call1 = service.list_certificate(id, access_token);
+       /* Call<List<Cert>> call1 = service.list_certificate(id, access_token);
         call1.enqueue(new Callback<List<Cert>>() {
             @Override
             public void onResponse(Call<List<Cert>> call, Response<List<Cert>> response) {
@@ -370,7 +373,7 @@ public class PullService  extends Service {
                 System.out.println("checking failure" + t.getLocalizedMessage());
 
             }
-        });
+        });*/
     }
     @Override
     public void onDestroy() {

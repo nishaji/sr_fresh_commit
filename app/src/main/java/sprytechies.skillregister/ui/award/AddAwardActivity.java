@@ -20,6 +20,7 @@ import butterknife.OnClick;
 import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Award;
+import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.ui.base.BaseActivity;
 
 
@@ -34,6 +35,7 @@ public class AddAwardActivity extends BaseActivity implements DatePickerDialog.O
     @BindView(R.id.add_award_tool)Toolbar add_tool;
     @Inject DatabaseHelper databaseHelper;Award award;
     Date date=new Date();
+    String mongo="mongo";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +67,11 @@ public class AddAwardActivity extends BaseActivity implements DatePickerDialog.O
             databaseHelper.setAwards(Award.builder()
                     .setTitle(award_title.getText().toString()).setOrganisation(award_org.getText().toString())
                     .setDescription(award_desc.getText().toString()).setDuration(award_du_text.getText().toString())
-                    .setDate(date.toString()).setCreateflag("1").setUpdateflag("0").setPostflag("0").setPutflag("0").build());
+                    .setDate(date.toString()).setCreateflag("0").build());
                      startActivity(new Intent(AddAwardActivity.this,AwardActivity.class));
                      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setBitmongoid("mongo").setBitbefore("0").build());
+
 
         }
     }

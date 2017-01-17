@@ -12,13 +12,19 @@ import sprytechies.skillregister.ui.launcher.activity.ViewActivity;
 
 
 public class MainOneActivity extends AppCompatActivity {
-
+String id="id";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_one);
+        SharedPreferences setting = this.getSharedPreferences(HomeActivity.SHARED_PREFERENCE, 0);
+        id = setting.getString("id", null);
         System.out.println("application launchedddddddddddddddddddd");
-       // startService(PullService.getStartIntent(this));
+        System.out.println(id != null+"id"+id);
+        if (id != null)
+        {
+            startService(PullService.getStartIntent(this));
+        }
         SharedPreferences settings = getSharedPreferences(HomeActivity.LOGIN_SHARED_PREFERENCE, 0);
         boolean hasLoggedIn = settings.getBoolean("hasLoggedIn", false);
         if (hasLoggedIn) {

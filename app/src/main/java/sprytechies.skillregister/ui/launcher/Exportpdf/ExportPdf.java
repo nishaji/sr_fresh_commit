@@ -120,11 +120,12 @@ public class ExportPdf extends BaseActivity implements View.OnClickListener {
     }
 
     private void get_pdf() {
+        final String blank="0";
         pDialog = new ProgressDialog(ExportPdf.this);
         pDialog.setMessage("Downloading pdf...");
         pDialog.show();
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getLiveSync().observeOn(AndroidSchedulers.mainThread())
+        mSubscription = databaseHelper.getLiveSync(blank).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<LiveSyncinsert>>() {
                     @Override
                     public void onCompleted() {

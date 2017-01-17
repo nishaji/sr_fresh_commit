@@ -41,7 +41,7 @@
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/title"
-                android:text="Contact"
+                android:text="Category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/school"
@@ -64,7 +64,7 @@
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/row_contact"
-                android:text="Category"
+                android:text="Type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/role"
@@ -95,7 +95,7 @@
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/row_category"
-                android:text="Status"
+                android:text="Contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/responsibility"

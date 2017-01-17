@@ -186,7 +186,7 @@ public class Db {
                 "CREATE TABLE " + LIVE_SYNC_STATUS + " (" +
                         LIVE_SYNC_STATUS_COLUMN_ID + " integer primary key autoincrement, " +
                         BIT_TYPE + " text , " +
-                        BIT_BEFORE_DATA + " text , " +
+                        BIT_BEFORE_DATA + " integer , " +
                         BIT_AFTER_DATA + " text , " +
                         BIT_Id + " integer , " +
                         BIT_MONGO_ID + " text , " +
@@ -362,8 +362,6 @@ public class Db {
         }
         public static ContentValues set_award_status(Award award){
             ContentValues values=new ContentValues();
-            values.put(AWARD_REMOTE_POST_FLAG,award.postflag());
-            values.put(AWARD_REMOTE_PUT_FLAG,award.putflag());
             values.put(AWARD_MONGOID,award.mongoid());
             return values;
         }
@@ -590,6 +588,7 @@ public class Db {
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_COLUMN_ID)))
                     .setDate(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_API_CALL_DATE_TIME)))
                     .setPostflag(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_REMOTE_POST_FLAG)))
+                    .setMongoid(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_MONGOID)))
                     .build();
         }
         public static LiveSync parseLiveSync(Cursor cursor){
@@ -598,6 +597,7 @@ public class Db {
                     .setBitmongoid(cursor.getString(cursor.getColumnIndexOrThrow(BIT_MONGO_ID)))
                     .setBit(cursor.getString(cursor.getColumnIndexOrThrow(BIT_TYPE)))
                     .setBitid(cursor.getString(cursor.getColumnIndexOrThrow(BIT_Id)))
+                    .setBitafter(cursor.getString(cursor.getColumnIndexOrThrow(BIT_AFTER_DATA)))
                     .setBitbefore(cursor.getString(cursor.getColumnIndexOrThrow(BIT_BEFORE_DATA))).build();
         }
         public static Education parseEducation(Cursor cursor) {

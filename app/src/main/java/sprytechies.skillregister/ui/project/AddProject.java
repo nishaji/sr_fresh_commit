@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.inject.Inject;
@@ -20,17 +19,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sprytechies.skillregister.R;
-import sprytechies.skillregister.data.SyncService;
 import sprytechies.skillregister.data.local.DatabaseHelper;
-import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.data.model.Meta;
 import sprytechies.skillregister.data.model.Project;
-import sprytechies.skillregister.data.remote.postservice.CertificatePost;
-import sprytechies.skillregister.data.remote.postservice.ProjectPost;
 import sprytechies.skillregister.ui.base.BaseActivity;
-import sprytechies.skillregister.util.AndroidComponentUtil;
-import sprytechies.skillregister.util.NetworkUtil;
-import timber.log.Timber;
 
 
 public class AddProject extends BaseActivity {

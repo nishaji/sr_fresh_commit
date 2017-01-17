@@ -70,7 +70,7 @@ public class AwardPut extends Service {
     private void put_award() {
         Integer integer = 0;
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getAwardForPost(integer)
+        mSubscription = databaseHelper.getAwardForPut(integer)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<AwardInsert>>() {
