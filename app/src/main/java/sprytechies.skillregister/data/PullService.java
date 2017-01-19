@@ -136,7 +136,6 @@ public class PullService  extends Service {
                                 .setDescription(awards.get(i).getDesc()).setDuration(awards.get(i).getDate().toString())
                                 .setOrganisation(awards.get(i).getOrg()).setTitle(awards.get(i).getTitle())
                                 .setMongoid(awards.get(i).getId()).setDate(date.toString()).build());
-                        databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setBitmongoid(awards.get(i).getId()).setBitafter(awards.get(i).getId()).build());
                     }
                 }
             }

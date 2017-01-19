@@ -10,9 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+
 import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +42,7 @@ public class AddAwardActivity extends BaseActivity implements DatePickerDialog.O
     @BindView(R.id.add_award_tool)Toolbar add_tool;
     @Inject DatabaseHelper databaseHelper;Award award;
     Date date=new Date();
-    String mongo="mongo";
+    JSONObject awrd=new JSONObject();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +74,18 @@ public class AddAwardActivity extends BaseActivity implements DatePickerDialog.O
             databaseHelper.setAwards(Award.builder()
                     .setTitle(award_title.getText().toString()).setOrganisation(award_org.getText().toString())
                     .setDescription(award_desc.getText().toString()).setDuration(award_du_text.getText().toString())
-                    .setDate(date.toString()).setCreateflag("0").build());
+                    .setDate(date.toString()).setMongoid("mongo").build());
                      startActivity(new Intent(AddAwardActivity.this,AwardActivity.class));
                      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setBitmongoid("mongo").setBitbefore("0").build());
+            try {
+                awrd.put("title",award_title.getText().toString());
+                awrd.put("org",award_org.getText().toString());
+                awrd.put("des",award_desc.getText().toString());
+                awrd.put("date",award_du_text.getText().toString());
+                databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setBitmongoid("mongo").setBitbefore(awrd.toString()).build());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
         }
@@ -85,7 +100,17 @@ public class AddAwardActivity extends BaseActivity implements DatePickerDialog.O
     }
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date =" "+dayOfMonth + "/" + (++monthOfYear) + "/" + year;award_du_text.setText(date);
+        String date =" "+ year + "-" + (++monthOfYear) + "-" + dayOfMonth;
+        System.out.println(date);
+        Date da=new Date();
+        SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+        try {
+            da = dateFormatGmt.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        award_du_text.setText(da.toString());
     }
 
     @Override

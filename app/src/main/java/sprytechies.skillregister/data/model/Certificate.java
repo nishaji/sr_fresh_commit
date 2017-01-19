@@ -19,12 +19,8 @@ public abstract class Certificate implements Parcelable {
     @Nullable public abstract String type();
     @Nullable public abstract String rank();
     @Nullable public abstract String id();
-    @Nullable public abstract String createflag();
-    @Nullable public abstract String updateflag();
-    @Nullable public abstract String postflag();
-    @Nullable public abstract String putflag();
     @Nullable public abstract String mongoid();
-    @Nullable public abstract String date();
+
 
     public static Certificate.Builder builder() {
         return new AutoValue_Certificate.Builder();
@@ -41,12 +37,7 @@ public abstract class Certificate implements Parcelable {
         public abstract Certificate.Builder setType(String type);
         public abstract Certificate.Builder setRank(String rank);
         public abstract Certificate.Builder setId(String id);
-        public abstract Certificate.Builder setCreateflag(String createflag);
-        public abstract Certificate.Builder setUpdateflag(String updateflag);
-        public abstract Certificate.Builder setPostflag(String postflag);
-        public abstract Certificate.Builder setPutflag(String putflag);
         public abstract Certificate.Builder setMongoid(String mongoid);
-        public abstract Certificate.Builder setDate(String date);
         public abstract Certificate build();
 
     }

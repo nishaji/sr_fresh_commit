@@ -11,8 +11,6 @@ import sprytechies.skillregister.data.model.Experience;
 import sprytechies.skillregister.data.model.LiveSync;
 import sprytechies.skillregister.data.model.Location;
 import sprytechies.skillregister.data.model.Meta;
-import sprytechies.skillregister.data.model.Profile;
-import sprytechies.skillregister.data.model.ProfileBit;
 import sprytechies.skillregister.data.model.Project;
 import sprytechies.skillregister.data.model.Publication;
 import sprytechies.skillregister.data.model.SaveProfile;
@@ -25,7 +23,6 @@ public class Db {
     public Db() { }
 
     public abstract static class RibotProfileTable {
-
 
 
         public static final String EDUCATION = "education";
@@ -43,12 +40,6 @@ public class Db {
         public static final String DEGREEFROM = "degreefrom";
         public static final String DEGREEUPTO = "upto";
         public static final String EDUCATION_DESCRIPTION="education_description";
-        public static final String EDUCATION_LOCAL_CREATE_FLAG="education_local_create_flag";
-        public static final String EDUCATION_LOCAL_UPDATE_FLAG="education_local_update_flag";
-        public static final String EDUCATION_REMOTE_POST_FLAG="education_remote_post_flag";
-        public static final String EDUCATION_REMOTE_PUT_FLAG="education_remote_put_flag";
-        public static final String EDU_API_CALL_DATE_TIME="date_time";
-
 
         public static final String SIGNUP = "signup";
         public static final String SIGNUP_COLUMN_ID = "_id";
@@ -56,7 +47,6 @@ public class Db {
         public static final String L_NAME = "l_name";
         public static final String PASSWORD = "password";
         public static final String EMAILL = "email";
-
 
         public static final String PROJECTS = "projects";
         public static final String PROJECTS_COLUMN_ID = "_id";
@@ -68,11 +58,6 @@ public class Db {
         public static final String PROJECTFROM = "projfrom";
         public static final String PROJECTUPTO = "projupto";
         public static final String PROJECT_DESCRIPTION="project_description";
-        public static final String PROJECTS_LOCAL_CREATE_FLAG="projects_local_create_flag";
-        public static final String PROJECTS_LOCAL_UPDATE_FLAG="projects_local_update_flag";
-        public static final String PROJECTS_REMOTE_POST_FLAG="projects_remote_post_flag";
-        public static final String PROJECTS_REMOTE_PUT_FLAG="projects_remote_put_flag";
-        public static final String PRO_API_CALL_DATE_TIME="date_time";
 
         public static final String WORKEXP = "workexp";
         public static final String WORKEXK_COLUMN_ID = "_id";
@@ -87,11 +72,6 @@ public class Db {
         public static final String JOBLOCATION = "joblocation";
         public static final String JOBLOCATION_TYPE = "joblocation_type";
         public static final String EXP_DESCRIPTION="exp_description";
-        public static final String WORKEXP_LOCAL_CREATE_FLAG="workexp_create_flag";
-        public static final String WORKEXP_LOCAL_UPDATE_FLAG="workexp_update_flag";
-        public static final String WORKEXP_REMOTE_POST_FLAG="workexp_remote_post_flag";
-        public static final String WORKEXP_REMOTE_PUT_FLAG="workexp_remote_put_flag";
-        public static final String EXP_API_CALL_DATE_TIME="date_time";
 
         public static final String TBCONTACT = "tbcontact";
         public static final String CONTACT_COLUMN_ID = "_id";
@@ -100,11 +80,6 @@ public class Db {
         public static final String CATEGORY = "category";
         public static final String CONTACTSTATUS = "contactstatus";
         public static final String CONTACTTYPE = "contacttype";
-        public static final String CONTACT_LOCAL_CREATE_FLAG="contact_local_create_flag";
-        public static final String CONTACT_LOCAL_UPDATE_FLAG="contact_local_update_flag";
-        public static final String CONTACT_REMOTE_POST_FLAG="contact_remote_post_flag";
-        public static final String CONTACT_REMOTE_PUT_FLAG="contact_remote_put_flag";
-        public static final String CONTACT_API_CALL_DATE_TIME="date_time";
 
         public static final String TBCERTIFICATE = "tbcertificate";
         public static final String CERTIFICATE_COLUMN_ID = "_id";
@@ -114,11 +89,6 @@ public class Db {
         public static final String CERTIFICATEDATE = "certificatedate";
         public static final String AUTHORITY = "authority";
         public static final String RANK = "rank";
-        public static final String CERTIFICATE_LOCAL_CREATE_FLAG="certificate_local_create_flag";
-        public static final String CERTIFICATE_LOCAL_UPDATE_FLAG="certificate_local_update_flag";
-        public static final String CERTIFICATE_REMOTE_POST_FLAG="certificate_remote_post_flag";
-        public static final String CERTIFICATE_REMOTE_PUT_FLAG="certificate_remote_put_flag";
-        public static final String CERT_API_CALL_DATE_TIME="date_time";
 
         public static final String VOLUNTEER = "volunteer";
         public static final String VOLUNTEER_COLUMN_ID = "_id";
@@ -129,11 +99,6 @@ public class Db {
         public static final String VOLUNTEER_UPTO = "upto";
         public static final String VOLUNTEER_TYPE = "type";
         public static final String VOLUNTEER_DESCRIPTION = "description";
-        public static final String VOLUNTEER_LOCAL_CREATE_FLAG="volunteer_local_create_flag";
-        public static final String VOLUNTEER_LOCAL_UPDATE_FLAG="volunteer_local_update_flag";
-        public static final String VOLUNTEER_REMOTE_POST_FLAG="volunteer_remote_post_flag";
-        public static final String VOLUNTEER_REMOTE_PUT_FLAG="volunteer_remote_put_flag";
-        public static final String VOLUN_API_CALL_DATE_TIME="date_time";
 
         public static final String AWARDS = "awards";
         public static final String AWARD_COLUMN_ID = "_id";
@@ -142,11 +107,6 @@ public class Db {
         public static final String AWARD_ORGANISATION = "organisation";
         public static final String AWARD_DATE = "date";
         public static final String AWARD_DESCRIPTION = "description";
-        public static final String AWARD_LOCAL_CREATE_FLAG="award_local_create_flag";
-        public static final String AWARD_LOCAL_UPDATE_FLAG="award_local_update_flag";
-        public static final String AWARD_REMOTE_POST_FLAG="award_remote_post_flag";
-        public static final String AWARD_REMOTE_PUT_FLAG="award_remote_put_flag";
-        public static final String AWARD_API_CALL_DATE_TIME="date_time";
 
         public static final String PUBLICATION = "publication";
         public static final String PUBLICATION_COLUMN_ID = "_id";
@@ -157,11 +117,6 @@ public class Db {
         public static final String PUB_URL = "url";
         public static final String PUBLICATION_DATE = "date";
         public static final String PUBLICATION_DESCRIPTION = "description";
-        public static final String PUBLICATION_LOCAL_CREATE_FLAG="publication_local_create_flag";
-        public static final String PUBLICATION_LOCAL_UPDATE_FLAG="publication_local_update_flag";
-        public static final String PUBLICATION_REMOTE_POST_FLAG="publication_remote_post_flag";
-        public static final String PUBLICATION_REMOTE_PUT_FLAG="publication_remote_put_flag";
-        public static final String PUB_API_CALL_DATE_TIME="date_time";
 
         public static final String SAVE_PROFILE_BIT="save_profile_bit";
         public static final String SAVE_PROFILE_BIT_COLUMN_ID="_id";
@@ -207,12 +162,7 @@ public class Db {
                 + LOCATIONTYPE + "  text ,"
                 + EDUCATION_DESCRIPTION + "  text ,"
                 + DEGREEFROM + " text ,"
-                + DEGREEUPTO + " text ,"
-                + EDUCATION_LOCAL_CREATE_FLAG + " integer , "
-                + EDUCATION_LOCAL_UPDATE_FLAG + " integer , "
-                + EDUCATION_REMOTE_POST_FLAG + " integer ,"
-                +EDUCATION_REMOTE_PUT_FLAG + " integer ,"
-                + EDU_API_CALL_DATE_TIME + " date )";
+                + DEGREEUPTO + " text )";
 
 
         public static final String CREATE_SIGUP = "create table " + SIGNUP + " ( "
@@ -234,12 +184,7 @@ public class Db {
                 + JOBLOCATION_TYPE + "  text ,"
                 + EXP_DESCRIPTION + "  text ,"
                 + EXPFROM + " text ,"
-                + EXPUPTO + " text ,"
-                + WORKEXP_LOCAL_CREATE_FLAG + " integer ,"
-                + WORKEXP_LOCAL_UPDATE_FLAG + " integer ,"
-                + WORKEXP_REMOTE_POST_FLAG + " integer , "
-                + WORKEXP_REMOTE_PUT_FLAG + " integer , "
-                + EXP_API_CALL_DATE_TIME + " date )";
+                + EXPUPTO + " text )";
 
         public static final String CREATE_PROJECT = "create table " + PROJECTS + " ( "
                 + PROJECTS_COLUMN_ID + " integer primary key autoincrement , "
@@ -250,12 +195,7 @@ public class Db {
                 + ACHIEVEMENTS + "  text  , "
                 + PROJECTFROM + " text ,"
                 + PROJECTUPTO + "  text ,"
-                + PROJECT_DESCRIPTION + "  text ,"
-                + PROJECTS_LOCAL_CREATE_FLAG +" integer ,"
-                + PROJECTS_LOCAL_UPDATE_FLAG + " integer ,"
-                + PROJECTS_REMOTE_POST_FLAG + " integer , "
-                + PROJECTS_REMOTE_PUT_FLAG + " integer , "
-                + PRO_API_CALL_DATE_TIME + " date )";
+                + PROJECT_DESCRIPTION + "  text )";
 
         public static final String CREATE_CONTACT = " create table " + TBCONTACT + " ( "
                 + CONTACT_COLUMN_ID + " integer primary key autoincrement ,"
@@ -263,12 +203,7 @@ public class Db {
                 + CONTACT + " text , "
                 + CATEGORY + " text , "
                 + CONTACTSTATUS + " text ,"
-                + CONTACTTYPE + " text ,"
-                + CONTACT_LOCAL_CREATE_FLAG + " integer ,"
-                + CONTACT_LOCAL_UPDATE_FLAG + " integer ,"
-                + CONTACT_REMOTE_POST_FLAG + " integer , "
-                + CONTACT_REMOTE_PUT_FLAG + " integer , "
-                + CONTACT_API_CALL_DATE_TIME + " date )";
+                + CONTACTTYPE + " text )";
 
         public static final String CREATE_CERTIFICATE = "create table " + TBCERTIFICATE + " ( "
                 + CERTIFICATE_COLUMN_ID + " integer primary key autoincrement , "
@@ -277,12 +212,7 @@ public class Db {
                 + CERTIFICATETYPE + "  text  , "
                 + CERTIFICATEDATE + " text ,"
                 + AUTHORITY + "  text ,"
-                + RANK + " text ,"
-                + CERTIFICATE_LOCAL_CREATE_FLAG + " integer ,"
-                + CERTIFICATE_LOCAL_UPDATE_FLAG + " integer ,"
-                + CERTIFICATE_REMOTE_POST_FLAG + " integer , "
-                + CERTIFICATE_REMOTE_PUT_FLAG + " integer , "
-                + CERT_API_CALL_DATE_TIME + " date )";
+                + RANK + " text )";
 
 
         public static final String CREATE_VOLUNTEER = "create table " + VOLUNTEER + "("
@@ -293,12 +223,7 @@ public class Db {
                 + VOLUNTEER_ORG + " text ,"
                 + VOLUNTEER_FROM + " text ,"
                 + VOLUNTEER_UPTO + " text ,"
-                + VOLUNTEER_DESCRIPTION + " text ,"
-                + VOLUNTEER_LOCAL_CREATE_FLAG + " integer ,"
-                + VOLUNTEER_LOCAL_UPDATE_FLAG + " integer ,"
-                + VOLUNTEER_REMOTE_POST_FLAG + " integer , "
-                + VOLUNTEER_REMOTE_PUT_FLAG + " integer , "
-                + VOLUN_API_CALL_DATE_TIME + " date )";
+                + VOLUNTEER_DESCRIPTION + " text )";
 
         public static final String CREATE_AWARDS = "create table " + AWARDS + "("
                 + AWARD_COLUMN_ID + " integer primary key autoincrement ,"
@@ -306,12 +231,7 @@ public class Db {
                 + AWARD_TITLE + " text ,"
                 + AWARD_ORGANISATION + " text ,"
                 + AWARD_DATE + " text ,"
-                + AWARD_DESCRIPTION + " text ,"
-                + AWARD_LOCAL_CREATE_FLAG + " integer ,"
-                + AWARD_LOCAL_UPDATE_FLAG + " integer ,"
-                + AWARD_REMOTE_POST_FLAG + " integer , "
-                + AWARD_REMOTE_PUT_FLAG + " integer , "
-                + AWARD_API_CALL_DATE_TIME + " date )";
+                + AWARD_DESCRIPTION + " text )";
 
         public static final String CREATE_PUBLICATION = "create table " + PUBLICATION + "("
                 + PUBLICATION_COLUMN_ID + " integer primary key autoincrement ,"
@@ -321,12 +241,7 @@ public class Db {
                 + AUTHOR + " text ,"
                 + PUB_URL + " text ,"
                 + PUBLICATION_DATE + " text ,"
-                + PUBLICATION_DESCRIPTION + " text ,"
-                + PUBLICATION_LOCAL_CREATE_FLAG + " integer ,"
-                + PUBLICATION_LOCAL_UPDATE_FLAG + " integer ,"
-                + PUBLICATION_REMOTE_POST_FLAG + " integer , "
-                + PUBLICATION_REMOTE_PUT_FLAG + " integer , "
-                + PUB_API_CALL_DATE_TIME + " date )";
+                + PUBLICATION_DESCRIPTION + " text )";
 
 
         public static final String CREATE_SAVE_PROFILE = " create table " + SAVE_PROFILE_BIT + " ( "
@@ -352,11 +267,6 @@ public class Db {
             values.put(AWARD_ORGANISATION,award.organisation() );
             values.put(AWARD_DESCRIPTION,award.description() );
             values.put(AWARD_DATE,award.duration());
-            values.put(AWARD_API_CALL_DATE_TIME,award.date());
-            values.put(AWARD_REMOTE_POST_FLAG,award.postflag());
-            values.put(AWARD_LOCAL_CREATE_FLAG,award.createflag());
-            values.put(AWARD_LOCAL_UPDATE_FLAG,award.updateflag());
-            values.put(AWARD_REMOTE_PUT_FLAG,award.putflag());
             values.put(AWARD_MONGOID,award.mongoid());
             return values;
         }
@@ -373,22 +283,11 @@ public class Db {
             values.put(CERTIFICATEDATE, certificate.certdate());
             values.put(AUTHORITY, certificate.authority());
             values.put(RANK, certificate.rank());
-            values.put(CERT_API_CALL_DATE_TIME,certificate.date());
-            values.put(CERTIFICATE_REMOTE_POST_FLAG,certificate.postflag());
-            values.put(CERTIFICATE_REMOTE_PUT_FLAG,certificate.putflag());
-            values.put(CERTIFICATE_LOCAL_CREATE_FLAG,certificate.createflag());
-            values.put(CERTIFICATE_LOCAL_UPDATE_FLAG,certificate.updateflag());
             values.put(CERTIFICATE_MONGOID,certificate.mongoid());
 
             return values;
         }
-        public static ContentValues set_certificate_status(Certificate certificate){
-            ContentValues values=new ContentValues();
-            values.put(CERTIFICATE_REMOTE_POST_FLAG,certificate.postflag());
-            values.put(CERTIFICATE_REMOTE_PUT_FLAG,certificate.putflag());
-            values.put(CERTIFICATE_MONGOID,certificate.mongoid());
-            return values;
-        }
+
         public static ContentValues insert_education(Education education){
             ContentValues values = new ContentValues();
             values.put(SCHOOLNAME, education.school());
@@ -403,22 +302,10 @@ public class Db {
             values.put(DEGREEFROM, education.from());
             values.put(DEGREEUPTO, education.upto());
             values.put(EDUCATION_DESCRIPTION,education.meta().getDesc());
-            values.put(EDUCATION_LOCAL_CREATE_FLAG,education.createflag());
-            values.put(EDU_API_CALL_DATE_TIME,education.date());
-            values.put(EDUCATION_LOCAL_UPDATE_FLAG,education.updateflag());
             values.put(EDUCATION_MONGOID,education.mongoid());
-            values.put(EDUCATION_REMOTE_POST_FLAG,education.postflag());
-            values.put(EDUCATION_REMOTE_PUT_FLAG,education.putflag());
             return values;
         }
-        public static ContentValues set_education_status(Education education){
-            ContentValues values=new ContentValues();
-            values.put(EDUCATION_REMOTE_POST_FLAG,education.postflag());
-            values.put(EDUCATION_REMOTE_PUT_FLAG,education.postflag());
-            values.put(EDUCATION_MONGOID,education.mongoid());
-            values.put(EDU_API_CALL_DATE_TIME,education.date());
-            return values;
-        }
+
         public static ContentValues insert_user(SignUp signUp){
             ContentValues value=new ContentValues();
             value.put(F_NAME,signUp.first_name());
@@ -440,22 +327,10 @@ public class Db {
             values.put(JOBTYPE, experience.type());
             values.put(JOBLOCATION, experience.location().getName());
             values.put(JOBLOCATION_TYPE, experience.location().getType());
-            values.put(EXP_API_CALL_DATE_TIME,experience.date());
             values.put(EXP_MONGOID,experience.mongoid());
-            values.put(WORKEXP_LOCAL_CREATE_FLAG,experience.createflag());
-            values.put(WORKEXP_LOCAL_UPDATE_FLAG,experience.updateflag());
-            values.put(WORKEXP_REMOTE_POST_FLAG,experience.postflag());
-            values.put(WORKEXP_REMOTE_PUT_FLAG,experience.putflag());
             return values;
         }
-        public static ContentValues set_experience_status(Experience experience){
-            ContentValues values=new ContentValues();
-            values.put(WORKEXP_REMOTE_POST_FLAG,experience.postflag());
-            values.put(WORKEXP_REMOTE_PUT_FLAG,experience.putflag());
-            values.put(EXP_MONGOID,experience.mongoid());
 
-            return values;
-        }
         public static ContentValues insert_project(Project project){
             ContentValues values=new ContentValues();
             values.put(PROJECTNAME, project.project());
@@ -465,41 +340,19 @@ public class Db {
             values.put(ACHIEVEMENTS, project.meta().getResponsibility());
             values.put(PROJECTFROM, project.from());
             values.put(PROJECTUPTO, project.upto());
-            values.put(PRO_API_CALL_DATE_TIME,project.date());
-            values.put(PROJECTS_LOCAL_CREATE_FLAG,project.createflag());
-            values.put(PROJECTS_LOCAL_UPDATE_FLAG,project.updateflag());
-            values.put(PROJECTS_REMOTE_POST_FLAG,project.postflag());
-            values.put(PROJECTS_REMOTE_PUT_FLAG,project.putflag());
             values.put(PROJECT_MONGOID,project.mongoid());
             return values;
         }
-        public static ContentValues set_project_status(Project project){
-            ContentValues values=new ContentValues();
-            values.put(PROJECTS_REMOTE_POST_FLAG,project.postflag());
-            values.put(PROJECTS_REMOTE_PUT_FLAG,project.putflag());
-            values.put(PROJECT_MONGOID,project.mongoid());
-            return values;
-        }
+
         public static ContentValues insert_contact(Contact contact){
             ContentValues values=new ContentValues();
             values.put(CONTACT,contact.contact());
             values.put(CATEGORY,contact.category());
             values.put(CONTACTSTATUS,contact.status());
             values.put(CONTACTTYPE,contact.type());
-            values.put(CONTACT_API_CALL_DATE_TIME,contact.date());
-            values.put(CONTACT_LOCAL_CREATE_FLAG,contact.createflag());
-            values.put(CONTACT_LOCAL_UPDATE_FLAG,contact.updateflag());
-            values.put(CONTACT_REMOTE_POST_FLAG,contact.postflag());
-            values.put(CONTACT_REMOTE_PUT_FLAG,contact.putflag());
             return values;
         }
-        public static ContentValues set_contact_status(Contact contact){
-            ContentValues values=new ContentValues();
-            values.put(CONTACT_REMOTE_POST_FLAG,contact.postflag());
-            values.put(CONTACT_REMOTE_PUT_FLAG,contact.putflag());
-            values.put(CONTACT_MONGOID,contact.mongoid());
-            return values;
-        }
+
         public static ContentValues insert_publication(Publication publication){
             ContentValues values=new ContentValues();
             values.put(PUBLICATION_TITLE,publication.title());
@@ -508,18 +361,6 @@ public class Db {
             values.put(PUB_URL,publication.url());
             values.put(PUBLICATION_DESCRIPTION,publication.description());
             values.put(PUBLICATION_DATE,publication.date());
-            values.put(PUB_API_CALL_DATE_TIME,publication.datetime());
-            values.put(PUBLICATION_LOCAL_CREATE_FLAG,publication.createflag());
-            values.put(PUBLICATION_LOCAL_UPDATE_FLAG,publication.updateflag());
-            values.put(PUBLICATION_REMOTE_POST_FLAG,publication.postflag());
-            values.put(PUBLICATION_REMOTE_PUT_FLAG,publication.putflag());
-            return values;
-        }
-        public static ContentValues set_publication_status(Publication publication){
-            ContentValues values=new ContentValues();
-            values.put(PUBLICATION_REMOTE_POST_FLAG,publication.postflag());
-            values.put(PUBLICATION_REMOTE_PUT_FLAG,publication.putflag());
-            values.put(PUBLICATION_MONGOID,publication.mongoid());
             return values;
         }
         public static ContentValues insert_volunteer(Volunteer volunteer){
@@ -530,22 +371,9 @@ public class Db {
             values.put(VOLUNTEER_ORG,volunteer.organisation());
             values.put(VOLUNTEER_FROM,volunteer.from());
             values.put(VOLUNTEER_UPTO,volunteer.upto());
-            values.put(VOLUN_API_CALL_DATE_TIME,volunteer.date());
-            values.put(VOLUNTEER_LOCAL_CREATE_FLAG,volunteer.createflag());
-            values.put(VOLUNTEER_LOCAL_UPDATE_FLAG,volunteer.updateflag());
-            values.put(VOLUNTEER_REMOTE_POST_FLAG,volunteer.postflag());
-            values.put(VOLUNTEER_REMOTE_PUT_FLAG,volunteer.putflag());
             return values;
         }
-        public static ContentValues set_volunteer_status(Volunteer volunteer){
-            ContentValues values=new ContentValues();
-            values.put(VOLUNTEER_MONGOID,volunteer.mongoid());
-            values.put(VOLUNTEER_REMOTE_POST_FLAG,volunteer.postflag());
-            values.put(VOLUNTEER_REMOTE_PUT_FLAG,volunteer.putflag());
-            return values;
-        }
-
-          public static ContentValues insert_profile(SaveProfile profile){
+        public static ContentValues insert_profile(SaveProfile profile){
               ContentValues values=new ContentValues();
               if (profile.type() != null) values.put(TYPE,profile.type());
               if (profile.meta() != null) values.put(META,profile.meta());
@@ -586,19 +414,18 @@ public class Db {
                     .setDescription(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_DESCRIPTION)))
                     .setDuration(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_DATE)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_COLUMN_ID)))
-                    .setDate(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_API_CALL_DATE_TIME)))
-                    .setPostflag(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_REMOTE_POST_FLAG)))
                     .setMongoid(cursor.getString(cursor.getColumnIndexOrThrow(AWARD_MONGOID)))
                     .build();
         }
         public static LiveSync parseLiveSync(Cursor cursor){
             return LiveSync.builder()
+                    .setBitbefore(cursor.getString(cursor.getColumnIndexOrThrow(BIT_BEFORE_DATA)))
+                    .setBitbefore(cursor.getString(cursor.getColumnIndexOrThrow(BIT_BEFORE_DATA)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(LIVE_SYNC_STATUS_COLUMN_ID)))
                     .setBitmongoid(cursor.getString(cursor.getColumnIndexOrThrow(BIT_MONGO_ID)))
                     .setBit(cursor.getString(cursor.getColumnIndexOrThrow(BIT_TYPE)))
                     .setBitid(cursor.getString(cursor.getColumnIndexOrThrow(BIT_Id)))
-                    .setBitafter(cursor.getString(cursor.getColumnIndexOrThrow(BIT_AFTER_DATA)))
-                    .setBitbefore(cursor.getString(cursor.getColumnIndexOrThrow(BIT_BEFORE_DATA))).build();
+                    .build();
         }
         public static Education parseEducation(Cursor cursor) {
 
@@ -630,7 +457,6 @@ public class Db {
                     .setLocation(new Location(cursor.getString(cursor.getColumnIndexOrThrow(JOBLOCATION)),cursor.getString(cursor.getColumnIndexOrThrow(JOBLOCATION_TYPE))))
                     .setStatus(cursor.getString(cursor.getColumnIndexOrThrow(EXPSTATUS)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(WORKEXK_COLUMN_ID)))
-                    .setDate(cursor.getString(cursor.getColumnIndexOrThrow(EXP_API_CALL_DATE_TIME)))
                     .build();
         }
         public static Project parseProject(Cursor cursor) {
@@ -641,7 +467,6 @@ public class Db {
                     .setFrom(cursor.getString(cursor.getColumnIndexOrThrow(PROJECTFROM)))
                     .setUpto(cursor.getString(cursor.getColumnIndexOrThrow(PROJECTUPTO)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(PROJECTS_COLUMN_ID)))
-                    .setDate(cursor.getString(cursor.getColumnIndexOrThrow(PRO_API_CALL_DATE_TIME)))
                     .build();
         }
         public static Certificate parseCertificate(Cursor cursor) {
@@ -652,7 +477,6 @@ public class Db {
                     .setRank(cursor.getString(cursor.getColumnIndexOrThrow(RANK)))
                     .setType(cursor.getString(cursor.getColumnIndexOrThrow(CERTIFICATETYPE)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(CERTIFICATE_COLUMN_ID)))
-                    .setDate(cursor.getString(cursor.getColumnIndexOrThrow(CERT_API_CALL_DATE_TIME)))
                     .build();
         }
         public static Contact parseContact(Cursor cursor) {
@@ -662,7 +486,6 @@ public class Db {
                     .setType(cursor.getString(cursor.getColumnIndexOrThrow(CONTACTTYPE)))
                     .setStatus(cursor.getString(cursor.getColumnIndexOrThrow(CONTACTSTATUS)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(CONTACT_COLUMN_ID)))
-                    .setDate(cursor.getString(cursor.getColumnIndexOrThrow(CONTACT_API_CALL_DATE_TIME)))
                     .build();
         }
         public static Publication parsePublication(Cursor cursor) {
@@ -674,7 +497,6 @@ public class Db {
                     .setAuthors(cursor.getString(cursor.getColumnIndexOrThrow(AUTHOR)))
                     .setDate(cursor.getString(cursor.getColumnIndexOrThrow(PUBLICATION_DATE)))
                     .setDescription(cursor.getString(cursor.getColumnIndexOrThrow(PUBLICATION_DESCRIPTION)))
-                    .setDate(cursor.getString(cursor.getColumnIndexOrThrow(PUB_API_CALL_DATE_TIME)))
                     .build();
         }
         public static Volunteer parseVolunteer(Cursor cursor) {
@@ -686,7 +508,6 @@ public class Db {
                     .setType(cursor.getString(cursor.getColumnIndexOrThrow(VOLUNTEER_TYPE)))
                     .setUpto(cursor.getString(cursor.getColumnIndexOrThrow(VOLUNTEER_UPTO)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(VOLUNTEER_COLUMN_ID)))
-                    .setDate(cursor.getString(cursor.getColumnIndexOrThrow(VOLUN_API_CALL_DATE_TIME)))
                     .build();
         }
         public static SaveProfile parseSaveProfile(Cursor cursor){

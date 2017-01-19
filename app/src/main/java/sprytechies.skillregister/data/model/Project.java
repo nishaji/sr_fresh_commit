@@ -19,12 +19,8 @@ public abstract class Project implements Parcelable {
     @Nullable public abstract String from();
     @Nullable public abstract String  upto();
     @Nullable public abstract String id();
-    @Nullable public abstract String createflag();
-    @Nullable public abstract String updateflag();
-    @Nullable public abstract String postflag();
-    @Nullable public abstract String putflag();
     @Nullable public abstract String mongoid();
-    @Nullable public abstract String date();
+
 
     public static Project.Builder builder() {
         return new AutoValue_Project.Builder();
@@ -43,12 +39,7 @@ public abstract class Project implements Parcelable {
         public abstract Project.Builder setFrom(String from);
         public abstract Project.Builder setUpto(String upto);
         public abstract Project.Builder setId(String id);
-        public abstract Project.Builder setCreateflag(String createflag);
-        public abstract Project.Builder setUpdateflag(String updateflag);
-        public abstract Project.Builder setPostflag(String postflag);
-        public abstract Project.Builder setPutflag(String putflag);
         public abstract Project.Builder setMongoid(String mongoid);
-        public abstract Project.Builder setDate(String date);
         public abstract Project build();
 
     }

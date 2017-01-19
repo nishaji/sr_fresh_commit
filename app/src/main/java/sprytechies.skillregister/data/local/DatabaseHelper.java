@@ -144,9 +144,9 @@ public class DatabaseHelper {
         });
     }
 
-    public Observable<List<LiveSyncinsert>> getLiveSync(String bit_before) {
+    public Observable<List<LiveSyncinsert>> getLiveSync() {
         return mDb.createQuery(Db.RibotProfileTable.LIVE_SYNC_STATUS,
-                "SELECT * FROM " + Db.RibotProfileTable.LIVE_SYNC_STATUS + " WHERE " + Db.RibotProfileTable.BIT_BEFORE_DATA + "=" + bit_before)
+                "SELECT * FROM " + Db.RibotProfileTable.LIVE_SYNC_STATUS)
                 .mapToList(new Func1<Cursor, LiveSyncinsert>() {
                     @Override
                     public LiveSyncinsert call(Cursor cursor) {
@@ -671,7 +671,7 @@ public class DatabaseHelper {
     }
     public Observable<List<AwardInsert>> getAwardForPost(String mongo_id) {
         return mDb.createQuery(Db.RibotProfileTable.AWARDS,
-                "SELECT * FROM " + Db.RibotProfileTable.AWARDS + " WHERE " + Db.RibotProfileTable.AWARD_LOCAL_CREATE_FLAG + "=" + mongo_id)
+                "SELECT * FROM " + Db.RibotProfileTable.AWARDS + " WHERE " + Db.RibotProfileTable.AWARD_MONGOID + "=" +  "'" + mongo_id + "'")
                 .mapToList(new Func1<Cursor, AwardInsert>() {
                     @Override
                     public AwardInsert call(Cursor cursor) {

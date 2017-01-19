@@ -23,12 +23,7 @@ public abstract class Experience implements Parcelable {
     @Nullable public abstract String status();
     @Nullable public abstract String meta();
     @Nullable public abstract String id();
-    @Nullable public abstract String createflag();
-    @Nullable public abstract String updateflag();
-    @Nullable public abstract String postflag();
-    @Nullable public abstract String putflag();
     @Nullable public abstract String mongoid();
-    @Nullable public abstract String date();
 
 
     public static Experience.Builder builder() {
@@ -51,12 +46,7 @@ public abstract class Experience implements Parcelable {
         public abstract Experience.Builder setStatus(String status);
         public abstract Experience.Builder setMeta(String meta);
         public abstract Experience.Builder setId(String id);
-        public abstract Experience.Builder setCreateflag(String createflag);
-        public abstract Experience.Builder setUpdateflag(String updateflag);
-        public abstract Experience.Builder setPostflag(String postflag);
-        public abstract Experience.Builder setPutflag(String putflag);
         public abstract Experience.Builder setMongoid(String mongoid);
-        public abstract Experience.Builder setDate(String date);
         public abstract Experience build();
 
     }

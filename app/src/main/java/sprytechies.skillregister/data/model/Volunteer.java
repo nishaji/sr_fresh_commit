@@ -20,12 +20,7 @@ public abstract class Volunteer implements Parcelable {
     @Nullable public abstract String from();
     @Nullable public abstract String upto();
     @Nullable  public abstract String id();
-    @Nullable public abstract String createflag();
-    @Nullable public abstract String updateflag();
-    @Nullable public abstract String postflag();
-    @Nullable public abstract String putflag();
     @Nullable public abstract String mongoid();
-    @Nullable public abstract String date();
 
     public static Volunteer.Builder builder() {
         return new AutoValue_Volunteer.Builder();
@@ -44,12 +39,7 @@ public abstract class Volunteer implements Parcelable {
         public abstract Volunteer.Builder setFrom(String from);
         public abstract Volunteer.Builder setUpto(String upto);
         public abstract Volunteer.Builder setId(String id);
-        public abstract Volunteer.Builder setCreateflag(String createflag);
-        public abstract Volunteer.Builder setUpdateflag(String updateflag);
-        public abstract Volunteer.Builder setPostflag(String postflag);
-        public abstract Volunteer.Builder setPutflag(String putflag);
         public abstract Volunteer.Builder setMongoid(String mongoid);
-        public abstract Volunteer.Builder setDate(String date);
         public abstract Volunteer build();
 
     }

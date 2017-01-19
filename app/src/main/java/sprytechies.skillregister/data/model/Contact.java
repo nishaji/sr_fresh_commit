@@ -19,12 +19,8 @@ public abstract class Contact implements Parcelable {
     @Nullable public abstract String type();
     @Nullable public abstract String status();
     @Nullable public abstract String id();
-    @Nullable public abstract String createflag();
-    @Nullable public abstract String updateflag();
-    @Nullable public abstract String postflag();
-    @Nullable public abstract String putflag();
     @Nullable public abstract String mongoid();
-    @Nullable public abstract String date();
+
 
 
     public static Contact.Builder builder() {
@@ -41,12 +37,7 @@ public abstract class Contact implements Parcelable {
         public abstract Contact.Builder setType(String type);
         public abstract Contact.Builder setStatus(String status);
         public abstract Contact.Builder setId(String id);
-        public abstract Contact.Builder setCreateflag(String createflag);
-        public abstract Contact.Builder setUpdateflag(String updateflag);
-        public abstract Contact.Builder setPostflag(String postflag);
-        public abstract Contact.Builder setPutflag(String putflag);
         public abstract Contact.Builder setMongoid(String mongoid);
-        public abstract Contact.Builder setDate(String date);
         public abstract Contact build();
 
     }

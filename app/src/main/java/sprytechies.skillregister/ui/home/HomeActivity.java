@@ -157,7 +157,7 @@ public class HomeActivity extends BaseActivity {
                                 SharedPreferences token_id =getSharedPreferences(SHARED_PREFERENCE, 0);
                                 SharedPreferences.Editor edit = token_id.edit();edit.putString("id", id);edit.putString("access_token",access_token);edit.apply();
                                 databaseHelper.setProfile(SaveProfile.builder().setType("current").build());
-                                startService(PullService.getStartIntent(HomeActivity.this));
+                               // startService(PullService.getStartIntent(HomeActivity.this));
                                 startActivity(new Intent(HomeActivity.this, ViewActivity.class));
                             }
                             else{

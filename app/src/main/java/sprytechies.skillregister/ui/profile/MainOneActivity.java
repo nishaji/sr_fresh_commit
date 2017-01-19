@@ -23,7 +23,7 @@ String id="id";
         System.out.println(id != null+"id"+id);
         if (id != null)
         {
-            startService(PullService.getStartIntent(this));
+            //startService(PullService.getStartIntent(this));
         }
         SharedPreferences settings = getSharedPreferences(HomeActivity.LOGIN_SHARED_PREFERENCE, 0);
         boolean hasLoggedIn = settings.getBoolean("hasLoggedIn", false);

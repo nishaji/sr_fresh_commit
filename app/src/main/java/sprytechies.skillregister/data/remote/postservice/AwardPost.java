@@ -4,9 +4,13 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.IBinder;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
 import javax.inject.Inject;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,22 +48,15 @@ import sprytechies.skillregister.util.NetworkUtil;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-/**
- * Created by sprydev5 on 23/11/16.
- */
 
 public class AwardPost extends Service {
 
-    @Inject
-    DataManager mDataManager;
-    @Inject
-    DatabaseHelper databaseHelper;
+    @Inject DataManager mDataManager;
+    @Inject DatabaseHelper databaseHelper;
     private Subscription mSubscription;
     String id, access_token;
     Date date = new Date();
-    JSONObject local_mongo_id = new JSONObject();
-    JSONArray local_mongo_id_array = new JSONArray();
-    String before = "", after = "";
+
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, AwardPost.class);
@@ -94,9 +93,9 @@ public class AwardPost extends Service {
     }
 
     private void post_award() {
-        final String blank="0";
+        final String mongo="mongo";
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getLiveSync(blank).observeOn(AndroidSchedulers.mainThread())
+        mSubscription = databaseHelper.getLiveSync().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<LiveSyncinsert>>() {
                     @Override
                     public void onCompleted() {
@@ -105,18 +104,22 @@ public class AwardPost extends Service {
                     public void onError(Throwable e) {
                         Timber.e(e, "There was an error loading the education.");
                     }
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onNext(final List<LiveSyncinsert> sync) {
-                        System.out.println("sync"+sync);
+
+                        String before,bit="mongo";
                         if(sync.size()==0){
-                            call_pull();
+                            System.out.println("hhhhhhhhhhhhhhhhhhhh"+sync.size());
+                           // databaseHelper.update_award_flag(Award.builder().build(),);
+                           // call_pull();
                         }else{
-                            for (int i = 0; i < sync.size(); i++) {
-                                before = sync.get(i).liveSync().bitbefore();
-                                System.out.println("before"+sync);
-                                if (before.equals(blank)) {
+                            for(int i=0;i<sync.size();i++){
+                                before=sync.get(i).liveSync().bitmongoid();
+                                if (Objects.equals(before, bit)) {
+                                    System.out.println("in if");
                                     RxUtil.unsubscribe(mSubscription);
-                                    String mongo="0";
+                                    String mongo="mongo";
                                     mSubscription = databaseHelper.getAwardForPost(mongo)
                                             .observeOn(AndroidSchedulers.mainThread())
                                             .subscribeOn(Schedulers.io())
@@ -124,12 +127,10 @@ public class AwardPost extends Service {
                                                 @Override
                                                 public void onCompleted() {
                                                 }
-
                                                 @Override
                                                 public void onError(Throwable e) {
                                                     Timber.e(e, "There was an error loading the award for post.");
                                                 }
-
                                                 @Override
                                                 public void onNext(final List<AwardInsert> award) {
                                                     System.out.println("award" + award);
@@ -137,16 +138,14 @@ public class AwardPost extends Service {
                                                     for (int i = 0; i < award.size(); i++) {
                                                         Awrd cert = new Awrd(award.get(i));
                                                         Call<Awrd> call = service.post_award(id, access_token, cert);
+                                                        final int ii=i;
                                                         call.enqueue(new Callback <Awrd>() {
                                                             @Override
                                                             public void onResponse(Call <Awrd> call, Response <Awrd> response) {
                                                                 Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                                                 if (response.code() == 200) {
                                                                     String mongo_id=response.body().getId();
-                                                                    for(int j=0;j<sync.size();j++){
-                                                                        System.out.println("mongo_id"+mongo_id);
-                                                                        databaseHelper.upDatesyncstatus(LiveSync.builder().setBit("award").setBitmongoid(mongo_id).setBitafter(mongo_id).setBitbefore("1").build(),sync.get(j).liveSync().id());
-                                                                    }
+                                                                    databaseHelper.upDatesyncstatus(LiveSync.builder().setBit("award").setBitmongoid(mongo_id).setBitafter(mongo_id).setBitbefore(mongo_id).setBitid(award.get(ii).award().id()).build(),sync.get(ii).liveSync().id());
                                                                     System.out.println("Award send to server successfully");
                                                                     Toast.makeText(AwardPost.this, "Award send to server successfully", Toast.LENGTH_SHORT).show();
                                                                 }
@@ -160,8 +159,17 @@ public class AwardPost extends Service {
                                                     }
                                                 }
                                             });
+
+
+
+                                }else {
+                                    System.out.println("in else"+sync.size());
+                                    for(int j=0; j<sync.size();j++){
+                                        databaseHelper.update_award_flag(Award.builder().setMongoid(sync.get(j).liveSync().bitmongoid()).build(),sync.get(j).liveSync().bitid());
+                                    }
                                 }
                             }
+
                         }
 
                     }
