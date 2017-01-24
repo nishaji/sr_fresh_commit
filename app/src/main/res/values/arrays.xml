@@ -2,11 +2,11 @@
 <resources>
     <string-array name="industry_array">
         <item>Accounting</item>
-        <item>Airlines/Aviation</item>
+        <item>Airlines or Aviation</item>
         <item>Alternative Dispute Resolution</item>
         <item>Alternative Medicine</item>
         <item>Animation</item>
-        <item>Apparel/Fashion</item>
+        <item>Apparel or Fashion</item>
         <item>Architecture and Planning</item>
         <item>Arts and Crafts</item>
         <item>Automotive</item>

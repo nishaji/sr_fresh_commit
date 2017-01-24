@@ -91,7 +91,7 @@ public class ProjectPost extends Service {
     }
 public void post(){
     System.out.println("calling post method");
-     Integer integer=0;
+     String integer="mongo";
     RxUtil.unsubscribe(mSubscription);
     mSubscription = databaseHelper.getProjectForPost(integer).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
             .subscribe(new Subscriber<List<ProjectInsert>>() {

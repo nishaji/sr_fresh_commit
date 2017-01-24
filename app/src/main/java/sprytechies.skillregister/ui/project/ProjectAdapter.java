@@ -30,16 +30,16 @@ import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Meta;
 import sprytechies.skillregister.data.model.Project;
 import sprytechies.skillregister.data.model.ProjectInsert;
+import sprytechies.skillregister.ui.education.EducationAdapter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
     List<ProjectInsert> projects;
-    @Inject
-    DatabaseHelper databaseHelper;
-    Context context;
-    String edit_id;
+    @Inject DatabaseHelper databaseHelper;
+    Context context;String edit_id;
     private Subscription mSubscription;
+    AlertDialog ab;
 
     @Inject
     ProjectAdapter() {
@@ -67,7 +67,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
             public void onClick(View view) {
                 String deleteid = projects.get(position).project().id();
                 databaseHelper.delete_project(deleteid);
-                context.startActivity(new Intent(context, ProjectActivity.class));
             }
         });
         holder.edit.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +77,12 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         });
 
     }
-
+    public void onViewDetachedFromWindow(ProjectViewHolder holder) {
+        if (ab != null) {
+            ab.dismiss();
+            ab = null;
+        }
+    }
     private void edit_project() {
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getProjectForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
@@ -155,8 +159,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                                         databaseHelper.edit_project(Project.builder()
                                                 .setProject(project_name.getText().toString())
                                                 .setMeta(new Meta(responsibility.getText().toString(),achievement.getText().toString(),desc.getText().toString()))
-                                                .setRole(role.getText().toString()).setFrom(from).setUpto(to).setPutflag("0").build(), edit_id);
-                                        context.startActivity(new Intent(context, ProjectActivity.class));
+                                                .setRole(role.getText().toString()).setFrom(from).setUpto(to).build(), edit_id);
                                     }
                                 })
                                 .setNegativeButton("Cancel",
@@ -166,7 +169,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                                             }
                                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();alertDialogAndroid.show();
+                        ab = alertDialogBuilderUserInput.create();ab.show();
 
                     }
                 });

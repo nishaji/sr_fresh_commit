@@ -70,11 +70,10 @@ public class AddAwardActivity extends BaseActivity implements DatePickerDialog.O
             Toast.makeText(AddAwardActivity.this, "Please pick date", Toast.LENGTH_SHORT).show();
         }
         else {
-            Date date=new Date();
             databaseHelper.setAwards(Award.builder()
                     .setTitle(award_title.getText().toString()).setOrganisation(award_org.getText().toString())
                     .setDescription(award_desc.getText().toString()).setDuration(award_du_text.getText().toString())
-                    .setDate(date.toString()).setMongoid("mongo").build());
+                    .setMongoid("mongo").build());
                      startActivity(new Intent(AddAwardActivity.this,AwardActivity.class));
                      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             try {

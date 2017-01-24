@@ -356,7 +356,7 @@ public class Db {
         public static ContentValues insert_publication(Publication publication){
             ContentValues values=new ContentValues();
             values.put(PUBLICATION_TITLE,publication.title());
-            values.put(PUBLISHER,publication.publishers());
+            values.put(PUBLISHER,publication.publisher());
             values.put(AUTHOR,publication.authors());
             values.put(PUB_URL,publication.url());
             values.put(PUBLICATION_DESCRIPTION,publication.description());
@@ -420,7 +420,7 @@ public class Db {
         public static LiveSync parseLiveSync(Cursor cursor){
             return LiveSync.builder()
                     .setBitbefore(cursor.getString(cursor.getColumnIndexOrThrow(BIT_BEFORE_DATA)))
-                    .setBitbefore(cursor.getString(cursor.getColumnIndexOrThrow(BIT_BEFORE_DATA)))
+                    .setBitafter(cursor.getString(cursor.getColumnIndexOrThrow(BIT_AFTER_DATA)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(LIVE_SYNC_STATUS_COLUMN_ID)))
                     .setBitmongoid(cursor.getString(cursor.getColumnIndexOrThrow(BIT_MONGO_ID)))
                     .setBit(cursor.getString(cursor.getColumnIndexOrThrow(BIT_TYPE)))
@@ -493,7 +493,7 @@ public class Db {
                     .setTitle(cursor.getString(cursor.getColumnIndexOrThrow(PUBLICATION_TITLE)))
                     .setId(cursor.getString(cursor.getColumnIndexOrThrow(PUBLICATION_COLUMN_ID)))
                     .setUrl(cursor.getString(cursor.getColumnIndexOrThrow(PUB_URL)))
-                    .setPublishers(cursor.getString(cursor.getColumnIndexOrThrow(PUBLISHER)))
+                    .setPublisher(cursor.getString(cursor.getColumnIndexOrThrow(PUBLISHER)))
                     .setAuthors(cursor.getString(cursor.getColumnIndexOrThrow(AUTHOR)))
                     .setDate(cursor.getString(cursor.getColumnIndexOrThrow(PUBLICATION_DATE)))
                     .setDescription(cursor.getString(cursor.getColumnIndexOrThrow(PUBLICATION_DESCRIPTION)))

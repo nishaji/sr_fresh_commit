@@ -103,10 +103,6 @@ public class PublicationPut extends Service {
                                         Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                         if (response.code() == 200) {
                                             Toast.makeText(PublicationPut.this, "publication update to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_publication_flag(Publication.builder()
-                                                    .setPutflag("1").setPostflag("1").setDate(date.toString())
-                                                    .setDate(date.toString())
-                                                    .build(), publication.get(finalI).publication().id());
                                         }
                                     }
                                     @Override

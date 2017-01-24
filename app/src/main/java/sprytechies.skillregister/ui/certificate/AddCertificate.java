@@ -88,8 +88,7 @@ public class AddCertificate extends BaseActivity implements DatePickerDialog.OnD
             databaseHelper.setCertificate(Certificate.builder()
                     .setAuthority(authority.getText().toString()).setCertdate(du_text.getText().toString())
                     .setName(cert_name.getText().toString())
-                    .setType(certificate_type.getText().toString()).setRank(rank.getText().toString())
-                    .setDate(date.toString()).setCreateflag("1").setUpdateflag("0").setPostflag("0").setPutflag("0").build());
+                    .setType(certificate_type.getText().toString()).setRank(rank.getText().toString()).build());
             startActivity(new Intent(AddCertificate.this, CertificateActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }

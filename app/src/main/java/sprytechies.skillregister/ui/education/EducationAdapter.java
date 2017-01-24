@@ -27,6 +27,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
+import sprytechies.skillregister.data.model.EduMeta;
 import sprytechies.skillregister.data.model.Education;
 import sprytechies.skillregister.data.model.EducationInsert;
 import sprytechies.skillregister.data.model.Location;
@@ -63,7 +64,6 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
             public void onClick(View view) {
               String deleteid=education.get(position).education().id();
                 databaseHelper.delete_education(deleteid);
-                context.startActivity( new Intent(context, EducationActivity.class));
 
             }});
         holder.edit.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +89,12 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
             super(itemView);
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
+        }
+    }
+    public void onViewDetachedFromWindow(EducationViewHolder holder) {
+        if (ab != null) {
+            ab.dismiss();
+            ab = null;
         }
     }
     private void edit_education() {
@@ -118,11 +124,13 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
                         final EditText location=(EditText)mView.findViewById(R.id.di_location_name);
                         final MaterialBetterSpinner location_type=(MaterialBetterSpinner) mView.findViewById(R.id.di_location_type);
                         final EditText title=(EditText)mView.findViewById(R.id.di_edu_title);
+                        final EditText description=(EditText)mView.findViewById(R.id.di_description);
                         final TextView duration=(TextView)mView.findViewById(R.id.di_edu_duration_text);
                         final ImageView duration_clock=(ImageView)mView.findViewById(R.id.di_edu_duration);
                         String du=education.get(0).education().from().concat("To").concat(education.get(0).education().upto());
                         duration.setText(du);
                         schoolname.setText(education.get(0).education().school());
+                        description.setText(education.get(0).education().meta().getDesc());
                         ArrayAdapter<String> school_type_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, context.getResources().getStringArray(R.array.school_type));
                         school_type_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                         school_type.setAdapter(school_type_adapter);
@@ -219,15 +227,12 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
                                         String[] parts = duration.getText().toString().split("To");
                                         final String from = parts[0];final String to = parts[1];
                                         databaseHelper.edit_education
-                                                (Education.builder()
-                                                        .setCgpi(cgpi.getText().toString()).setCgpitype(cgpi_type.getText().toString())
+                                                (Education.builder().setCgpi(cgpi.getText().toString()).setCgpitype(cgpi_type.getText().toString())
+                                                        .setMeta(new EduMeta(description.getText().toString()))
                                                         .setCourse(course.getText().toString()).setEdutype(education_type.getText().toString())
-                                                        .setFrom(from).setUpto(to).setPutflag("0")
-                                                        .setLocation(new Location(location.getText().toString(),location_type.getText().toString()))
-                                                        .setSchool(schoolname.getText().toString())
-                                                        .setSchooltype(school_type.getText().toString()).setTitle(title.getText().toString())
+                                                        .setFrom(from).setUpto(to).setLocation(new Location(location.getText().toString(),location_type.getText().toString()))
+                                                        .setSchool(schoolname.getText().toString()).setSchooltype(school_type.getText().toString()).setTitle(title.getText().toString())
                                                         .build(),edit_id);
-                                        context.startActivity( new Intent(context, EducationActivity.class));
                                     }}
                                 ).setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {
@@ -241,5 +246,6 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
                 });
 
     }
+
 }
 

@@ -77,9 +77,9 @@ public class EducationPost extends Service {
     }
 
     private void post_education() {
-        Integer integer = 0;
+        String mongo = "mongo";
         RxUtil.unsubscribe(mSubscription);
-        mSubscription = databaseHelper.getEducationForPost(integer)
+        mSubscription = databaseHelper.getEducationForPost(mongo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<EducationInsert>>() {
@@ -103,7 +103,6 @@ public class EducationPost extends Service {
                             for (int i = 0; i < education.size(); i++) {
                                 Edu user = new Edu(education.get(i));
                                 Call<Edu> call = service.post_education(id, access_token, user);
-                                final int finalI = i;
                                 call.enqueue(new Callback<Edu>() {
                                     @Override
                                     public void onResponse(Call<Edu> call, Response<Edu> response) {
@@ -111,11 +110,8 @@ public class EducationPost extends Service {
                                         Log.v("SUCCESS?", didItWork);
                                         Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                         if (response.code() == 200) {
-                                            String id = response.body().getId();
                                             System.out.println("education send to server successfully");
                                             Toast.makeText(EducationPost.this, "Education send to server successfully", Toast.LENGTH_SHORT).show();
-                                            //databaseHelper.update_education_flag(Education.builder().setPostflag("1").setDate(date.toString()).setMongoid(id).build(), education.get(finalI).education().id());
-                                           // databaseHelper.setSyncstatus(LiveSync.builder().setBit("education").setPost("1").build());
                                         }
                                     }
                                     @Override

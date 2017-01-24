@@ -101,7 +101,6 @@ public class AddEducation extends BaseActivity {
             Toast.makeText(AddEducation.this, "Please pick date", Toast.LENGTH_SHORT).show();
         }
         else {
-            Date date=new Date();
             String[] parts = edu_duration_text.getText().toString().split("To");
             String from = parts[0];String to = parts[1];
             databaseHelper.setEducation(Education.builder()
@@ -110,7 +109,7 @@ public class AddEducation extends BaseActivity {
                     .setLocation(new Location(location_name.getText().toString(),location_type.getText().toString()))
                     .setSchool(school_name.getText().toString()).setSchooltype(school_type.getText().toString())
                     .setMeta(new EduMeta(desc.getText().toString()))
-                    .setTitle(edu_title.getText().toString()).setDate(date.toString()).setPostflag("0").setPutflag("0").setCreateflag("1").setUpdateflag("0").build());
+                    .setMongoid("mongo").setTitle(edu_title.getText().toString()).build());
             startActivity(new Intent(AddEducation.this,EducationActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 

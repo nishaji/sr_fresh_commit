@@ -55,7 +55,9 @@ public class AwardPost extends Service {
     @Inject DatabaseHelper databaseHelper;
     private Subscription mSubscription;
     String id, access_token;
-    Date date = new Date();
+    JSONObject awrd=new JSONObject();
+    JSONObject pull_awrd=new JSONObject();
+
 
 
     public static Intent getStartIntent(Context context) {
@@ -93,7 +95,6 @@ public class AwardPost extends Service {
     }
 
     private void post_award() {
-        final String mongo="mongo";
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getLiveSync().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Subscriber<List<LiveSyncinsert>>() {
@@ -116,7 +117,9 @@ public class AwardPost extends Service {
                         }else{
                             for(int i=0;i<sync.size();i++){
                                 before=sync.get(i).liveSync().bitmongoid();
+                                System.out.println(before+" "+"bit"+Objects.equals(before, bit));
                                 if (Objects.equals(before, bit)) {
+                                    System.out.println("bit"+before + " " + bit);
                                     System.out.println("in if");
                                     RxUtil.unsubscribe(mSubscription);
                                     String mongo="mongo";
@@ -143,14 +146,24 @@ public class AwardPost extends Service {
                                                             @Override
                                                             public void onResponse(Call <Awrd> call, Response <Awrd> response) {
                                                                 Log.v("RESPONSE_CODE", String.valueOf(response.code()));
+
                                                                 if (response.code() == 200) {
+
                                                                     String mongo_id=response.body().getId();
-                                                                    databaseHelper.upDatesyncstatus(LiveSync.builder().setBit("award").setBitmongoid(mongo_id).setBitafter(mongo_id).setBitbefore(mongo_id).setBitid(award.get(ii).award().id()).build(),sync.get(ii).liveSync().id());
+                                                                    try {
+                                                                        awrd.put("title",award.get(ii).award().title());
+                                                                        awrd.put("org",award.get(ii).award().organisation());
+                                                                        awrd.put("des",award.get(ii).award().description());
+                                                                        awrd.put("date",award.get(ii).award().duration());
+                                                                        awrd.put("mongo_id",mongo_id);
+                                                                    } catch (JSONException e) {
+                                                                        e.printStackTrace();
+                                                                    }
+                                                                    databaseHelper.upDatesyncstatus(LiveSync.builder().setBit("award").setBitmongoid(mongo_id).setBitafter(awrd.toString()).setBitbefore(awrd.toString()).setBitid(award.get(ii).award().id()).build(),sync.get(ii).liveSync().id());
                                                                     System.out.println("Award send to server successfully");
                                                                     Toast.makeText(AwardPost.this, "Award send to server successfully", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             }
-
                                                             @Override
                                                             public void onFailure(Call <Awrd> call, Throwable t) {
                                                                 System.out.println("checking failure" + t.getLocalizedMessage());
@@ -160,13 +173,13 @@ public class AwardPost extends Service {
                                                 }
                                             });
 
-
-
                                 }else {
-                                    System.out.println("in else"+sync.size());
-                                    for(int j=0; j<sync.size();j++){
-                                        databaseHelper.update_award_flag(Award.builder().setMongoid(sync.get(j).liveSync().bitmongoid()).build(),sync.get(j).liveSync().bitid());
+                                    System.out.println("fdssssssssss");
+                                    for(int k=0; k<sync.size();k++){
+                                        databaseHelper.update_award_flag(Award.builder().setMongoid(sync.get(k).liveSync().bitmongoid()).build(),sync.get(k).liveSync().bitid());
                                     }
+
+
                                 }
                             }
 
@@ -184,14 +197,18 @@ public class AwardPost extends Service {
             public void onResponse(Call<List<Awrd>> call, Response<List<Awrd>> response) {
                 Log.v("ProjectPullRESPONSECODE", String.valueOf(response.code()));
                 if (response.code() == 200) {
-                    List<Awrd> awards = response.body();
-                    databaseHelper.flush_all_awards(Award.builder().build());
-                    for (int i = 0; i < awards.size(); i++) {
-                        databaseHelper.setAwards(Award.builder()
-                                .setDescription(awards.get(i).getDesc()).setDuration(awards.get(i).getDate().toString())
-                                .setOrganisation(awards.get(i).getOrg()).setTitle(awards.get(i).getTitle())
-                                .setMongoid(awards.get(i).getId()).setDate(date.toString()).build());
-                       // databaseHelper.setSyncstatus(LiveSync.builder().setBit("award").setBitmongoid(awards.get(i).getId()).setBitafter(awards.get(i).getId()).build());
+                    List<Awrd> award = response.body();
+                    for (int i = 0; i < award.size(); i++) {
+                        try {
+                            pull_awrd.put("title", award.get(i).getTitle());
+                            pull_awrd.put("org", award.get(i).getOrg());
+                            pull_awrd.put("des", award.get(i).getDesc());
+                            pull_awrd.put("date", award.get(i).getDate());
+                            pull_awrd.put("mongo_id", award.get(i).getId());
+                             System.out.println(pull_awrd);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

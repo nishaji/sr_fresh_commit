@@ -41,7 +41,7 @@
             app:met_textColorHint="#9E9E9E"
             app:met_floatingLabelTextColor="#000"
             android:maxLines="1"
-            android:inputType="number"/>
+            android:inputType="text"/>
 
 
     </LinearLayout>

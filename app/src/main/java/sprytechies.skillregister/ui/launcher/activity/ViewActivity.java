@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import sprytechies.skillregister.R;
+import sprytechies.skillregister.data.PullService;
 import sprytechies.skillregister.data.SyncService;
 import sprytechies.skillregister.data.remote.postservice.AwardPost;
 import sprytechies.skillregister.ui.base.BaseActivity;
@@ -46,6 +47,7 @@ public class ViewActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
+        assert ab != null;
         ab.setHomeAsUpIndicator(R.mipmap.ic_menu_white_24dp);
         ab.setDisplayHomeAsUpEnabled(true);
         navigationView = (NavigationView) findViewById(R.id.nav_drawer);
@@ -72,7 +74,7 @@ public class ViewActivity extends BaseActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             case R.id.sync:
-                startService(AwardPost.getStartIntent(this));
+                //startService(PullService.getStartIntent(this));
 
         }
         return super.onOptionsItemSelected(item);

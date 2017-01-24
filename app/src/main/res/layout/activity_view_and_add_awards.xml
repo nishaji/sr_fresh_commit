@@ -19,23 +19,12 @@
             android:background="@color/style_color_accent"
             />
     </android.support.design.widget.AppBarLayout>
-
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/award_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    <TextView
-        android:layout_gravity="center"
-        android:layout_below="@+id/awardrecycler"
-        android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:gravity="center"
-        android:visibility="gone"
-        android:text="Click + button to add Awards" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/award_fab"
         android:layout_width="wrap_content"

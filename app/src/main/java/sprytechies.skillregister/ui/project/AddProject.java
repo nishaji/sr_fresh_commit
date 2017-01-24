@@ -76,9 +76,7 @@ public class AddProject extends BaseActivity {
             String from = parts[0];String to = parts[1];
             databaseHelper.setProject(Project.builder()
                     .setProject(project_name.getText().toString()).setMeta(new Meta(responsibility.getText().toString(),achievement.getText().toString(),desc.getText().toString()))
-                    .setRole(role.getText().toString()).setFrom(from).setUpto(to)
-                    .setDate(date.toString()).setPostflag("0").setPutflag("0").setCreateflag("1").setUpdateflag("0").build());
-            //databaseHelper.setSyncstatus(LiveSync.builder().setBit("project").setPost("0").build());
+                    .setRole(role.getText().toString()).setFrom(from).setUpto(to).build());
             startActivity(new Intent(AddProject.this,ProjectActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 

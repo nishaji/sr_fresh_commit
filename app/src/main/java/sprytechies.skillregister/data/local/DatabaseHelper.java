@@ -262,8 +262,8 @@ public class DatabaseHelper {
                 });
 
     }
-    public Observable<List<EducationInsert>> getEducationForPost(Integer integer) {
-        return mDb.createQuery(Db.RibotProfileTable.EDUCATION, "SELECT * FROM " + Db.RibotProfileTable.EDUCATION + " WHERE " + Db.RibotProfileTable.EDUCATION_REMOTE_POST_FLAG + "=" + integer)
+    public Observable<List<EducationInsert>> getEducationForPost(String mongo) {
+        return mDb.createQuery(Db.RibotProfileTable.EDUCATION, "SELECT * FROM " + Db.RibotProfileTable.EDUCATION + " WHERE " + Db.RibotProfileTable.EDUCATION_MONGOID + "=" + "'" + mongo +"'")
                 .mapToList(new Func1<Cursor, EducationInsert>() {
                     @Override
                     public EducationInsert call(Cursor cursor) {
@@ -272,7 +272,7 @@ public class DatabaseHelper {
                 });
     }
     public Observable<List<EducationInsert>> getEducationForPut(Integer integer) {
-        return mDb.createQuery(Db.RibotProfileTable.EDUCATION, "SELECT * FROM " + Db.RibotProfileTable.EDUCATION + " WHERE " + Db.RibotProfileTable.EDUCATION_REMOTE_PUT_FLAG + "=" + integer)
+        return mDb.createQuery(Db.RibotProfileTable.EDUCATION, "SELECT * FROM " + Db.RibotProfileTable.EDUCATION + " WHERE " + Db.RibotProfileTable.EDUCATION_MONGOID + "=" + integer)
                 .mapToList(new Func1<Cursor, EducationInsert>() {
                     @Override
                     public EducationInsert call(Cursor cursor) {
@@ -310,37 +310,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void flush_education(final Education education , final Integer post_flag) {
-        Observable.create(new Observable.OnSubscribe<Education>() {
-            @Override
-            public void call(Subscriber<? super Education> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.delete(Db.RibotProfileTable.EDUCATION, Db.RibotProfileTable.EDUCATION_REMOTE_POST_FLAG + "=" + post_flag,  null);if (result >= 0) observer.onNext(education);
-                    transaction.markSuccessful();observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Education>() {
-            @Override
-            public void onNext(Education item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-            @Override
-            public void onCompleted() {
-                System.out.println("Education flushed Successfully .");
-            }
-        });
-    }
     public void edit_education(final Education education, final String id) {
         Observable.create(new Observable.OnSubscribe<Education>() {
             @Override
@@ -371,38 +341,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void update_education_flag(final Education education, final String id ){
-        Observable.create(new Observable.OnSubscribe<Education>() {
-            @Override
-            public void call(Subscriber<? super Education> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.update(Db.RibotProfileTable.EDUCATION, Db.RibotProfileTable.set_education_status(education), "_id" + "=" + id,  null);
-                    if (result >= 0) observer.onNext(education);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Education>() {
-            @Override
-            public void onNext(Education item) {
-                System.out.println("Next: " + item);
-            }
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-            @Override
-            public void onCompleted() {
-                System.out.println("Education post status Updated Successfully .");
-            }
-        });
-    }
+
     //////////////**********************EXPERIENCE CURD****************************///////
     public void setExperience(final Experience newExperience) {
         Observable.create(new Observable.OnSubscribe<Experience>() {
@@ -453,8 +392,8 @@ public class DatabaseHelper {
                 });
 
     }
-    public Observable<List<ExperienceInsert>> getExperienceForPost(Integer integer) {
-        return mDb.createQuery(Db.RibotProfileTable.WORKEXP, "SELECT * FROM " + Db.RibotProfileTable.WORKEXP + " WHERE " + Db.RibotProfileTable.WORKEXP_REMOTE_POST_FLAG + "=" + integer)
+    public Observable<List<ExperienceInsert>> getExperienceForPost(String mongo_id) {
+        return mDb.createQuery(Db.RibotProfileTable.WORKEXP, "SELECT * FROM " + Db.RibotProfileTable.WORKEXP + " WHERE " + Db.RibotProfileTable.EXP_MONGOID + "=" + "'"+ mongo_id +"'")
                 .mapToList(new Func1<Cursor, ExperienceInsert>() {
                     @Override
                     public ExperienceInsert call(Cursor cursor) {
@@ -463,7 +402,7 @@ public class DatabaseHelper {
                 });
     }
     public Observable<List<ExperienceInsert>> getExperienceForPut(Integer integer) {
-        return mDb.createQuery(Db.RibotProfileTable.WORKEXP, "SELECT * FROM " + Db.RibotProfileTable.WORKEXP + " WHERE " + Db.RibotProfileTable.WORKEXP_REMOTE_PUT_FLAG + "=" + integer)
+        return mDb.createQuery(Db.RibotProfileTable.WORKEXP, "SELECT * FROM " + Db.RibotProfileTable.WORKEXP + " WHERE " + Db.RibotProfileTable.EXP_MONGOID + "=" + integer)
                 .mapToList(new Func1<Cursor, ExperienceInsert>() {
                     @Override
                     public ExperienceInsert call(Cursor cursor) {
@@ -539,74 +478,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void flush_experience(final Experience experience , final Integer post_flag) {
-        Observable.create(new Observable.OnSubscribe<Experience>() {
-            @Override
-            public void call(Subscriber<? super Experience> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.delete(Db.RibotProfileTable.WORKEXP, Db.RibotProfileTable.WORKEXP_REMOTE_POST_FLAG + "=" + post_flag,  null);
-                    if (result >= 0) observer.onNext(experience);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Experience>() {
-            @Override
-            public void onNext(Experience item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Award flushed Successfully .");
-            }
-        });
-    }
-    public void update_experience_flag(final Experience experience,final String id ){
-        Observable.create(new Observable.OnSubscribe<Experience>() {
-            @Override
-            public void call(Subscriber<? super Experience> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.update(Db.RibotProfileTable.WORKEXP, Db.RibotProfileTable.set_experience_status(experience), "_id" + "=" + id,  null);
-                    if (result >= 0) observer.onNext(experience);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Experience>() {
-            @Override
-            public void onNext(Experience item) {
-                System.out.println("Next: " + item);
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Experience post status Updated Successfully .");
-            }
-        });
-    }
     ////*///////////**********************EXPERIENCE CURD****************************///////
 
     //////////////**********************AWARD CURD****************************///////
@@ -681,7 +553,7 @@ public class DatabaseHelper {
     }
     public Observable<List<AwardInsert>> getAwardForPut(Integer integer) {
         return mDb.createQuery(Db.RibotProfileTable.AWARDS,
-                "SELECT * FROM " + Db.RibotProfileTable.AWARDS + " WHERE " + Db.RibotProfileTable.AWARD_REMOTE_PUT_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.AWARDS + " WHERE " + Db.RibotProfileTable.AWARD_MONGOID + "=" + integer)
                 .mapToList(new Func1<Cursor, AwardInsert>() {
                     @Override
                     public AwardInsert call(Cursor cursor) {
@@ -920,9 +792,9 @@ public class DatabaseHelper {
                 });
 
     }
-    public Observable<List<CertificateInsert>> getCertificateForPost(Integer integer) {
+    public Observable<List<CertificateInsert>> getCertificateForPost(String mongo_id ) {
         return mDb.createQuery(Db.RibotProfileTable.TBCERTIFICATE,
-                "SELECT * FROM " + Db.RibotProfileTable.TBCERTIFICATE + " WHERE " + Db.RibotProfileTable.CERTIFICATE_REMOTE_POST_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.TBCERTIFICATE + " WHERE " + Db.RibotProfileTable.CERTIFICATE_MONGOID + "=" + "'"+ mongo_id +"'")
                 .mapToList(new Func1<Cursor, CertificateInsert>() {
                     @Override
                     public CertificateInsert call(Cursor cursor) {
@@ -932,7 +804,7 @@ public class DatabaseHelper {
     }
     public Observable<List<CertificateInsert>> getCertificateForPut(Integer integer) {
         return mDb.createQuery(Db.RibotProfileTable.TBCERTIFICATE,
-                "SELECT * FROM " + Db.RibotProfileTable.TBCERTIFICATE + " WHERE " + Db.RibotProfileTable.CERTIFICATE_REMOTE_PUT_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.TBCERTIFICATE + " WHERE " + Db.RibotProfileTable.CERTIFICATE_MONGOID + "=" + integer)
                 .mapToList(new Func1<Cursor, CertificateInsert>() {
                     @Override
                     public CertificateInsert call(Cursor cursor) {
@@ -975,40 +847,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void flush_certificate(final Certificate certificate) {
-        Observable.create(new Observable.OnSubscribe<Certificate>() {
-            @Override
-            public void call(Subscriber<? super Certificate> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.delete(Db.RibotProfileTable.TBCERTIFICATE, null,  null);
-                    if (result >= 0) observer.onNext(certificate);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Certificate>() {
-            @Override
-            public void onNext(Certificate item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Certificate flushed Successfully .");
-            }
-        });
-    }
     public void edit_certificate(final Certificate certificate, final String id) {
         Observable.create(new Observable.OnSubscribe<Certificate>() {
             @Override
@@ -1042,40 +881,6 @@ public class DatabaseHelper {
                 System.out.println("Certificate Updated Successfully .");
             }
         });
-    }
-    public void update_certificate_flag(final Certificate certificate,final String id ){
-        Observable.create(new Observable.OnSubscribe<Certificate>() {
-            @Override
-            public void call(Subscriber<? super Certificate> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.update(Db.RibotProfileTable.TBCERTIFICATE, Db.RibotProfileTable.set_certificate_status(certificate), "_id" + "=" + id,  null);
-                    if (result >= 0) observer.onNext(certificate);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        });/*.subscribe(new Subscriber<Certificate>() {
-            @Override
-            public void onNext(Certificate item) {
-                System.out.println("Next: " + item);
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Certificate post status Updated Successfully .");
-            }
-        });*/
     }
 
     //////////////**********************CERTIFICATE CURD****************************///////
@@ -1139,9 +944,9 @@ public class DatabaseHelper {
                 });
 
     }
-    public Observable<List<ContactInsert>> getContactForPost(Integer integer) {
+    public Observable<List<ContactInsert>> getContactForPost(String  mongo_id) {
         return mDb.createQuery(Db.RibotProfileTable.TBCONTACT,
-                "SELECT * FROM " + Db.RibotProfileTable.TBCONTACT + " WHERE " + Db.RibotProfileTable.CONTACT_REMOTE_POST_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.TBCONTACT + " WHERE " + Db.RibotProfileTable.CONTACT_MONGOID + "=" + "'"+ mongo_id +"'")
                 .mapToList(new Func1<Cursor, ContactInsert>() {
                     @Override
                     public ContactInsert call(Cursor cursor) {
@@ -1151,7 +956,7 @@ public class DatabaseHelper {
     }
     public Observable<List<ContactInsert>> getContactForPut(Integer integer) {
         return mDb.createQuery(Db.RibotProfileTable.TBCONTACT,
-                "SELECT * FROM " + Db.RibotProfileTable.TBCONTACT + " WHERE " + Db.RibotProfileTable.CONTACT_REMOTE_PUT_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.TBCONTACT + " WHERE " + Db.RibotProfileTable.CONTACT_MONGOID + "=" + integer)
                 .mapToList(new Func1<Cursor, ContactInsert>() {
                     @Override
                     public ContactInsert call(Cursor cursor) {
@@ -1193,40 +998,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void flush_contact(final Contact contact,final Integer post_flag) {
-        Observable.create(new Observable.OnSubscribe<Contact>() {
-            @Override
-            public void call(Subscriber<? super Contact> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.delete(Db.RibotProfileTable.TBCONTACT, Db.RibotProfileTable.CONTACT_REMOTE_POST_FLAG + "=" + post_flag,  null);
-                    if (result >= 0) observer.onNext(contact);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Contact>() {
-            @Override
-            public void onNext(Contact item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Award flushed Successfully .");
-            }
-        });
-    }
     public void edit_contact(final Contact contact, final String id) {
         Observable.create(new Observable.OnSubscribe<Contact>() {
             @Override
@@ -1261,40 +1033,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void update_contact_flag(final Contact contact,final String id ){
-        Observable.create(new Observable.OnSubscribe<Contact>() {
-            @Override
-            public void call(Subscriber<? super Contact> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.update(Db.RibotProfileTable.TBCONTACT, Db.RibotProfileTable.set_contact_status(contact), "_id" + "=?" , id);
-                    if (result >= 0) observer.onNext(contact);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Contact>() {
-            @Override
-            public void onNext(Contact item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Contact post status Updated Successfully .");
-            }
-        });
-    }
     //////////////**********************CONTACT CURD****************************///////
     //////////////**********************PROJECT CURD****************************///////
 
@@ -1357,9 +1096,9 @@ public class DatabaseHelper {
                 });
 
     }
-    public Observable<List<ProjectInsert>> getProjectForPost(Integer integer) {
+    public Observable<List<ProjectInsert>> getProjectForPost(String mongo_id ) {
         return mDb.createQuery(Db.RibotProfileTable.PROJECTS,
-                "SELECT * FROM " + Db.RibotProfileTable.PROJECTS + " WHERE " + Db.RibotProfileTable.PROJECTS_REMOTE_POST_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.PROJECTS + " WHERE " + Db.RibotProfileTable.PROJECT_MONGOID + "=" + "'"+ mongo_id +"'")
                 .mapToList(new Func1<Cursor, ProjectInsert>() {
                     @Override
                     public ProjectInsert call(Cursor cursor) {
@@ -1369,7 +1108,7 @@ public class DatabaseHelper {
     }
     public Observable<List<ProjectInsert>> getProjectForPut(Integer integer) {
         return mDb.createQuery(Db.RibotProfileTable.PROJECTS,
-                "SELECT * FROM " + Db.RibotProfileTable.PROJECTS + " WHERE " + Db.RibotProfileTable.PROJECTS_REMOTE_PUT_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.PROJECTS + " WHERE " + Db.RibotProfileTable.PROJECT_MONGOID + "=" + integer)
                 .mapToList(new Func1<Cursor, ProjectInsert>() {
                     @Override
                     public ProjectInsert call(Cursor cursor) {
@@ -1411,40 +1150,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void flush_project(final Project project ,final Integer post_flag) {
-        Observable.create(new Observable.OnSubscribe<Project>() {
-            @Override
-            public void call(Subscriber<? super Project> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.delete(Db.RibotProfileTable.PROJECTS, Db.RibotProfileTable.PROJECTS_REMOTE_POST_FLAG + "=" + post_flag,  null);
-                    if (result >= 0) observer.onNext(project);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Project>() {
-            @Override
-            public void onNext(Project item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Project flushed Successfully .");
-            }
-        });
-    }
     public void edit_project(final Project project, final String id) {
         Observable.create(new Observable.OnSubscribe<Project>() {
             @Override
@@ -1479,43 +1185,7 @@ public class DatabaseHelper {
             }
         });
     }
-   public void update_project_flag(final Project project,final String id ) {
-       System.out.println("update project flag is calling , stage 1" + id);
-       Observable.create(new Observable.OnSubscribe<Project>() {
-           @Override
-           public void call(Subscriber<? super Project> subscriber) {
-               if (subscriber.isUnsubscribed()) return;
-               BriteDatabase.Transaction transaction = mDb.newTransaction();
-               try {
-                   long result = mDb.update(Db.RibotProfileTable.PROJECTS, Db.RibotProfileTable.set_project_status(project), "_id" + "=?" , id);
-                   if (result >= 0) subscriber.onNext(project);
-                   transaction.markSuccessful();
-                   subscriber.onCompleted();
-               } catch (Exception e) {
-                   subscriber.onError(e);
-                   e.printStackTrace();
-               } finally {
-                   transaction.end();
-               }
-           }
-       })
-               .subscribe(new Subscriber<Project>() {
-                   @Override
-                   public void onNext(Project item) {
-                       System.out.println("Next: " + item);
-                   }
 
-                   @Override
-                   public void onError(Throwable error) {
-                       System.err.println("Error: " + error.getMessage());
-                   }
-
-                   @Override
-                   public void onCompleted() {
-                       System.out.println("Project post status Updated Successfully .");
-                   }
-               });
-   }
     //////////////**********************PROJECT CURD****************************///////
     //////////////**********************PUBLICATION CURD****************************///////
     public void setPublication(final Publication newPublication) {
@@ -1575,9 +1245,9 @@ public class DatabaseHelper {
                     }
                 });
     }
-    public Observable<List<PublicationInsert>> getPublicationForPost(Integer integer) {
+    public Observable<List<PublicationInsert>> getPublicationForPost(String mongo_id) {
         return mDb.createQuery(Db.RibotProfileTable.PUBLICATION,
-                "SELECT * FROM " + Db.RibotProfileTable.PUBLICATION + " WHERE " + Db.RibotProfileTable.PUBLICATION_REMOTE_POST_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.PUBLICATION + " WHERE " + Db.RibotProfileTable.PUBLICATION_MONGOID + "=" + "'"+ mongo_id +"'")
                 .mapToList(new Func1<Cursor, PublicationInsert>() {
                     @Override
                     public PublicationInsert call(Cursor cursor) {
@@ -1587,7 +1257,7 @@ public class DatabaseHelper {
     }
     public Observable<List<PublicationInsert>> getPublicationForPut(Integer integer) {
         return mDb.createQuery(Db.RibotProfileTable.PUBLICATION,
-                "SELECT * FROM " + Db.RibotProfileTable.PUBLICATION + " WHERE " + Db.RibotProfileTable.PUBLICATION_REMOTE_PUT_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.PUBLICATION + " WHERE " + Db.RibotProfileTable.PUBLICATION_MONGOID + "=" + integer)
                 .mapToList(new Func1<Cursor, PublicationInsert>() {
                     @Override
                     public PublicationInsert call(Cursor cursor) {
@@ -1629,40 +1299,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void flush_publication(final Publication publication) {
-        Observable.create(new Observable.OnSubscribe<Publication>() {
-            @Override
-            public void call(Subscriber<? super Publication> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.delete(Db.RibotProfileTable.PUBLICATION, null,  null);
-                    if (result >= 0) observer.onNext(publication);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Publication>() {
-            @Override
-            public void onNext(Publication item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Publication flushed Successfully .");
-            }
-        });
-    }
     public void edit_publication(final Publication publication, final String id) {
         Observable.create(new Observable.OnSubscribe<Publication>() {
             @Override
@@ -1670,7 +1307,7 @@ public class DatabaseHelper {
                 if (observer.isUnsubscribed()) return;
                 BriteDatabase.Transaction transaction = mDb.newTransaction();
                 try {
-                    long result = mDb.update(Db.RibotProfileTable.AWARDS, Db.RibotProfileTable.insert_publication(publication), "_id" + "=" + id,  null);
+                    long result = mDb.update(Db.RibotProfileTable.PUBLICATION, Db.RibotProfileTable.insert_publication(publication), "_id" + "=" + id,  null);
                     if (result >= 0) observer.onNext(publication);
                     transaction.markSuccessful();
                     observer.onCompleted();
@@ -1688,7 +1325,7 @@ public class DatabaseHelper {
 
             @Override
             public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
+                System.err.println("Publication Error: " + error.getMessage());
             }
 
             @Override
@@ -1697,40 +1334,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void update_publication_flag(final Publication publication,final String id ){
-        Observable.create(new Observable.OnSubscribe<Publication>() {
-            @Override
-            public void call(Subscriber<? super Publication> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.update(Db.RibotProfileTable.PUBLICATION, Db.RibotProfileTable.set_publication_status(publication), "_id" + "=?" , id);
-                    if (result >= 0) observer.onNext(publication);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Publication>() {
-            @Override
-            public void onNext(Publication item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Publication post status Updated Successfully .");
-            }
-        });
-    }
     //////////////**********************PUBLICATION CURD****************************///////
     //////////////**********************VOLUNTEER CURD****************************///////
     public void setVolunteer(final Volunteer newPublication) {
@@ -1792,9 +1396,9 @@ public class DatabaseHelper {
                 });
 
     }
-    public Observable<List<volunteerInsert>> getVolunteerForPost(Integer integer) {
+    public Observable<List<volunteerInsert>> getVolunteerForPost(String mongo_id) {
         return mDb.createQuery(Db.RibotProfileTable.VOLUNTEER,
-                "SELECT * FROM " + Db.RibotProfileTable.VOLUNTEER + " WHERE " + Db.RibotProfileTable.VOLUNTEER_REMOTE_POST_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.VOLUNTEER + " WHERE " + Db.RibotProfileTable.VOLUNTEER_MONGOID + "=" + "'"+ mongo_id +"'")
                 .mapToList(new Func1<Cursor, volunteerInsert>() {
                     @Override
                     public volunteerInsert call(Cursor cursor) {
@@ -1804,7 +1408,7 @@ public class DatabaseHelper {
     }
     public Observable<List<volunteerInsert>> getVolunteerForPut(Integer integer) {
         return mDb.createQuery(Db.RibotProfileTable.VOLUNTEER,
-                "SELECT * FROM " + Db.RibotProfileTable.VOLUNTEER + " WHERE " + Db.RibotProfileTable.VOLUNTEER_REMOTE_PUT_FLAG + "=" + integer)
+                "SELECT * FROM " + Db.RibotProfileTable.VOLUNTEER + " WHERE " + Db.RibotProfileTable.VOLUNTEER_MONGOID + "=" + integer)
                 .mapToList(new Func1<Cursor, volunteerInsert>() {
                     @Override
                     public volunteerInsert call(Cursor cursor) {
@@ -1846,40 +1450,7 @@ public class DatabaseHelper {
             }
         });
     }
-    public void flush_volunteer(final Volunteer volunteer) {
-        Observable.create(new Observable.OnSubscribe<Volunteer>() {
-            @Override
-            public void call(Subscriber<? super Volunteer> observer) {
-                if (observer.isUnsubscribed()) return;
-                BriteDatabase.Transaction transaction = mDb.newTransaction();
-                try {
-                    long result = mDb.delete(Db.RibotProfileTable.VOLUNTEER, null,  null);
-                    if (result >= 0) observer.onNext(volunteer);
-                    transaction.markSuccessful();
-                    observer.onCompleted();
-                } catch (Exception e) {
-                    observer.onError(e);
-                } finally {
-                    transaction.end();
-                }
-            }
-        }).subscribe(new Subscriber<Volunteer>() {
-            @Override
-            public void onNext(Volunteer item) {
-                System.out.println("Next: " + item);
-            }
 
-            @Override
-            public void onError(Throwable error) {
-                System.err.println("Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Volunteer flushed Successfully .");
-            }
-        });
-    }
     public void edit_volunteer(final Volunteer project, final String id) {
         Observable.create(new Observable.OnSubscribe<Volunteer>() {
             @Override

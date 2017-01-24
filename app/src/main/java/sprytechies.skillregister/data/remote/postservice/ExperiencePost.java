@@ -78,7 +78,7 @@ public class ExperiencePost extends Service {
 
     private void post_experience() {
 
-        Integer integer = 0;
+        String integer = "mongo";
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getExperienceForPost(integer)
                 .observeOn(AndroidSchedulers.mainThread())

@@ -98,7 +98,7 @@ public class AddContact extends BaseActivity {
             Date date=new Date();
             databaseHelper.setContact(Contact.builder().setContact(contact.getText().toString())
                     .setType(contact_type.getText().toString()).setStatus("pending").setCategory(category.getText().toString())
-                    .setDate(date.toString()).setPostflag("0").setPutflag("0").setCreateflag("1").setUpdateflag("0").build());
+                    .build());
             startActivity(new Intent(AddContact.this, ConatctActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 

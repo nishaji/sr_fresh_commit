@@ -105,9 +105,6 @@ public class EducationPut extends Service {
                                         Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                         if (response.code() == 200) {
                                             Toast.makeText(EducationPut.this, "Education update to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_education_flag(Education.builder()
-                                                    .setPutflag("1").setPostflag("1").setDate(date.toString())
-                                                    .build(), education.get(finalI).education().id());
                                         }
                                     }
                                     @Override

@@ -26,6 +26,7 @@ import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Contact;
 import sprytechies.skillregister.data.model.ContactInsert;
+import sprytechies.skillregister.ui.education.EducationAdapter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
@@ -33,7 +34,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     private List<ContactInsert> contacts;
     @Inject DatabaseHelper databaseHelper;
     Context context;String edit_id;
-    private Subscription mSubscription;
+    private Subscription mSubscription;AlertDialog ab;
     @Inject
     public ContactAdapter() {
         contacts = new ArrayList<>();
@@ -44,7 +45,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     }
     @Override
     public ContactAdapter.ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_row, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_preview_row, parent, false);
         return new ContactViewHolder(itemView);
     }
     @Override
@@ -58,7 +59,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             public void onClick(View view) {
                 String deleteid=contacts.get(position).contact().id();
                 databaseHelper.delete_contact(deleteid);
-                context.startActivity( new Intent(context, ConatctActivity.class));
+
             }});
                 holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +67,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 edit_id=contacts.get(position).contact().id();edit_contact();
             }});
     }
-
+    public void onViewDetachedFromWindow(ContactViewHolder holder) {
+        System.out.println("dfdfdfdfdfdf");
+        if (ab != null) {
+            ab.dismiss();
+            ab = null;
+        }
+    }
     private void edit_contact() {
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getContactForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
@@ -127,9 +134,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         databaseHelper.edit_contact(Contact.builder()
                                                 .setContact(contact.getText().toString()).setCategory(category.getText().toString())
-                                                .setStatus("pending").setType(contact_type.getText().toString()).setPutflag("0")
-                                                .build(),edit_id);
-                                        context.startActivity( new Intent(context, ConatctActivity.class));
+                                                .setStatus("pending").setType(contact_type.getText().toString()).build(),edit_id);
+
                                     }})
                                 .setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {
@@ -138,7 +144,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                                             }
                                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();alertDialogAndroid.show();
+                        ab = alertDialogBuilderUserInput.create();ab.show();
                     }});
 
     }

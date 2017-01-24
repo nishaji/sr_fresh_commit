@@ -27,19 +27,14 @@ import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Volunteer;
 import sprytechies.skillregister.data.model.volunteerInsert;
+import sprytechies.skillregister.ui.award.AwardAdapter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
-
-/**
- * Created by sprydev5 on 4/10/16.
- */
-
 public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.VolunteerViewHolder> {
     List<volunteerInsert> volunteer;
-    Context context;
-    @Inject
-    DatabaseHelper databaseHelper;
+    Context context;AlertDialog ab;
+    @Inject DatabaseHelper databaseHelper;
     private Subscription mSubscription;
     String edit_id;
 
@@ -56,7 +51,12 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.volunteer_row, parent, false);
         return new VolunteerViewHolder(itemView);
     }
-
+    public void onViewDetachedFromWindow(VolunteerViewHolder holder) {
+        if (ab != null) {
+            ab.dismiss();
+            ab = null;
+        }
+    }
     @Override
     public void onBindViewHolder(VolunteerAdapter.VolunteerViewHolder holder,final int position) {
         volunteerInsert volunteerInsert=volunteer.get(position);
@@ -68,7 +68,6 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
             public void onClick(View view) {
                 String deleteid=volunteer.get(position).volunteer().id();
                 databaseHelper.delete_volunteer(deleteid);
-                context.startActivity( new Intent(context, VolunteerActivity.class));
 
             }});
         holder.edit.setOnClickListener(new View.OnClickListener() {
@@ -95,10 +94,8 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
                         Timber.e(e, "There was an error loading the volunteer.");
 
                     }
-
                     @Override
                     public void onNext(List<volunteerInsert> volunteer) {
-                        System.out.println(volunteer);
                         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(context);
                         View mView = layoutInflaterAndroid.inflate(R.layout.volunteer_dialog, null);
                         AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(context);
@@ -109,7 +106,6 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
                         final EditText type=(EditText)mView.findViewById(R.id.di_volunteer_role_type);
                         final ImageView duration=(ImageView)mView.findViewById(R.id.di_volunteer_duration);
                         final TextView duration_text=(TextView)mView.findViewById(R.id.di_volunteer_text);
-
                         role.setText(volunteer.get(0).volunteer().role());
                         org.setText(volunteer.get(0).volunteer().organisation());
                         desc.setText(volunteer.get(0).volunteer().description());
@@ -149,8 +145,8 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
                                         databaseHelper.edit_volunteer(Volunteer.builder()
                                                 .setDescription(desc.getText().toString()).setOrganisation(org.getText().toString())
                                                 .setRole(role.getText().toString()).setType(type.getText().toString())
-                                                .setFrom(from).setUpto(to).setPutflag("0").build(),edit_id);
-                                        context.startActivity( new Intent(context, VolunteerActivity.class));
+                                                .setFrom(from).setUpto(to).build(),edit_id);
+
 
                                     }}).setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
@@ -159,8 +155,7 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
                                     }
                                 });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                        alertDialogAndroid.show();
+                        ab = alertDialogBuilderUserInput.create();ab.show();
                     }
                 });
     }

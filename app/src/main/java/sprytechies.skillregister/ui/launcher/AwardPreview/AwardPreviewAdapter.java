@@ -42,7 +42,7 @@ public class AwardPreviewAdapter extends RecyclerView.Adapter<AwardPreviewAdapte
         holder.award_title.setText(awardInsert.award().title());
         holder.award_desc.setText(awardInsert.award().description());
         holder.award_org.setText(awardInsert.award().organisation());
-        holder.date.setText(awardInsert.award().date());
+        holder.date.setText(awardInsert.award().duration());
     }
     @Override
     public int getItemCount() {

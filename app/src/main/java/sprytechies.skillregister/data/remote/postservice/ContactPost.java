@@ -77,7 +77,7 @@ public class ContactPost extends Service {
     }
 
     private void post_contacts() {
-        Integer integer = 0;
+        String integer = "mongo";
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getContactForPost(integer)
                 .observeOn(AndroidSchedulers.mainThread())

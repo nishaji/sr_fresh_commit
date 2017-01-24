@@ -101,9 +101,7 @@ public class AwardPut extends Service {
                                         Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                         if (response.code() == 200) {
                                             Toast.makeText(AwardPut.this, "award update to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_award_flag(Award.builder()
-                                                    .setPutflag("1").setPostflag("1").setDate(date.toString())
-                                                    .build(), award.get(finalI).award().id());
+                                            databaseHelper.update_award_flag(Award.builder().build(), award.get(finalI).award().id());
                                         }
                                     }
                                     @Override

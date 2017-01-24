@@ -14,7 +14,7 @@ import com.google.gson.TypeAdapter;
 @AutoValue
 public abstract class Publication implements Parcelable {
     @Nullable public abstract String title();
-    @Nullable public abstract String publishers();
+    @Nullable public abstract String publisher();
     @Nullable public abstract String authors();
     @Nullable public abstract String url();
     @Nullable public abstract String description();
@@ -34,7 +34,7 @@ public abstract class Publication implements Parcelable {
     @AutoValue.Builder
     public abstract static class Builder {
         public abstract Publication.Builder setTitle(String title);
-        public abstract Publication.Builder setPublishers(String publishers);
+        public abstract Publication.Builder setPublisher(String publisher);
         public abstract Publication.Builder setAuthors(String authors);
         public abstract Publication.Builder setDescription(String description);
         public abstract Publication.Builder setUrl(String url);

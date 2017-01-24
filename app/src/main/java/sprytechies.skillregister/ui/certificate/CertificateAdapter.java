@@ -33,10 +33,6 @@ import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
 
-/**
- * Created by sprydev5 on 4/10/16.
- */
-
 public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.CertificateViewHolder> implements DatePickerDialog.OnDateSetListener {
     private List<CertificateInsert>certificateInsertList;
     @Inject DatabaseHelper databaseHelper;TextView time;
@@ -68,7 +64,7 @@ public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.
             public void onClick(View view) {
                 String deleteid=certificateInsertList.get(position).certificate().id();
                 databaseHelper.delete_certificate(deleteid);
-                context.startActivity( new Intent(context, CertificateActivity.class));
+
             }});
                 holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override

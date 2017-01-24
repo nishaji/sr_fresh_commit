@@ -69,7 +69,7 @@ public class AddVolunteer extends BaseActivity {
             databaseHelper.setVolunteer(Volunteer.builder()
                     .setRole(role.getText().toString()).setOrganisation(org.getText().toString())
                     .setUpto(to).setFrom(from).setDescription(desc.getText().toString())
-                    .setType(role_type.getText().toString()).setPostflag("0").setPutflag("1").setCreateflag("1").setUpdateflag("1").build());
+                    .setType(role_type.getText().toString()).build());
             startActivity(new Intent(AddVolunteer.this,VolunteerActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             if (!NetworkUtil.isNetworkConnected(this)) {

@@ -84,7 +84,7 @@ public class PublicationPost extends Service {
     }
 
     private void post_publication() {
-        Integer integer = 0;
+        String integer = "mongo";
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getPublicationForPost(integer).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -120,10 +120,7 @@ public class PublicationPost extends Service {
                                             String id = response.body().getId();
                                             System.out.println("certificate send to server successfully");
                                             Toast.makeText(PublicationPost.this, "certificate send to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_publication_flag(Publication.builder()
-                                                    .setPostflag("1").setDate(date.toString()).setMongoid(id)
-                                                    .build(), certificate.get(finalI).publication().id());
-                                          //  databaseHelper.setSyncstatus(LiveSync.builder().setBit("publication").setPost("1").build());
+
                                         }
                                     }
                                     @Override

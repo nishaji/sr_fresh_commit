@@ -26,7 +26,7 @@
         android:inputType="textCapWords"/>
 
     <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/di_publication_org"
+        android:id="@+id/di_publication_publishers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Publisher"

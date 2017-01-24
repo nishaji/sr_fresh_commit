@@ -31,7 +31,7 @@ public class Pub implements Serializable {
     public Pub(PublicationInsert pub){
         Date date=new Date(pub.publication().date());
         this.title=pub.publication().title();
-        this.publisher=pub.publication().publishers();
+        this.publisher=pub.publication().publisher();
         this.date=date;
         this.authors=pub.publication().authors();
         this.url=pub.publication().url();

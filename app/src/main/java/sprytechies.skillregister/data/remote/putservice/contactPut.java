@@ -103,9 +103,6 @@ public class contactPut extends Service {
                                         Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                         if (response.code() == 200) {
                                             Toast.makeText(contactPut.this, "contact send to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_contact_flag(Contact.builder()
-                                                    .setPutflag("1").setPostflag("1").setDate(date.toString())
-                                                    .build(), contact.get(finalI).contact().id());
                                         }
                                     }
                                     @Override

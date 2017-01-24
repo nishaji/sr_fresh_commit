@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,14 +56,19 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
             @Override
             public void onClick(View view) {
                 String deleteid=awards.get(position).award().id();databaseHelper.delete_AWARDS(deleteid);
-                context.startActivity( new Intent(AwardAdapter.this.context, AwardActivity.class));}});
+               }});
                 holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 edit_id=awards.get(position).award().id();edit_award();
             }});
     }
-
+    public void onViewDetachedFromWindow(AwardViewHolder holder) {
+        if (ab != null) {
+            ab.dismiss();
+            ab = null;
+        }
+    }
     private void edit_award() {
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getAwardForUpdate(edit_id)
@@ -106,9 +110,7 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         databaseHelper.edit_awards(Award.builder()
                                                 .setTitle(title.getText().toString()).setDescription(description.getText().toString())
-                                                .setOrganisation(organisation.getText().toString()).setDuration(time.getText().toString()).setPutflag("0")
-                                                .build(),edit_id);
-                                         context.startActivity( new Intent(AwardAdapter.this.context, AwardActivity.class));
+                                                .setOrganisation(organisation.getText().toString()).setDuration(time.getText().toString()).build(),edit_id);
 
                                     }})
                                 .setNegativeButton("Cancel",

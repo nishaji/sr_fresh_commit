@@ -30,6 +30,7 @@ import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Experience;
 import sprytechies.skillregister.data.model.ExperienceInsert;
 import sprytechies.skillregister.data.model.Location;
+import sprytechies.skillregister.ui.education.EducationAdapter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
@@ -41,7 +42,7 @@ import timber.log.Timber;
 public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.ExperienceViewHolder> {
 
     private List<ExperienceInsert> experience;@Inject
-    DatabaseHelper databaseHelper;
+    DatabaseHelper databaseHelper;AlertDialog ab;
     String edit_id;private Subscription mSubscription;
     Context context;
     @Inject
@@ -68,7 +69,6 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
             public void onClick(View view) {
                 String deleteid=experience.get(position).experience().id();
                 databaseHelper.delete_xperience(deleteid);
-                context.startActivity( new Intent(context, ExperienceActivity.class));
 
             }});
         holder.edit.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +79,12 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
             }
         });
 
+    }
+    public void onViewDetachedFromWindow(ExperienceViewHolder holder) {
+        if (ab != null) {
+            ab.dismiss();
+            ab = null;
+        }
     }
     private void edit_experience() {
         RxUtil.unsubscribe(mSubscription);
@@ -189,8 +195,7 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
                                                 .setStatus(status.getText().toString()).setJob(job_title.getText().toString())
                                                 .setType(job_type.getText().toString()).setTitle(company_title.getText().toString())
                                                 .setLocation(new Location(location.getText().toString(),location_type.getText().toString()))
-                                                .setId(job_title.getText().toString()).setPutflag("0").build(),edit_id);
-                                                 context.startActivity( new Intent(context, ExperienceActivity.class));
+                                                .setId(job_title.getText().toString()).build(),edit_id);
 
                                     }}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogBox, int id) {
@@ -198,7 +203,7 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
                             }
                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();alertDialogAndroid.show();
+                        ab = alertDialogBuilderUserInput.create();ab.show();
 
                     }});
 

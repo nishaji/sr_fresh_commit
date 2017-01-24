@@ -105,9 +105,6 @@ public class ExperiencePut extends Service {
                                         Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                         if (response.code() == 200) {
                                             Toast.makeText(ExperiencePut.this, "experience update to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_experience_flag(Experience.builder()
-                                                    .setPutflag("1").setPostflag("1").setDate(date.toString())
-                                                    .build(), experience.get(finalI).experience().id());
                                         }
                                     }
                                     @Override

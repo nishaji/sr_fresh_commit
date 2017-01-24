@@ -102,7 +102,7 @@ public class AddExperience extends BaseActivity {
                     .setCompany(comany_name.getText().toString()).setFrom(from)
                     .setJob(job.getText().toString()).setTitle(company_title.getText().toString()).setType(job_type.getText().toString()).setUpto(to)
                     .setLocation(new Location(exp_location.getText().toString(),exp_location_type.getText().toString()))
-                    .setStatus(status.getText().toString()).setDate(date.toString()).setPostflag("0").setPutflag("0").setCreateflag("1").setUpdateflag("0").build());
+                    .setStatus(status.getText().toString()).build());
             startActivity(new Intent(AddExperience.this,ExperienceActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 

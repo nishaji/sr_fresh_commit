@@ -69,7 +69,7 @@ public class CertificatePut extends Service {
     }
 
     private void put_certificate() {
-        Integer integer = 0;
+        String integer = "mongo";
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getCertificateForPost(integer)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -104,9 +104,7 @@ public class CertificatePut extends Service {
                                         Log.v("RESPONSE_CODE", String.valueOf(response.code()));
                                         if (response.code() == 200) {
                                             Toast.makeText(CertificatePut.this, "certificate update to server successfully", Toast.LENGTH_SHORT).show();
-                                            databaseHelper.update_certificate_flag(Certificate.builder()
-                                                    .setPutflag("1").setPostflag("1").setDate(date.toString())
-                                                    .build(), certificate.get(finalI).certificate().id());
+
                                         }
                                     }
                                     @Override

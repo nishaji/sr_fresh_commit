@@ -72,8 +72,8 @@ public class AddPublication extends BaseActivity implements DatePickerDialog.OnD
         else {
             databaseHelper.setPublication(Publication.builder()
                     .setAuthors(author.getText().toString()).setDate(duration_text.getText().toString())
-                    .setDescription(pub_desc.getText().toString()).setPublishers(publisher.getText().toString())
-                    .setTitle(pub_title.getText().toString()).setUrl(url.getText().toString()).setPostflag("0").setPutflag("1").setCreateflag("1").setUpdateflag("1").build());
+                    .setDescription(pub_desc.getText().toString()).setPublisher(publisher.getText().toString())
+                    .setTitle(pub_title.getText().toString()).setUrl(url.getText().toString()).build());
             startActivity(new Intent(AddPublication.this,ActivityPublication.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             if (!NetworkUtil.isNetworkConnected(this)) {

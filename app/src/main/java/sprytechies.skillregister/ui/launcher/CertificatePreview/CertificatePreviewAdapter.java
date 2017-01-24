@@ -43,7 +43,7 @@ public class CertificatePreviewAdapter extends RecyclerView.Adapter<CertificateP
         holder.certificate_authority.setText(certificateInsert.certificate().authority());
         holder.certificate_type.setText(certificateInsert.certificate().type());
         holder.certificate_rank.setText(certificateInsert.certificate().rank());
-        holder.certificate_date.setText(certificateInsert.certificate().date());
+        holder.certificate_date.setText(certificateInsert.certificate().certdate());
     }
     @Override
     public int getItemCount() {

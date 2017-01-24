@@ -105,7 +105,16 @@
                 android:hint="CGPI Type"
                 app:met_floatingLabel="normal"/>
 
-
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/di_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            app:met_floatingLabel="normal"
+            app:met_textColor="#000"
+            app:met_textColorHint="#9E9E9E"
+            app:met_floatingLabelTextColor="#000"
+            android:maxLines="10"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
