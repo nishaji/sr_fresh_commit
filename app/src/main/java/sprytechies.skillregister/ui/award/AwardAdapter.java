@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Award;
 import sprytechies.skillregister.data.model.AwardInsert;
+import sprytechies.skillregister.ui.certificate.CertificateActivity;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
@@ -111,6 +113,7 @@ public class AwardAdapter extends RecyclerView.Adapter<AwardAdapter.AwardViewHol
                                         databaseHelper.edit_awards(Award.builder()
                                                 .setTitle(title.getText().toString()).setDescription(description.getText().toString())
                                                 .setOrganisation(organisation.getText().toString()).setDuration(time.getText().toString()).build(),edit_id);
+                                        context.startActivity(new Intent(context,AwardActivity.class));
 
                                     }})
                                 .setNegativeButton("Cancel",

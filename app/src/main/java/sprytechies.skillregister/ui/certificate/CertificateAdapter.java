@@ -29,6 +29,7 @@ import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Certificate;
 import sprytechies.skillregister.data.model.CertificateInsert;
+import sprytechies.skillregister.ui.contact.ContactAdapter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
@@ -73,7 +74,12 @@ public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.
             }});
 
     }
-
+    public void onViewDetachedFromWindow(CertificateViewHolder holder) {
+        if (ab != null) {
+            ab.dismiss();
+            ab = null;
+        }
+    }
     private void edit_certificate() {
         RxUtil.unsubscribe(mSubscription);
         mSubscription = databaseHelper.getCertificateForUpdate(edit_id).observeOn(AndroidSchedulers.mainThread())
@@ -138,7 +144,8 @@ public class CertificateAdapter extends RecyclerView.Adapter<CertificateAdapter.
                                 .setName(cert_name.getText().toString()).setRank(rank.getText().toString())
                                  .setType(cert_type.getText().toString())
                                 .build(),edit_id);
-                        context.startActivity( new Intent(context, CertificateActivity.class));
+                        context.startActivity(new Intent(context,CertificateActivity.class));
+
                     }})
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {

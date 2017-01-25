@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,9 @@ import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Publication;
 import sprytechies.skillregister.data.model.PublicationInsert;
 import sprytechies.skillregister.ui.award.AwardAdapter;
+import sprytechies.skillregister.ui.certificate.CertificateActivity;
 import sprytechies.skillregister.ui.education.EducationAdapter;
+import sprytechies.skillregister.ui.project.ProjectActivity;
 import sprytechies.skillregister.util.RxUtil;
 
 public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.PublicationViewHolder> implements DatePickerDialog.OnDateSetListener {
@@ -135,6 +138,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
                                                 .setPublisher(pub.getText().toString())
                                                 .setUrl(url.getText().toString())
                                                 .build(),edit_id);
+                                        context.startActivity(new Intent(context,ProjectActivity.class));
                                     }
                                 }).setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {

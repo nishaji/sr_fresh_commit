@@ -28,6 +28,7 @@ import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Volunteer;
 import sprytechies.skillregister.data.model.volunteerInsert;
 import sprytechies.skillregister.ui.award.AwardAdapter;
+import sprytechies.skillregister.ui.certificate.CertificateActivity;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
@@ -146,6 +147,7 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
                                                 .setDescription(desc.getText().toString()).setOrganisation(org.getText().toString())
                                                 .setRole(role.getText().toString()).setType(type.getText().toString())
                                                 .setFrom(from).setUpto(to).build(),edit_id);
+                                        context.startActivity(new Intent(context,VolunteerActivity.class));
 
 
                                     }}).setNegativeButton("Cancel",

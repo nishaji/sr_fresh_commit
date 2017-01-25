@@ -31,6 +31,7 @@ import sprytechies.skillregister.data.model.EduMeta;
 import sprytechies.skillregister.data.model.Education;
 import sprytechies.skillregister.data.model.EducationInsert;
 import sprytechies.skillregister.data.model.Location;
+import sprytechies.skillregister.ui.certificate.CertificateActivity;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
 
@@ -233,6 +234,7 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Educ
                                                         .setFrom(from).setUpto(to).setLocation(new Location(location.getText().toString(),location_type.getText().toString()))
                                                         .setSchool(schoolname.getText().toString()).setSchooltype(school_type.getText().toString()).setTitle(title.getText().toString())
                                                         .build(),edit_id);
+                                        context.startActivity(new Intent(context,EducationActivity.class));
                                     }}
                                 ).setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {

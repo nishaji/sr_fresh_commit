@@ -62,17 +62,6 @@
             app:met_textColorHint="#9E9E9E"
             app:met_floatingLabelTextColor="#000"
             android:maxLines="1"/>
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/di_cert_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Certificate Status"
-            app:met_floatingLabel="normal"
-            app:met_textColor="#000"
-            app:met_textColorHint="#9E9E9E"
-            app:met_floatingLabelTextColor="#000"
-            android:maxLines="1"/>
-
         <LinearLayout
             android:gravity="left"
             android:layout_marginTop="10dp"

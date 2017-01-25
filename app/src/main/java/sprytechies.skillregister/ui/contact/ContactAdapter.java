@@ -26,6 +26,7 @@ import sprytechies.skillregister.R;
 import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Contact;
 import sprytechies.skillregister.data.model.ContactInsert;
+import sprytechies.skillregister.ui.certificate.CertificateActivity;
 import sprytechies.skillregister.ui.education.EducationAdapter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
@@ -68,7 +69,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             }});
     }
     public void onViewDetachedFromWindow(ContactViewHolder holder) {
-        System.out.println("dfdfdfdfdfdf");
         if (ab != null) {
             ab.dismiss();
             ab = null;
@@ -135,7 +135,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                                         databaseHelper.edit_contact(Contact.builder()
                                                 .setContact(contact.getText().toString()).setCategory(category.getText().toString())
                                                 .setStatus("pending").setType(contact_type.getText().toString()).build(),edit_id);
-
+                                        context.startActivity(new Intent(context,ConatctActivity.class));
                                     }})
                                 .setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {

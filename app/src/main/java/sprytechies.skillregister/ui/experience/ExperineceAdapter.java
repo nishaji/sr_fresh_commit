@@ -30,6 +30,7 @@ import sprytechies.skillregister.data.local.DatabaseHelper;
 import sprytechies.skillregister.data.model.Experience;
 import sprytechies.skillregister.data.model.ExperienceInsert;
 import sprytechies.skillregister.data.model.Location;
+import sprytechies.skillregister.ui.certificate.CertificateActivity;
 import sprytechies.skillregister.ui.education.EducationAdapter;
 import sprytechies.skillregister.util.RxUtil;
 import timber.log.Timber;
@@ -196,6 +197,7 @@ public class ExperineceAdapter extends RecyclerView.Adapter<ExperineceAdapter.Ex
                                                 .setType(job_type.getText().toString()).setTitle(company_title.getText().toString())
                                                 .setLocation(new Location(location.getText().toString(),location_type.getText().toString()))
                                                 .setId(job_title.getText().toString()).build(),edit_id);
+                                        context.startActivity(new Intent(context,ExperienceActivity.class));
 
                                     }}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogBox, int id) {

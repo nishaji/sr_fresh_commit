@@ -67,38 +67,46 @@
             android:value="269354ab26629ff3eec799856de4a573123391de" />
 
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name="sprytechies.skillregister.ui.award.AwardActivity"
             android:label="@string/title_activity_award"
             android:noHistory="true" />
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name="sprytechies.skillregister.ui.certificate.CertificateActivity"
             android:label="@string/title_activity_certificate"
-            android:noHistory="true"/>
+            />
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name="sprytechies.skillregister.ui.contact.ConatctActivity"
             android:label="@string/title_activity_conatct"
-            android:noHistory="true" />
+             />
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name="sprytechies.skillregister.ui.education.EducationActivity"
             android:label="@string/title_activity_education"
-            android:noHistory="true" />
+             />
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name="sprytechies.skillregister.ui.experience.ExperienceActivity"
             android:label="@string/title_activity_experience"
-            android:noHistory="true" />
+             />
 
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name="sprytechies.skillregister.ui.project.ProjectActivity"
             android:label="@string/title_activity_project"
-            android:noHistory="true" />
+            />
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name="sprytechies.skillregister.ui.publication.ActivityPublication"
             android:label="@string/title_activity_publication"
-            android:noHistory="true" />
+             />
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name="sprytechies.skillregister.ui.volunteer.VolunteerActivity"
             android:label="@string/title_activity_volunteer"
-            android:noHistory="true" />
+             />
         <activity
             android:windowSoftInputMode="stateVisible|adjustResize"
             android:name="sprytechies.skillregister.ui.award.AddAwardActivity"
